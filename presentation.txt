@@ -6,8 +6,12 @@ Les étudiants et enseignants pourront sauvegarder leurs fichiers et dossiers qu
 choix des couleurs : bleu & blanc 
 bleu ==> confiance, sécurité, fraicheur, l’intelligence exemple paypal 
 blanc ==> simplicité, design, passe partout 
+c'est plus rassurant pour le client .
+
 
 choix du logo : initiale de l'entreprise  + nuage (symbole du cloud) ==> S&S Cloud
+S&S Police : Arial Black taille 50
+cloud Police :Arimo taille 35
 
 nom du site :  www.sscloud.fr
 
