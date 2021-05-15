@@ -17,7 +17,7 @@ import img6 from '../images/son.jpg';
 import img7 from '../images/fichier.PNG';
 import img8 from '../images/fichier.PNG';
 import image from '../images/index.png';
-
+import imageLogos from '../images/loupe.PNG';
 
 const options = [
     { value: 'FR', label: 'Français' },
@@ -45,10 +45,10 @@ function Stockage(){
 
             <div className="document">
                 <div>
-                    <p><b><span style={{ fontSize: 20}}>#</span>&nbsp;&nbsp;&nbsp;Mes documents</b></p>
+                    <p><span style={{ fontSize: 20}}>#</span><b>&nbsp;&nbsp;&nbsp;Mes documents</b></p>
                 </div>  
                 <div>
-                    <p><b><span style={{ marginLeft:-14}}><img src={image} alt="logos" width="3%" height="3%"></img></span> Mon compte</b></p>
+                    <p><b><span style={{ marginLeft:-15}}><img src={image} alt="logos" width="3%" height="3%"></img></span> Mon compte</b></p>
                 </div>  
                 <div>
                     <p>Il vous reste: x Go</p>
@@ -60,11 +60,11 @@ function Stockage(){
                     <p>... More</p>
                 </div>
                 <div className="fichier">
-                    <p><b>Importer un fichier : <Button><span style={{ fontSize:25}}>+</span></Button></b></p>
+                    <p><b>Importer un fichier : <button class="rounded-pill" class="border-0"><span style={{ fontSize:22, backgroundColor: '#0091ea'}}>+</span></button></b></p>
                 </div>  
                 <div>
-                    <button class="text-primary" style={{marginLeft:360, width:200,height:40, border:1}}><span style={{fontSize:23}}>+</span> Nouveau dossier</button>
-                    <button class="text-primary" style={{marginLeft:30, width:200,height:40, border:1}}>recherche</button>
+                    <button class="rounded-pill" style={{marginLeft:360, width:200,height:40, border:1}}><span style={{fontSize:23}}>+</span> Nouveau dossier</button>
+                    <button class="rounded-pill" style={{marginLeft:30, width:200,height:40, border:1}}><img src={imageLogos} alt="logos" width="5%" height="5%"></img>rechercher</button>
                 </div>
 
                 <div className="logosFile" style={{marginLeft:350, marginTop:30}}>
