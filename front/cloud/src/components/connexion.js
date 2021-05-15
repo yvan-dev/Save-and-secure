@@ -23,7 +23,7 @@ function Connexion(){
             <header style={{marginTop:11}}>
                 <div>
                     <span style={{ margin: 15 }}>
-                        <img src={img} alt="logos" width="7%" height="7%"></img>
+                        <img src={img} alt="logos" width="8%" height="8%"></img>
                     </span>
                     <span style={{ margin: 15}}>
                         <a href="#"><label>Acceuil</label></a>
@@ -41,8 +41,7 @@ function Connexion(){
             </header>
             <hr></hr>
             <div className="connect">   
-                <h5><b>Votre compte S&S</b></h5>
-                <br></br>
+                <h4><p><b>Votre compte S&S</b></p></h4>
                 <div className="inputLogin">
                     <input class='form-control' placeholder="email" type="text"/><br></br>
                     <input class='form-control' placeholder="mot de passe" type="text"/><br></br>

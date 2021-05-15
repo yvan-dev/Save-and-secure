@@ -18,7 +18,7 @@ function Header() {
   return (
     <div>
       <span style={{ margin: 15 }}>
-        <img src={img} alt="logos" width="7%" height="7%"></img>
+        <img src={img} alt="logos" width="8%" height="8%"></img>
       </span>
       <span>
         <a href="#"><label>Nous contacter</label></a>
