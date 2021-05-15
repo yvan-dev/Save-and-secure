@@ -17,6 +17,7 @@ const options = [
   ]
 
 function Connexion(){
+    const history = useHistory();
     return(
         <div>
             <header style={{marginTop:11}}>
@@ -52,7 +53,7 @@ function Connexion(){
                         <span ><b>Mot de passe oublié?</b></span>
                     </div> 
                 </div>
-                <Button style={{width:250}}><b>Me connecter</b></Button>
+                <Button style={{width:250}} onClick={() => history.push("/login/stockage")}><b>Me connecter</b></Button>
             </div>     
             <div className="imgConnect" style={{marginTop:110}}>
                 <img src={img1} alt="logos" width="35%" height="35%"></img> 

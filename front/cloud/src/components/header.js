@@ -5,7 +5,8 @@ import { useHistory } from "react-router-dom";
 import { ButtonToolbar } from "react-bootstrap";
 import img from '../images/image.png';
 import img1 from '../images/image.png';
-import Select from 'react-select'
+import Select from 'react-select';
+import Form from 'react-bootstrap/Form';
 
 const options = [
   { value: 'FR', label: 'Français' },

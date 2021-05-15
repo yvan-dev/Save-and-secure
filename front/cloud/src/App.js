@@ -5,6 +5,7 @@ import Header from './components/header';
 import SiteInfo from './components/main';
 import Footer from './components/footer';
 import Connexion from './components/connexion';
+import Stockage from './components/Stockage';
 import './css/main.css';
 import {
   BrowserRouter as Router,
@@ -27,11 +28,14 @@ function App() {
   return (
     <Router>
       <Switch>
-      <Route exact path="/">
+        <Route exact path="/">
           <Home />
         </Route>
         <Route exact path="/login">
           <Connexion />
+        </Route>
+        <Route exact path="/login/stockage">
+          <Stockage />
         </Route>
       </Switch>
     </Router>
