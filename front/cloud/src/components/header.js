@@ -4,7 +4,9 @@ import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
 import { ButtonToolbar } from "react-bootstrap";
 import img from '../images/image.png';
-import Select from 'react-select'
+import img1 from '../images/image.png';
+import Select from 'react-select';
+import Form from 'react-bootstrap/Form';
 
 const options = [
   { value: 'FR', label: 'Français' },
@@ -16,29 +18,20 @@ function Header() {
   return (
     <div>
       <span style={{ margin: 15 }}>
-        <img src={img} alt="logos" width="5%" height="5%"></img>
+        <img src={img} alt="logos" width="8%" height="8%"></img>
       </span>
       <span>
-        <a href="#">Nous contacter</a>
+        <a href="#"><label>Nous contacter</label></a>
       </span>
-      <span style={{ marginLeft: "50%" }}>
+      <span style={{ marginLeft: "  56%" }}>
         <span style={{ margin: 10 }}>
           <Button onClick={() => history.push("/login")}>Connexion</Button>
         </span>
+        <span style={{ margin: 15 }}><label>FAQ</label></span>
         <span>
-          <Button>Inscription</Button>
-        </span>
-        <span style={{ margin: 15 }}>FAQ</span>
-        <span >
           <Select
             className="select"
-            options={options}
-          />
-          {/* <select style={{width: 75}}>
-            <option selected>Langue</option>
-            <option value="1">Français</option>
-            <option value="2">Anglais</option>
-          </select> */}
+            options={options}/>
         </span>
       </span>
       <hr></hr>
