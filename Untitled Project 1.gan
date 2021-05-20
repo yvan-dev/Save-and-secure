@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="SITE WEB" company="" webLink="http://" view-date="2021-05-10" view-index="0" gantt-divider-location="571" resource-divider-location="300" version="3.0.2914" locale="fr_FR">
+    <description/>
+    <view zooming-state="default:6" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="288" order="0"/>
+        <field id="tpd4" name="Date de début" width="101" order="1"/>
+        <field id="tpd5" name="Date de fin" width="163" order="2"/>
+        <timeline>
+            <![CDATA[9,168,8]]>
+        </timeline>
+        <option id="color.recent">
+            <![CDATA[#ff0000 #33ff33 #00ffff #ffcccc #ff9999 #33ff66 #00ff66 #66ff00 #ff9933 #00ff00]]>
+        </option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nom" width="210" order="0"/>
+        <field id="1" name="Rôle par défaut" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="TRAVAIL D'ÉQUIPE" color="#33ffff" shape="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" meeting="false" start="2021-05-05" duration="24" complete="63" thirdDate="2021-05-06" thirdDate-constraint="0" expand="true">
+            <task id="16" name="Reflexion sur la forme et le contenu du site" color="#00ff00" meeting="false" start="2021-05-05" duration="2" complete="100" thirdDate="2021-05-06" thirdDate-constraint="0" expand="true"/>
+            <task id="105" name="définition des lanquages utilisés" color="#00ff00" meeting="false" start="2021-05-05" duration="2" complete="100" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+            <task id="17" name="Redaction et améliorations livrables" color="#00ff00" meeting="false" start="2021-05-06" duration="8" complete="100" thirdDate="2021-05-06" thirdDate-constraint="1" expand="true"/>
+            <task id="109" name="Tests unitaires" color="#ff0000" meeting="false" start="2021-05-31" duration="2" complete="0" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+            <task id="94" name="Test global du site" color="#ff0000" meeting="false" start="2021-06-02" duration="1" complete="0" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+            <task id="95" name="Déploiement du site" color="#ff0000" meeting="false" start="2021-06-04" duration="1" complete="0" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+            <task id="97" name="Préparation du rapport final et de la présentation" color="#ff0000" meeting="false" start="2021-06-03" duration="3" complete="0" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="72" name="Yacine - Designer et Developpeur Back-Front" color="#66ff00" shape="1,0,1,0,0,1,0,1,1,0,1,0,0,1,0,1" meeting="false" start="2021-05-07" duration="12" complete="81" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true">
+            <task id="78" name="Création de la maquette &amp; choix du design" color="#00ff00" meeting="false" start="2021-05-07" duration="4" complete="100" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+            <task id="80" name="Création de la charte graphique et de l'ergonomique" color="#00ff00" meeting="false" start="2021-05-07" duration="3" complete="100" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+            <task id="168" name="Écriture du code Front-End" color="#00ff66" meeting="false" start="2021-05-17" duration="4" complete="66" thirdDate="2021-04-26" thirdDate-constraint="0" expand="true">
+                <task id="251" name="création de la page d'inscription" color="#33ff66" meeting="false" start="2021-05-17" duration="4" complete="50" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+                <task id="273" name="création de la page &quot;Nous contacter&quot;" color="#33ff33" meeting="false" start="2021-05-17" duration="2" complete="100" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+            </task>
+            <task id="169" name="conception modèle de la BDD" color="#33ff33" meeting="false" start="2021-05-13" duration="2" complete="100" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+            <task id="293" name="Liason du code Back-end à la BDD" color="#ff0000" meeting="false" start="2021-05-24" duration="1" complete="0" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="9" name="Mariama - Developpeur Front" color="#3300ff" meeting="false" start="2021-05-06" duration="17" complete="31" thirdDate="2021-05-06" thirdDate-constraint="0" priority="2" expand="true">
+            <task id="253" name="Mise en place du diagramme de Gantt" color="#ffff00" meeting="false" start="2021-05-10" duration="7" complete="45" thirdDate="2021-05-06" thirdDate-constraint="0" priority="2" expand="true">
+                <depend id="114" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="69" name="Ecriture du code Front-End" color="#ff0000" meeting="false" start="2021-05-06" duration="9" complete="20" thirdDate="2021-06-30" thirdDate-constraint="0" expand="true">
+                <task id="162" name="Création de la page d'acceuil" color="#00ff00" meeting="false" start="2021-05-06" duration="2" complete="0" thirdDate="2021-04-26" thirdDate-constraint="0" expand="true">
+                    <depend id="163" type="2" difference="0" hardness="Strong"/>
+                    <depend id="253" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="163" name="Création de la page de connexion" color="#00ff00" meeting="false" start="2021-05-10" duration="2" complete="0" thirdDate="2021-04-26" thirdDate-constraint="0" expand="true">
+                    <depend id="164" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="164" name="Création de la page principale" color="#00ff00" meeting="false" start="2021-05-12" duration="3" complete="0" thirdDate="2021-04-26" thirdDate-constraint="0" expand="true">
+                    <depend id="114" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="272" name="création de la page &quot;Mon compte&quot;" color="#33ff33" meeting="false" start="2021-05-17" duration="2" complete="90" thirdDate="2021-04-26" thirdDate-constraint="0" expand="true"/>
+            </task>
+            <task id="114" name="Liaison du code front au back" color="#ff0000" meeting="false" start="2021-05-19" duration="8" complete="0" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+            <task id="267" name="vérifier la conformité du Front-End" color="#33ff33" meeting="false" start="2021-05-06" duration="15" complete="50" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="8" name="Yvan - Developpeur Back-end" color="#ff33ff" meeting="false" start="2021-05-06" duration="17" complete="36" thirdDate="2021-05-06" thirdDate-constraint="0" priority="4" expand="true">
+            <task id="34" name="Création du diagramme de cas d'utilisation" color="#00ff00" meeting="false" start="2021-05-06" duration="3" complete="100" thirdDate="2021-05-06" thirdDate-constraint="1" priority="2" expand="true">
+                <notes>
+                    <![CDATA[
+
+
+]]>
+                </notes>
+                <depend id="121" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="121" name="Création du diagramme de classe" color="#00ff00" meeting="false" start="2021-05-11" duration="1" complete="100" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true">
+                <depend id="117" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="117" name="Création et mise en place de la BDD" color="#00ff00" meeting="false" start="2021-05-12" duration="1" complete="100" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true">
+                <depend id="111" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="111" name="Ecriture du code back-end (API REST)" color="#ffff00" meeting="false" start="2021-05-13" duration="7" complete="28" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+            <task id="257" name="Mise en place du site sur un serveur" color="#ff0000" meeting="false" start="2021-05-26" duration="2" complete="0" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
+            <task id="261" name="correction des bugs" color="#ff0000" meeting="false" start="2021-05-24" duration="5" complete="0" thirdDate="2021-04-12" thirdDate-constraint="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>
