@@ -57,8 +57,9 @@ footer{
     position: absolute;
     bottom: 0%;
     font-size: 11px;
-    color: black;
-    padding-left: 999px;
+    color: white;
+    padding-left: 85%;
+    background-color: #1846a3;
     /* margin-top: 110px; */
     border-top: 0.1px solid gray;
     padding-top: 10px;
@@ -120,6 +121,62 @@ footer{
 
 .fichier{
     font-size: 25px;
-    margin-top: -18%;
+    margin-top: -22%;
     margin-left: 30%;
+}
+
+.titleListeEleve{
+    margin-left: 25%;
+    margin-top: -10%
+}
+
+.searchEleve{
+    margin-left: 21%;
+}
+
+.tcadre{
+    width:25%;
+    background: #F9FAFB;
+    margin-top: 1%;
+    margin-left: 26%;
+}
+
+.informationsEvele{
+    margin-left: 6%;
+    text-align: center;
+    margin-top: 2%;
+    font-size: 12px;
+    background: #F9FAFB;
+}
+
+.bloc2{
+    text-align: center;
+    margin-left: 55%;
+    margin-top: -30%;
+}
+
+.mesInputs{
+    margin-left: 70%;
+}
+
+.Ajouter{
+    margin-left: 68%;
+}
+
+.infoPerso{
+    margin-left: 30%;
+    margin-top:-8%;
+}
+
+.tableau-cadre{
+    margin-left: 30%;
+    margin-top:4%;
+    background: #F9FAFB;
+    width:30%;
+    height:30%;
+}
+
+.cadre{
+    background: #F9FAFB;
+    margin-left: 10%;
 }

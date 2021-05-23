@@ -20,14 +20,18 @@ function Header() {
       <span style={{ margin: 15 }}>
         <img src={img} alt="logos" width="8%" height="8%"></img>
       </span>
-      <span>
-        <a href="#"><label>Nous contacter</label></a>
-      </span>
-      <span style={{ marginLeft: "  56%" }}>
-        <span style={{ margin: 10 }}>
+
+      <span style={{ marginLeft: "49%" }}>
+        <span style={{ margin:10}}>
           <Button onClick={() => history.push("/login")}>Connexion</Button>
         </span>
-        <span style={{ margin: 15 }}><label>FAQ</label></span>
+        <span style={{ margin:10, color:"blue"}}>
+          <label onClick={() => history.push("/contact")}>Nous contacter</label>
+        </span>
+        <span style={{ margin:10,color:"blue"}}>
+          <label onClick={() => history.push("/propos")}>à propos</label>
+        </span>
+        <span style={{ marginLeft: 9 }}><label>FAQ</label></span>
         <span>
           <Select
             className="select"

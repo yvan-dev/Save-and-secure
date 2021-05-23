@@ -25,18 +25,23 @@ function Connexion(){
                     <span style={{ margin: 15 }}>
                         <img src={img} alt="logos" width="8%" height="8%"></img>
                     </span>
-                    <span style={{ margin: 15}}>
-                        <a href="#"><label>Acceuil</label></a>
+                <span style={{ marginLeft:"53%"}}>
+                    <span style={{ margin:10,color:"blue"}}>
+                        <label onClick={() => history.push("/contact")}>Nous contacter</label>
                     </span>
-                    <span>
-                        <a href="#"><label>à propos</label></a>
+                    <span style={{ margin:10,color:"blue"}}>
+                        <label onClick={() => history.push("/propos")}>à propos</label>
                     </span>
-                    <span style={{ marginLeft:800}}>FAQ</span>
+                    <span style={{ margin:10,color:"blue"}}>
+                        <label onClick={() => history.push("/")}>Acceuil</label>
+                    </span>
+                    <span style={{ marginLeft:10}}>FAQ</span>
                     <span>
                       <Select
                         className="select"
                         options={options}/>
                     </span>
+                </span>    
                 </div>   
             </header>
             <hr></hr>
@@ -52,7 +57,7 @@ function Connexion(){
                         <span ><b>Mot de passe oublié?</b></span>
                     </div> 
                 </div>
-                <Button style={{width:250}} onClick={() => history.push("/login/stockage")}><b>Me connecter</b></Button>
+                <Button style={{width:250}} onClick={() => history.push("/stockage")}><b>Me connecter</b></Button>
             </div>     
             <div className="imgConnect" style={{marginTop:110}}>
                 <img src={img1} alt="logos" width="35%" height="35%"></img> 

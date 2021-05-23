@@ -22,7 +22,7 @@ import imageLogos from '../images/loupe.PNG';
 const options = [
     { value: 'FR', label: 'Français' },
     { value: 'ENG', label: 'Englais' },
-  ]
+]
 
 function Stockage(){
     const history = useHistory();
@@ -45,10 +45,13 @@ function Stockage(){
 
             <div className="document">
                 <div>
-                    <p><span style={{ fontSize: 20}}>#</span><b>&nbsp;&nbsp;&nbsp;Mes documents</b></p>
+                    <p><button class="rounded-pill" style={{ marginLeft:-15, width:140, height:35 ,border:1}}><span style={{ fontSize: 20}}>#</span><b>&nbsp;Mes documents</b></button></p>
                 </div>  
                 <div>
-                    <p><b><span style={{ marginLeft:-15}}><img src={image} alt="logos" width="3%" height="3%"></img></span> Mon compte</b></p>
+                    <p><button class="rounded-pill" style={{ marginLeft:-15, width:140, height:35 ,border:1}}><img src={image} alt="logos" width="3%" height="3%"></img><b>Mon compte</b></button></p>
+                </div>  
+                <div>
+                    <p><button class="rounded-pill" style={{ marginLeft:-15,width:140, height:35 ,border:1}} onClick={() => history.push("/infoElevesLycee")}><b>Lycée</b></button></p>
                 </div>  
                 <div>
                     <p>Il vous reste: x Go</p>
@@ -56,9 +59,7 @@ function Stockage(){
                 <br></br>
                 <br></br>
                 <br></br>
-                <div>
-                    <p>... More</p>
-                </div>
+                
                 <div className="fichier">
                     <p><b>Importer un fichier : <button class="rounded-pill" class="border-0"><span style={{ fontSize:22, backgroundColor: '#0091ea'}}>+</span></button></b></p>
                 </div>  
@@ -80,7 +81,6 @@ function Stockage(){
                     <img src={img8} style={{margin:25}} alt="logos" width="8%" height="8%"></img>
                 </div> 
             </div>
-
             <Footer/>
         </div>    
 )}
