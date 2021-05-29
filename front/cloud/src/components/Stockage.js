@@ -21,7 +21,7 @@ import imageLogos from '../images/loupe.PNG';
 
 const options = [
     { value: 'FR', label: 'Français' },
-    { value: 'ENG', label: 'Englais' },
+    { value: 'ENG', label: 'Anglais' },
 ]
 
 function Stockage(){
@@ -40,15 +40,15 @@ function Stockage(){
                         options={options}/>
                     </span>
                 </div>   
+                <hr/>
             </header>
-            <hr></hr>
 
             <div className="document">
                 <div>
                     <p><button class="rounded-pill" style={{ marginLeft:-15, width:140, height:35 ,border:1}}><span style={{ fontSize: 20}}>#</span><b>&nbsp;Mes documents</b></button></p>
                 </div>  
                 <div>
-                    <p><button class="rounded-pill" style={{ marginLeft:-15, width:140, height:35 ,border:1}}><img src={image} alt="logos" width="3%" height="3%"></img><b>Mon compte</b></button></p>
+                    <p><button class="rounded-pill" style={{ marginLeft:-15, width:140, height:35 ,border:1}} onClick={() => history.push("/monCompte")}><img src={image} alt="logos" width="3%" height="3%"></img><b>Mon compte</b></button></p>
                 </div>  
                 <div>
                     <p><button class="rounded-pill" style={{ marginLeft:-15,width:140, height:35 ,border:1}} onClick={() => history.push("/infoElevesLycee")}><b>Lycée</b></button></p>
@@ -61,11 +61,16 @@ function Stockage(){
                 <br></br>
                 
                 <div className="fichier">
-                    <p><b>Importer un fichier : <button class="rounded-pill" class="border-0"><span style={{ fontSize:22, backgroundColor: '#0091ea'}}>+</span></button></b></p>
+                    <p><b>Importer un fichier :</b></p>
+                <div class="form-group" className="choseFile">
+                    <Form>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1"></input>
+                    </Form>
+                </div>        
                 </div>  
                 <div>
-                    <button class="rounded-pill" style={{marginLeft:360, width:200,height:40, border:1}}><span style={{fontSize:23}}>+</span> Nouveau dossier</button>
-                    <button class="rounded-pill" style={{marginLeft:30, width:200,height:40, border:1}}><img src={imageLogos} alt="logos" width="5%" height="5%"></img>rechercher</button>
+                    <button class="rounded-pill" style={{marginLeft:"30%", marginTop:"3%" ,width:200,height:40, border:1}}><span style={{fontSize:23}}>+</span> Nouveau dossier</button>
+                    <button class="rounded-pill" style={{marginLeft:"3%", marginTop:"3%",width:200,height:40, border:1}}><img src={imageLogos} alt="logos" width="5%" height="5%"></img>rechercher</button>
                 </div>
 
                 <div className="logosFile" style={{marginLeft:350, marginTop:30}}>

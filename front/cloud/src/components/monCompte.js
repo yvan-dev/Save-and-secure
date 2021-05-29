@@ -34,21 +34,23 @@ function Compte(){
             
             <body>
                 <div>
-                    <button class="rounded-pill" style={{ width:170, height:40, border:1, margin:10}}><p><span style={{ fontSize: 20}}>#</span><b>&nbsp;&nbsp;&nbsp;Mes documents</b></p></button>
+                    <button class="rounded-pill" style={{ width:170, height:40, border:1, margin:7}}><p><span style={{ fontSize: 20}}>#</span><b>&nbsp;&nbsp;&nbsp;Mes documents</b></p></button>
                 </div>  
                 <div className="etudiant">
-                    <button class="rounded-pill" style={{ width:170, height:36, border:1, margin:8}} onClick={() => history.push("/infoElevesLycee")}><p><b>Lycée</b></p></button>
+                    <button class="rounded-pill" style={{ width:170, height:36, border:1, margin:7}} onClick={() => history.push("/infoElevesLycee")}><p><b>Lycée</b></p></button>
                 </div>  
                 <div>
                     <div className="infoPerso"><h3><p><b>Informations personnelles</b></p></h3></div>
                     <div>
                         <div className="tableau-cadre">
                             <section class="cadre">
-                                <p><b>Nom</b></p>
-                                <p><b>Prénom</b></p>
-                                <p><b>Ecole</b></p>
-                                <p><b>Profession</b></p>
-                                <p><b>Ville</b></p>
+                                <br/>
+                                <br/>
+                                <p><b>Nom :</b></p>
+                                <p><b>Prénom :</b></p>
+                                <p><b>Ecole :</b></p>
+                                <p><b>Profession :</b></p>
+                                <p><b>Ville :</b></p>
                                 <br/>
                                 <p><b>Mot&nbsp;de&nbsp;passe&nbsp;oublié?</b></p>
                             </section>
@@ -56,6 +58,7 @@ function Compte(){
                     </div>
                 </div>
             </body>
+            <br/>
             <Footer/>
         </div>
     )

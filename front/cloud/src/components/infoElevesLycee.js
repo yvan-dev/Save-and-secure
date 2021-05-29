@@ -55,6 +55,7 @@ function InfoElevesLycee(){
                     </div>
                     <div className="tcadre">
                         <div className="informationsEvele">
+                            <br/>
                             <p><b>Prénom - NOM - age - Niveau<button class="rounded-pill" style={{marginLeft:7, width:50,height:10, border:1, color: "red"}}>supprimer</button><button class="rounded-pill" style={{marginLeft:9, width:50,height:10, border:1, color: "blue"}}>modifier</button></b></p>
                             <p><b>Prénom - NOM - age - Niveau<button class="rounded-pill" style={{marginLeft:7, width:50,height:10, border:1, color: "red"}}>supprimer</button><button class="rounded-pill" style={{marginLeft:9, width:50,height:10, border:1, color: "blue"}}>modifier</button></b></p>
                             <p><b>Prénom - NOM - age - Niveau<button class="rounded-pill" style={{marginLeft:7, width:50,height:10, border:1, color: "red"}}>supprimer</button><button class="rounded-pill" style={{marginLeft:9, width:50,height:10, border:1, color: "blue"}}>modifier</button></b></p>
@@ -71,29 +72,26 @@ function InfoElevesLycee(){
                              de votre établissement ?</b></p></h4>
                         </div>
                         <div className="mesInputs">
-                            <input type="text" placeholder="Nom"></input>
+                            <input class = 'form-control' style={{ width:"60%", margin:"2%"}} type="text" placeholder="Nom"></input>
                             <br/>
+                            <input class = 'form-control' style={{ width:"60%", margin:"2%"}} type="text" placeholder="Prénom"></input>
                             <br/>
-                            <input type="text" placeholder="Prénom"></input>
+                            <input class = 'form-control' style={{ width:"60%", margin:"2%"}} type="text" placeholder="Login"></input> 
                             <br/>
+                            <input class = 'form-control' style={{ width:"60%", margin:"2%"}} type="text" placeholder="Niveau"></input>
                             <br/>
-                            <input type="text" placeholder="Login"></input> 
-                            <br/>
-                            <br/>
-                            <input type="text" placeholder="Niveau"></input>
-                            <br/>
-                            <br/>
-                            <input type="text" placeholder="Mot de passe"></input>
+                            <input class = 'form-control' style={{ width:"60%", margin:"2%"}} type="text" placeholder="Mot de passe"></input>
                         </div>
                         <br/>
                         <div className="Ajouter">
-                            <Button style={{width:250}}>
+                            <Button style={{width:240}}>
                                 <b>Ajouter</b>
                             </Button>
                         </div>
                     </div>
                 </div>
             </body>
+            <br/>
             <Footer/>
         </div>
     )
