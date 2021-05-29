@@ -30,17 +30,17 @@ function Header(props) {
           </Button>
         </span>
         <span style={{ margin:10, color:"blue"}}>
-          <label onClick={() => history.push("/contact")}>Nous contacter</label>
+          <label onClick={() => history.push("/contact")}><FormattedMessage id="home.header.btnContact" /></label>
         </span>
         <span style={{ margin:10,color:"blue"}}>
-          <label onClick={() => history.push("/propos")}>A propos</label>
+          <label onClick={() => history.push("/propos")}><FormattedMessage id="home.header.btnAbout" /></label>
         </span>
         <span style={{ marginLeft: 9 }}><label>FAQ</label></span>
         <span>
           <Select
             className="select"
             options={options}
-            onChange={(event) => {props.changeCookie(event.value); console.log('cookie change : ', props.cookies)}}
+            onChange={(event) => {props.changeCookie(event.value);}}
           />
         </span>
       </span>

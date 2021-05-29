@@ -25,8 +25,6 @@ function Home(props) {
     <div>
       <Header cookies={props.cookies} changeCookie={props.changeCookie} />
       <SiteInfo />
-      <br />
-      <br />
       <Footer />
     </div>
   );
@@ -53,22 +51,22 @@ class App extends React.Component {
             <Home cookies={cookies} changeCookie={(langue) => { cookies.set('language', langue, { path: '/' })}}/>
           </Route>
           <Route exact path="/login">
-            <Connexion />
+            <Connexion cookies={cookies} changeCookie={(langue) => { cookies.set('language', langue, { path: '/' })}}/>
           </Route>
           <Route exact path="/stockage">
-            <Stockage />
+            <Stockage cookies={cookies} changeCookie={(langue) => { cookies.set('language', langue, { path: '/' })}}/>
           </Route>
           <Route exact path="/contact">
-            <Contact />
+            <Contact cookies={cookies} changeCookie={(langue) => { cookies.set('language', langue, { path: '/' })}}/>
           </Route>
           <Route exact path="/propos">
-            <Propos />
+            <Propos cookies={cookies} changeCookie={(langue) => { cookies.set('language', langue, { path: '/' })}}/>
           </Route>
           <Route exact path="/infoElevesLycee">
-            <InfoElevesLycee />
+            <InfoElevesLycee cookies={cookies} changeCookie={(langue) => { cookies.set('language', langue, { path: '/' })}}/>
           </Route>
           <Route exact path="/monCompte">
-            <Compte />
+            <Compte cookies={cookies} changeCookie={(langue) => { cookies.set('language', langue, { path: '/' })}}/>
           </Route>
         </Switch>
       </Router>
