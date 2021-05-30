@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="SITE WEB" company="" webLink="http://" view-date="2021-05-03" view-index="0" gantt-divider-location="682" resource-divider-location="300" version="3.0.2914" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="SITE WEB" company="" webLink="http://" view-date="2021-05-03" view-index="0" gantt-divider-location="729" resource-divider-location="300" version="3.0.2914" locale="fr_FR">
     <description/>
     <view zooming-state="default:7" id="gantt-chart">
-        <field id="tpd3" name="Nom" width="247" order="0"/>
-        <field id="tpd4" name="Date de début" width="208" order="1"/>
-        <field id="tpd5" name="Date de fin" width="208" order="2"/>
+        <field id="tpd3" name="Nom" width="263" order="0"/>
+        <field id="tpd4" name="Date de début" width="224" order="1"/>
+        <field id="tpd5" name="Date de fin" width="223" order="2"/>
         <timeline>
-            <![CDATA[72,8,239,114]]>
+            <![CDATA[72,8,239]]>
         </timeline>
         <option id="color.recent">
-            <![CDATA[#00ff00 #ff0000 #006666 #003333 #3300ff #ffff00 #ff9933 #f4f4f4 #ff33ff #ff00ff]]>
+            <![CDATA[#ff0000 #ffff00 #00ff00 #006666 #003333 #3300ff #ff9933 #f4f4f4 #ff33ff #ff00ff]]>
         </option>
     </view>
     <view id="resource-table">
@@ -63,7 +63,7 @@
             </task>
             <task id="194" name="Recette" color="#00ff00" meeting="false" start="2021-05-26" duration="4" complete="100" thirdDate="2021-05-26" thirdDate-constraint="1" expand="true"/>
         </task>
-        <task id="8" name="Developpeur Back-end _ Yvan" color="#ff33ff" meeting="false" start="2021-05-06" duration="18" complete="96" thirdDate="2021-05-06" thirdDate-constraint="0" priority="4" expand="true">
+        <task id="8" name="Developpeur Back-end _ Yvan" color="#ff33ff" meeting="false" start="2021-05-06" duration="21" complete="80" thirdDate="2021-05-06" thirdDate-constraint="0" priority="4" expand="true">
             <task id="34" name="Création du diagramme de cas d'utilisation" color="#00ff00" meeting="false" start="2021-05-06" duration="3" complete="100" thirdDate="2021-05-06" thirdDate-constraint="1" priority="2" expand="true">
                 <notes>
                     <![CDATA[
@@ -84,10 +84,11 @@
             </task>
             <task id="213" name="Liason du code Back-end à la BDD" color="#00ff00" meeting="false" start="2021-05-14" duration="1" complete="100" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
             <task id="111" name="Ecriture du code back-end (API REST)" color="#ffff00" meeting="false" start="2021-05-14" duration="12" complete="94" thirdDate="2021-05-14" thirdDate-constraint="1" expand="true"/>
+            <task id="258" name="Liaison du code front au back" color="#ff0000" meeting="false" start="2021-05-31" duration="4" complete="0" thirdDate="2021-05-03" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="9" name="Developpeur front-end _ Mariama" color="#3300ff" meeting="false" start="2021-05-10" duration="21" complete="88" thirdDate="2021-05-06" thirdDate-constraint="1" priority="2" expand="true">
+        <task id="9" name="Developpeur front-end _ Mariama" color="#3300ff" meeting="false" start="2021-05-10" duration="21" complete="84" thirdDate="2021-05-06" thirdDate-constraint="1" priority="2" expand="true">
             <task id="49" name="Mettre en place le diagramme de gantt" color="#ffff00" meeting="false" start="2021-05-14" duration="17" complete="97" thirdDate="2021-05-06" thirdDate-constraint="0" priority="2" expand="true"/>
-            <task id="69" name="Ecriture du code Front-end" color="#ff0000" meeting="false" start="2021-05-10" duration="19" complete="98" thirdDate="2021-06-30" thirdDate-constraint="0" expand="true">
+            <task id="69" name="Ecriture du code Front-end" color="#ff0000" meeting="false" start="2021-05-10" duration="17" complete="93" thirdDate="2021-06-30" thirdDate-constraint="0" expand="true">
                 <task id="162" name="page d'acceuil" color="#00ff00" meeting="false" start="2021-05-10" duration="2" complete="100" thirdDate="2021-04-26" thirdDate-constraint="0" expand="true">
                     <depend id="49" type="2" difference="0" hardness="Strong"/>
                     <depend id="163" type="2" difference="0" hardness="Strong"/>
@@ -109,10 +110,12 @@
                     <depend id="196" type="2" difference="0" hardness="Strong"/>
                 </task>
                 <task id="196" name="page à_propos" color="#00ff00" meeting="false" start="2021-05-21" duration="1" complete="100" thirdDate="2021-05-20" thirdDate-constraint="1" expand="true"/>
-                <task id="207" name="Changement de lange_Français/Anglais" color="#00ff00" meeting="false" start="2021-05-11" duration="18" complete="98" thirdDate="2021-05-11" thirdDate-constraint="1" expand="true"/>
+                <task id="207" name="Changement de lange_Français/Anglais" color="#00ff00" meeting="false" start="2021-05-11" duration="14" complete="98" thirdDate="2021-05-11" thirdDate-constraint="1" priority="2" expand="true"/>
+                <task id="256" name="Creation de fichiers word/excel/..." color="#ffff00" meeting="false" start="2021-05-31" duration="2" complete="25" thirdDate="2021-05-31" thirdDate-constraint="1" priority="4" expand="true"/>
             </task>
             <task id="234" name="Reprise des quatres dernières pages" color="#006666" meeting="false" start="2021-05-24" duration="3" complete="100" thirdDate="2021-05-24" thirdDate-constraint="1" expand="true"/>
-            <task id="239" name="Liaison du code front au back" color="#ff0000" meeting="false" start="2021-05-31" duration="5" complete="0" thirdDate="2021-05-31" thirdDate-constraint="1" expand="true"/>
+            <task id="239" name="Liaison du code front au back" color="#ff0000" meeting="false" start="2021-05-31" duration="4" complete="0" thirdDate="2021-05-31" thirdDate-constraint="1" expand="true"/>
+            <task id="271" name="Code pour rechercher par mot clé" color="#ff0000" meeting="false" start="2021-06-03" duration="2" complete="0" thirdDate="2021-06-03" thirdDate-constraint="1" expand="true"/>
         </task>
     </tasks>
     <resources/>
