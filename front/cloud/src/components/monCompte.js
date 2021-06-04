@@ -7,13 +7,14 @@ import { useHistory } from "react-router-dom";
 import { ButtonToolbar } from "react-bootstrap";
 import Select from 'react-select';
 import Form from 'react-bootstrap/Form';
+import { FormattedMessage, injectIntl } from "react-intl";
 
 const options = [
     { value: 'FR', label: 'Français' },
     { value: 'ANG', label: 'Anglais' },
 ]
 
-function Compte(){
+function Compte(props){
     const history = useHistory();
     return(
         <div>
@@ -22,11 +23,13 @@ function Compte(){
                     <span style={{ margin: 15 }}>
                         <img src={img} alt="logos" width="8%" height="8%"></img>
                     <span style={{ marginLeft: 870 }}>
-                        <Button onClick={() => history.push("/login")}>Déconnexion</Button>
+                        <Button onClick={() => history.push("/login")}><FormattedMessage id="stockage.header.btnDisconnect" /></Button>
                     </span>
-                      <Select
+                    <Select
                         className="select"
-                        options={options}/>
+                        options={options}
+                        onChange={(event) => {props.changeCookie(event.value); console.log('cookie change : ', props.cookies)}}
+                    />
                     </span>   
                 </div>   
             </header>
@@ -34,28 +37,31 @@ function Compte(){
             
             <body>
                 <div>
-                    <button class="rounded-pill" style={{ width:170, height:40, border:1, margin:10}}><p><span style={{ fontSize: 20}}>#</span><b>&nbsp;&nbsp;&nbsp;Mes documents</b></p></button>
+                    <button class="rounded-pill" style={{ width:170, height:40, border:1, margin:7}}><p><span style={{ fontSize: 20}}>#</span><b>&nbsp;&nbsp;&nbsp;<FormattedMessage id="stockage.body.btnDocuments" /></b></p></button>
                 </div>  
                 <div className="etudiant">
-                    <button class="rounded-pill" style={{ width:170, height:36, border:1, margin:8}} onClick={() => history.push("/infoElevesLycee")}><p><b>Lycée</b></p></button>
+                    <button class="rounded-pill" style={{ width:170, height:36, border:1, margin:7}} onClick={() => history.push("/infoElevesLycee")}><p><b><FormattedMessage id="stockage.body.btnLycee" /></b></p></button>
                 </div>  
                 <div>
-                    <div className="infoPerso"><h3><p><b>Informations personnelles</b></p></h3></div>
+                    <div className="infoPerso"><h3><p><b><FormattedMessage id="monCompte.body.infoPerso" /></b></p></h3></div>
                     <div>
                         <div className="tableau-cadre">
                             <section class="cadre">
-                                <p><b>Nom</b></p>
-                                <p><b>Prénom</b></p>
-                                <p><b>Ecole</b></p>
-                                <p><b>Profession</b></p>
-                                <p><b>Ville</b></p>
                                 <br/>
-                                <p><b>Mot&nbsp;de&nbsp;passe&nbsp;oublié?</b></p>
+                                <br/>
+                                <p><b><FormattedMessage id="lycee.body.Name" />:</b></p>
+                                <p><b><FormattedMessage id="lycee.body.firstName" />:</b></p>
+                                <p><b><FormattedMessage id="monCompte.body.school" />:</b></p>
+                                <p><b><FormattedMessage id="monCompte.body.job" />:</b></p>
+                                <p><b><FormattedMessage id="monCompte.body.city" />:</b></p>
+                                <br/>
+                                <p><b><FormattedMessage id="monCompte.body.1" />&nbsp;<FormattedMessage id="monCompte.body.2" />&nbsp;<FormattedMessage id="monCompte.body.3" />&nbsp;<FormattedMessage id="monCompte.body.4" /></b></p>
                             </section>
                         </div>
                     </div>
                 </div>
             </body>
+            <br/>
             <Footer/>
         </div>
     )

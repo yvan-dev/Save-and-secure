@@ -10,8 +10,8 @@ class Maps extends React.Component {
 
     mapRender = () => {
         const setting = {
-            height: 300,
-            width: 500,
+            height: "200px",
+            width: "70px",
             zoom: 18,
             queryString: "Ecole d'ingénieurs Paris-Sud Ivry - ESME Sudria, Rue Molière, Ivry-sur-Seine, France",
             place_id: 'ChIJa1TH2rJz5kcR_QzMbtAmWHc',
