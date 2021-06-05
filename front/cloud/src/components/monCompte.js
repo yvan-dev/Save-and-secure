@@ -1,69 +1,140 @@
-import React from 'react';
-import Footer from './footer';
-import img from '../images/image.png';
-import Nav from "react-bootstrap/Nav";
+import React from "react";
+import Footer from "./footer";
+import img from "../images/image.png";
 import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
 import { ButtonToolbar } from "react-bootstrap";
-import Select from 'react-select';
-import Form from 'react-bootstrap/Form';
+import Select from "react-select";
+import Form from "react-bootstrap/Form";
+import BtnPrincipalPage from "./btnPrincipalPage";
 import { FormattedMessage, injectIntl } from "react-intl";
+import rest from "../API/rest";
+import { withRouter } from "react-router";
 
 const options = [
-    { value: 'FR', label: 'Français' },
-    { value: 'ANG', label: 'Anglais' },
-]
+  { value: "FR", label: "Français" },
+  { value: "ENG", label: "Anglais" },
+];
+class Compte extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-function Compte(props){
-    const history = useHistory();
-    return(
-        <div>
-            <header style={{marginTop:11}}>
-                <div>
-                    <span style={{ margin: 15 }}>
-                        <img src={img} alt="logos" width="8%" height="8%"></img>
-                    <span style={{ marginLeft: 870 }}>
-                        <Button onClick={() => history.push("/login")}><FormattedMessage id="stockage.header.btnDisconnect" /></Button>
-                    </span>
-                    <Select
-                        className="select"
-                        options={options}
-                        onChange={(event) => {props.changeCookie(event.value); console.log('cookie change : ', props.cookies)}}
-                    />
-                    </span>   
-                </div>   
-            </header>
-            <hr/> 
-            
-            <body>
-                <div>
-                    <button class="rounded-pill" style={{ width:170, height:40, border:1, margin:7}}><p><span style={{ fontSize: 20}}>#</span><b>&nbsp;&nbsp;&nbsp;<FormattedMessage id="stockage.body.btnDocuments" /></b></p></button>
-                </div>  
-                <div className="etudiant">
-                    <button class="rounded-pill" style={{ width:170, height:36, border:1, margin:7}} onClick={() => history.push("/infoElevesLycee")}><p><b><FormattedMessage id="stockage.body.btnLycee" /></b></p></button>
-                </div>  
-                <div>
-                    <div className="infoPerso"><h3><p><b><FormattedMessage id="monCompte.body.infoPerso" /></b></p></h3></div>
-                    <div>
-                        <div className="tableau-cadre">
-                            <section class="cadre">
-                                <br/>
-                                <br/>
-                                <p><b><FormattedMessage id="lycee.body.Name" />:</b></p>
-                                <p><b><FormattedMessage id="lycee.body.firstName" />:</b></p>
-                                <p><b><FormattedMessage id="monCompte.body.school" />:</b></p>
-                                <p><b><FormattedMessage id="monCompte.body.job" />:</b></p>
-                                <p><b><FormattedMessage id="monCompte.body.city" />:</b></p>
-                                <br/>
-                                <p><b><FormattedMessage id="monCompte.body.1" />&nbsp;<FormattedMessage id="monCompte.body.2" />&nbsp;<FormattedMessage id="monCompte.body.3" />&nbsp;<FormattedMessage id="monCompte.body.4" /></b></p>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-            </body>
-            <br/>
-            <Footer/>
-        </div>
-    )
-} 
-export default Compte;
+  componentDidMount() {
+    const login = document.getElementById("login");
+    const lastName = document.getElementById("lastName");
+    const firstName = document.getElementById("firstName");
+    const level = document.getElementById("level");
+    const age = document.getElementById("age");
+    rest.getUserLogged().then((response) => {
+      if (response.status == 200) {
+        response.json().then((result) => {
+          login.innerHTML = result.login;
+          firstName.innerHTML = result.firstName;
+          lastName.innerHTML = result.lastName;
+          age.innerHTML = result.age;
+          level.innerHTML = result.level;
+        });
+      }
+    });
+  }
+
+  render() {
+    const { history } = this.props;
+    return (
+      <div>
+        <header style={{ marginTop: 11 }}>
+          <div>
+            <span style={{ margin: 15 }}>
+              <img src={img} alt="logos" width="8%" height="8%"></img>
+              <span style={{ marginLeft: 870 }}>
+                <Button onClick={() => history.push("/login")}>
+                  <FormattedMessage id="stockage.header.btnDisconnect" />
+                </Button>
+              </span>
+              <Select
+                className="select"
+                options={options}
+                onChange={(event) => {
+                  this.props.changeCookie(event.value);
+                }}
+              />
+            </span>
+          </div>
+        </header>
+        <hr />
+
+        <body>
+          <div className="document">
+            <BtnPrincipalPage page={"compte"} />
+          </div>
+          <div>
+            <div className="infoPerso">
+              <h3>
+                <p>
+                  <b>
+                    <FormattedMessage id="monCompte.body.infoPerso" />
+                  </b>
+                </p>
+              </h3>
+            </div>
+            <div>
+              <div className="tableau-cadre">
+                <section class="cadre">
+                  <br />
+                  <br />
+                  <p>
+                    <b>
+                      <FormattedMessage id="lycee.body.Name" />&nbsp;:&nbsp;
+                      <span id="lastName"></span>
+                    </b>
+                  </p>
+                  <p>
+                    <b>
+                      <FormattedMessage id="lycee.body.firstName" />&nbsp;:&nbsp;
+                      <span id="firstName"></span>
+                    </b>
+                  </p>
+                  <p>
+                    <b>
+                      <FormattedMessage id="lycee.body.age" />&nbsp;:&nbsp;
+                      <span id="age"></span>
+                    </b>
+                  </p>
+                  <p>
+                    <b>
+                      <FormattedMessage id="lycee.body.input4" />&nbsp;:&nbsp;
+                      <span id="login"></span>
+                    </b>
+                  </p>
+                  <p>
+                    <b>
+                      <FormattedMessage id="lycee.body.level" />&nbsp;:&nbsp;
+                      <span id="level"></span>
+                    </b>
+                  </p>
+                  <br />
+                  <p>
+                    <b>
+                      <FormattedMessage id="monCompte.body.1" />
+                      &nbsp;
+                      <FormattedMessage id="monCompte.body.2" />
+                      &nbsp;
+                      <FormattedMessage id="monCompte.body.3" />
+                      &nbsp;
+                      <FormattedMessage id="monCompte.body.4" />
+                    </b>
+                  </p>
+                </section>
+              </div>
+            </div>
+          </div>
+        </body>
+        <br />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+export default withRouter(Compte);

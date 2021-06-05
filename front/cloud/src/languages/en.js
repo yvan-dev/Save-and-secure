@@ -3,7 +3,7 @@ const messages_en = {
     "home.header.btnContact": "Contact us", 
     "home.header.btnAbout": "About",
     "home.body.texte": "Save all your", 
-    "home.body.suiviTexte": "files and folders.", 
+    "home.body.suiviTexte": "files and folders", 
     "home.body.texte.P1": "Regardless of the type or file you", 
     "home.body.texte.P2": "want to save (photos, videos, presentations", 
     "home.body.texte.P3": "PowerPoint or large CAD files)", 
@@ -31,7 +31,7 @@ const messages_en = {
     "contact.body.btnSend": "Send", 
     "contact.body.H5": "Visit us?",
     
-    "propos.header.btnConnectLabel": "login",
+    "propos.header.btnConnectLabel": "Login",
     "propos.header.btnContact": "Contact Us",
     "propos.header.btnWelcome": "Welcome",
     "propos.body.H3": "Who we are ?",
@@ -54,6 +54,7 @@ const messages_en = {
     "connexion.body.LabelRestConnect": "Stay connected",
     "connexion.body.ForgetMDP": "Forgot your password?",
     "connexion.body.btnConnect": "Connect me",
+    "Votre.compte.S&S": "Your account S&S",
 
     "stockage.header.btnDisconnect": "Disconnect",
     "stockage.body.btnDocuments": "My documents",
@@ -65,7 +66,7 @@ const messages_en = {
     "stockage.body.btnNewFile": "New file",
     "stockage.body.btnSearch": "research",
 
-    "lycee.body.titleListStudent": "Here is the list of registered students:",
+    "lycee.body.titleListStudent": "List of registered students:",
     "lycee.body.searchStudent": "looking for a student",
     "lycee.body.firstName": "First name",
     "lycee.body.Name": "Name",
@@ -81,8 +82,8 @@ const messages_en = {
     "lycee.body.bloc2.6": "from your institution ",
     "lycee.body.input1": "Name",
     "lycee.body.input2": "First Name",
-    "lycee.body.input3": "Login",
-    "lycee.body.input4": "level",
+    "lycee.body.input3": "Level",
+    "lycee.body.input4": "Login",
     "lycee.body.input5": "Password",
     "lycee.body.btnAjout": "Add",
 

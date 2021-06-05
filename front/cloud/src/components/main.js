@@ -7,7 +7,7 @@ const SiteInfo = () => {
     return (
         <div>
             <div className="image">
-              <img src={img} alt="logos" width="25%" height="25%"></img>
+              <img src={img} style={{width:"25%",height:"25%"}} alt="logos"/>
             </div>
             <div className="texte">
               <h3><b><FormattedMessage id="home.body.texte" /><br></br><FormattedMessage id="home.body.suiviTexte" /></b></h3>
@@ -27,7 +27,7 @@ const SiteInfo = () => {
               <FormattedMessage id="home.body.text.P6" /></p></h6> 
             </div>
             <div className="img2">
-              <img src={img2} alt="logos" width="55%" height="55%"></img>
+              <img src={img2} alt="logos" style={{width:"60%", height:"60%"}}/>
             </div>
             <br />
             <br />

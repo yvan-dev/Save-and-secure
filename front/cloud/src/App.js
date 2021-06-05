@@ -2,6 +2,7 @@ import React from 'react';
 import logo from "./logo.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import ContactUs from "./components/email";
 import Header from "./components/header";
 import SiteInfo from "./components/main";
 import Footer from "./components/footer";
@@ -16,11 +17,11 @@ import { IntlProvider, injectIntl } from "react-intl";
 import { Cookies, useCookies, withCookies, CookiesProvider } from "react-cookie";
 import "./css/main.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { withRouter } from 'react-router';
 import fr from "./languages/fr";
 import en from "./languages/en";
 
 function Home(props) {
-  console.log('home : ', props)
   return (
     <div>
       <Header cookies={props.cookies} changeCookie={props.changeCookie} />
@@ -29,7 +30,6 @@ function Home(props) {
     </div>
   );
 }
-
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -75,4 +75,4 @@ class App extends React.Component {
   }
 }
 
-export default withCookies(App);
+export default withCookies(withRouter(App));

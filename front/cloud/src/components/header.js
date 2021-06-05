@@ -19,8 +19,8 @@ function Header(props) {
   const history = useHistory();
   return (
     <div>
-      <span style={{ margin: 15 }}>
-        <img src={img} alt="logos" width="8%" height="8%"></img>
+      <span style={{ margin: 15}}>
+        <img src={img} alt="logos" style={{ width:"8%", height:"8%" }} />
       </span>
 
       <span style={{ marginLeft: "47%" }}>
@@ -44,7 +44,9 @@ function Header(props) {
           />
         </span>
       </span>
-      <hr/>
+      <div>
+        <hr/>
+      </div>
     </div>
   );
 };

@@ -36,7 +36,7 @@ function Propos(props){
                         <Select
                             className="select"
                             options={options}
-                            onChange={(event) => {props.changeCookie(event.value); console.log('cookie change : ', props.cookies)}}
+                            onChange={(event) => {props.changeCookie(event.value);}}
                         />
                     </span>
                 </span>    

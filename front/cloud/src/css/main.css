@@ -41,7 +41,7 @@ p, label{
 .texte{
     text-align: center;
     margin-top: -15%;
-    margin-left: 500px;
+    margin-left: 38%;
     color: black;
 }
 
@@ -53,13 +53,14 @@ p, label{
 }
 
 .img2{
-    margin-top: -200px;
-    margin-left: 770px;
+    margin-top: -15%;
+    margin-left: 60%;
 }
 
 footer{
     width: 100%;
     position: absolute;
+    top: 100%;
     /*bottom:0%;*/
     font-size: 11px;
     color: white;
@@ -138,8 +139,8 @@ footer{
 }
 
 .titleListeEleve{
-    margin-left: 25%;
-    margin-top: -10%;
+    margin-left: 28%;
+    margin-top: -12%;
     
 }
 
@@ -179,7 +180,7 @@ footer{
 
 .infoPerso{
     margin-left: 30%;
-    margin-top:-8%;
+    margin-top:-11%;
 }
 
 .tableau-cadre{

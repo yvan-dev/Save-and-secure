@@ -38,7 +38,7 @@ function Contact(props){
                         <Select
                             className="select"
                             options={options}
-                            onChange={(event) => {props.changeCookie(event.value); console.log('cookie change : ', props.cookies)}}
+                            onChange={(event) => {props.changeCookie(event.value);}}
                         />
                     </span>
                 </span>    
@@ -55,15 +55,35 @@ function Contact(props){
                 </div>
                 <br/>
                 <div className="Inputs">
-                    <input class = 'form-control' type="text" style={{ width:"35%", margin:"0.5%"}} placeholder="Nom"/> 
-                    <input class = 'form-control' type="text" style={{ width:"35%", margin:"0.5%"}} placeholder="Prénom"/> 
+                    <FormattedMessage id="contact.body.Input1">
+                        {placeholder=>  
+                            <input class = 'form-control' type="text" style={{ width:"35%", margin:"0.5%"}} placeholder={placeholder}/>
+                        }
+                    </FormattedMessage>
+                    <FormattedMessage id="contact.body.Input2">
+                        {placeholder=>  
+                            <input class = 'form-control' type="text" style={{ width:"35%", margin:"0.5%"}} placeholder={placeholder}/>
+                        }
+                    </FormattedMessage>
                     <br/>
                     <br/>
-                    <input class = 'form-control' type="text" style={{ width:"35%", margin:"0.5%"}} placeholder="Adresse mail"/> 
-                    <input class = 'form-control' type="text" style={{ width:"35%", margin:"0.5%"}} placeholder="Téléphone"/> 
+                    <FormattedMessage id="contact.body.Input3">
+                        {placeholder=>  
+                            <input class = 'form-control' type="text" style={{ width:"35%", margin:"0.5%"}} placeholder={placeholder}/>
+                        }
+                    </FormattedMessage>
+                    <FormattedMessage id="contact.body.Input4">
+                        {placeholder=>  
+                            <input class = 'form-control' type="text" style={{ width:"35%", margin:"0.5%"}} placeholder={placeholder}/>
+                        }
+                    </FormattedMessage>
                     <br/>
                     <br/>
-                    <input class = 'form-control' type="text" style={{ width:"71%", height:75}} placeholder="Message"/> 
+                    <FormattedMessage id="contact.body.Input5">
+                        {placeholder=>  
+                            <input class = 'form-control' type="text" style={{ width:"71%", height:75}} placeholder={placeholder}/>
+                        }
+                    </FormattedMessage> 
                 </div>
                 <br/>
                 <div className="envoyer">
@@ -72,13 +92,13 @@ function Contact(props){
                     </Button>
                 </div>
                 <br/>
+                <br/>
                 <div className="nousRendreVisite">
                     <h5><b><FormattedMessage id="contact.body.H5" /></b></h5>
                 </div>
                 <br/>
                 <Maps/>
             </body>
-            <br/>
             <Footer/>
         </div>
     )
