@@ -60,8 +60,22 @@ p, label{
 footer{
     width: 100%;
     position: absolute;
-    top: 100%;
+    /*top: 100%;*/
     /*bottom:0%;*/
+    font-size: 11px;
+    color: white;
+    padding-left: 85%;
+    background-color: #1846a3;
+    /* margin-top: 110px; */
+    border-top: 0.1px solid rgb(7, 51, 196);
+    padding-top: 10px;
+}
+
+.footerStockage{
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    /*bottom:0px;*/
     font-size: 11px;
     color: white;
     padding-left: 85%;
@@ -127,7 +141,7 @@ footer{
 
 .fichier{
     font-size: 25px;
-    margin-top: -22%;
+    margin-top: -26%;
     margin-left: 30%;
 }
 
@@ -194,7 +208,7 @@ footer{
     background: #F9FAFB;
     margin-left: 10%;
     margin-top: -5%;
-    height: 350px;
+    height: 320px;
 }
 
 .cloud{
@@ -214,9 +228,13 @@ text-align: center;
 }
 
 .envoyer{
-    margin-left:40%
+    margin-left:24%
 }
 
 .nousRendreVisite{
     margin-left:2%
+}
+
+.loading{
+    margin-left:25%
 }

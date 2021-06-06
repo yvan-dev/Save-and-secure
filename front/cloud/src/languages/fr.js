@@ -13,7 +13,7 @@ const messages_fr = {
     "home.body.text.P1": "En cas de perte ou de vol de votre appareil, vous gardez", 
     "home.body.text.P2": "l'esprit tranquille, car toutes vos données sont", 
     "home.body.text.P3": "sécurisées. L'éffacement à distance vous permet de", 
-    "home.body.text.P4": "supprimer tous les fichiers ou dosssiers du compte S&S", 
+    "home.body.text.P4": "supprimer tous les fichiers ou dossiers du compte S&S", 
     "home.body.text.P5": "installé sur l'appareil. Tous vos fichiers sont sécurisés", 
     "home.body.text.P6": "dans le cloud et sauvegardés en plusieurs exemplaires.",
     "home.footer": "Politique relative aux cookies",
@@ -51,7 +51,7 @@ const messages_fr = {
     "connexion.body.Title": "Votre compte S&S",
     "connexion.body.Input1": "email",
     "connexion.body.Input2": "mot de passe",
-    "connexion.body.LabelRestConnect": "Restez connecté",
+    "connexion.body.LabelRestConnect": "Restez connecter",
     "connexion.body.ForgetMDP": "Mot de passe oublié?",
     "connexion.body.btnConnect": "Me connecter",
     "Votre.compte.S&S": "Votre compte S&S",
@@ -91,10 +91,6 @@ const messages_fr = {
     "monCompte.body.school": "Ecole",
     "monCompte.body.job": "Profession",
     "monCompte.body.city": "Ville",
-    "monCompte.body.1": "Mot",
-    "monCompte.body.2": "de",
-    "monCompte.body.3": "passe",
-    "monCompte.body.4": "oublié?",
 }
 
 export default messages_fr;

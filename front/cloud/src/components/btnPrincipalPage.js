@@ -21,27 +21,27 @@ class BtnPrincipalPage extends React.Component {
     }
 
     render() {
-        const {history} = this.props
+        const {history} = this.props 
         return (
         <div>
             <div>
                 {this.props.page == 'stockage' ?
-                    <p><button class="rounded-pill" onClick={() => history.push("/stockage")} style={{ backgroundColor: 'hsla(241, 96%, 47%, 0.925)', marginLeft:-15, width:150, height:35 ,border:1}}><b><FormattedMessage id="stockage.body.btnDocuments" /></b></button></p>
+                    <p><button class="rounded-pill" onClick={() => history.push("/stockage")} style={{ backgroundColor: '#0066FF', color: 'white', marginLeft:-15, width:150, height:35 ,border:1}}><b><FormattedMessage id="stockage.body.btnDocuments" /></b></button></p>
                     :
                     <p><button class="rounded-pill" onClick={() => history.push("/stockage")} style={{ marginLeft:-15, width:150, height:35 ,border:1}}><b><FormattedMessage id="stockage.body.btnDocuments" /></b></button></p>
                 }
             </div>  
             <div>
                 {this.props.page == 'compte' ?
-                    <p><button class="rounded-pill" style={{ backgroundColor: 'hsla(241, 96%, 47%, 0.925)', marginLeft:-15, width:140, height:35 ,border:1}} onClick={() => history.push("/monCompte")}><b><FormattedMessage id="stockage.body.btnCompte" /></b></button></p>
+                    <p><button class="rounded-pill" style={{ backgroundColor: '#0066FF', color: 'white', marginLeft:-15, width:140, height:35 ,border:1}} onClick={() => history.push("/monCompte")}><b><FormattedMessage id="stockage.body.btnCompte" /></b></button></p>
                     :
                     <p><button class="rounded-pill" style={{ marginLeft:-15, width:140, height:35 ,border:1}} onClick={() => history.push("/monCompte")}><b><FormattedMessage id="stockage.body.btnCompte" /></b></button></p>
                 }
             </div>
             { this.state.user != null && this.state.user.status === 'admin' &&
                 <div>
-                {this.props.page == 'infoEleve' ?
-                        <p><button class="rounded-pill" style={{backgroundColor: 'hsla(241, 96%, 47%, 0.925)', marginLeft:-15,width:140, height:35 ,border:1}} onClick={() => history.push("/infoElevesLycee")}><b><FormattedMessage id="stockage.body.btnLycee" /></b></button></p>
+                    {this.props.page == 'infoEleve' ?
+                        <p><button class="rounded-pill" style={{backgroundColor: '#0066FF', color: 'white', marginLeft:-15,width:140, height:35 ,border:1}} onClick={() => history.push("/infoElevesLycee")}><b><FormattedMessage id="stockage.body.btnLycee" /></b></button></p>
                         :
                         <p><button class="rounded-pill" style={{ marginLeft:-15,width:140, height:35 ,border:1}} onClick={() => history.push("/infoElevesLycee")}><b><FormattedMessage id="stockage.body.btnLycee" /></b></button></p>
                     }

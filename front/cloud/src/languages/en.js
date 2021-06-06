@@ -1,5 +1,5 @@
 const messages_en = {
-    "home.header.btnConnectLabel": "login",
+    "home.header.btnConnectLabel": "Login",
     "home.header.btnContact": "Contact us", 
     "home.header.btnAbout": "About",
     "home.body.texte": "Save all your", 
@@ -91,10 +91,6 @@ const messages_en = {
     "monCompte.body.school": "school",
     "monCompte.body.job": "job",
     "monCompte.body.city": "city",
-    "monCompte.body.1": "Forgot-",
-    "monCompte.body.2": "ten",
-    "monCompte.body.3": "pass-",
-    "monCompte.body.4": "word?",
 }
 
 export default messages_en;

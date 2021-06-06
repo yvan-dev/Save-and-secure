@@ -2,7 +2,6 @@ import React from 'react';
 import emailjs from 'emailjs-com';
 
 export default function ContactUs() {
-
   function sendEmail(e) {
     e.preventDefault();
 
@@ -13,7 +12,6 @@ export default function ContactUs() {
           console.log(error.text);
       });
   }
-  
 
     return (
     <div>
@@ -28,7 +26,4 @@ export default function ContactUs() {
       </script>
 	</div> 
   ); 
-  
 }
-
-		    

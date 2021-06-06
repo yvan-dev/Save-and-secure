@@ -70,6 +70,7 @@ class Compte extends React.Component {
           </div>
           <div>
             <div className="infoPerso">
+            <br />  
               <h3>
                 <p>
                   <b>
@@ -80,6 +81,7 @@ class Compte extends React.Component {
             </div>
             <div>
               <div className="tableau-cadre">
+              <br />
                 <section class="cadre">
                   <br />
                   <br />
@@ -114,17 +116,6 @@ class Compte extends React.Component {
                     </b>
                   </p>
                   <br />
-                  <p>
-                    <b>
-                      <FormattedMessage id="monCompte.body.1" />
-                      &nbsp;
-                      <FormattedMessage id="monCompte.body.2" />
-                      &nbsp;
-                      <FormattedMessage id="monCompte.body.3" />
-                      &nbsp;
-                      <FormattedMessage id="monCompte.body.4" />
-                    </b>
-                  </p>
                 </section>
               </div>
             </div>
