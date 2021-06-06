@@ -1,15 +1,17 @@
 const apiUrl = 'http://192.168.1.166:1998';
 let token = document.cookie;
-token = token.split(';')[1].split('=')[1].split('Bearer%20')[1];
-token = 'Bearer ' + token;
+if (token.indexOf('token') !== -1) {
+    token = token.split(';')[1].split('=')[1].split('Bearer%20')[1];
+    token = 'Bearer ' + token;
+}
 
 const rest = {
-    getUserLogged () {
-        let myHeaders = new Headers();
-        myHeaders.append('Content-Type', 'application/json');
-        myHeaders.append('Authorization', token);
-        return fetch(apiUrl + '/user/userLogged', {headers: myHeaders})
-    },
+    // getUserLogged () {
+    //     let myHeaders = new Headers();
+    //     myHeaders.append('Content-Type', 'application/json');
+    //     myHeaders.append('Authorization', token);
+    //     return fetch(apiUrl + '/user/userLogged', {headers: myHeaders})
+    // },
 
 	login (data) {
 		let myHeaders = new Headers();
@@ -35,14 +37,60 @@ const rest = {
     },
     
     getUserLogged () {
-    let myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('Authorization', token);
-    let requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-    };
-    return fetch(apiUrl + '/user/userLogged', requestOptions);
+        let myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', token);
+        let requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+        };
+        return fetch(apiUrl + '/user/userLogged', requestOptions);
+    },
+
+    uploadFileToDB (fileInput) {
+        let myHeaders = new Headers();
+        myHeaders.append('Authorization', token);
+        let formdata = new FormData();
+        formdata.append('file', fileInput);
+        let requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: formdata,
+        };
+        return fetch(apiUrl + '/file/upload/db', requestOptions);
+    },
+
+    getFilesofFolder (id_folder) {
+        let myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', token);
+        let requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+        };
+        return fetch(apiUrl + '/file/folder/' + id_folder, requestOptions);
+    },
+
+    getAllUser () {
+        let myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', token);
+        let requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+        };
+        return fetch(apiUrl + '/user/all', requestOptions);
+    },
+
+    deleteUser (id_user) {
+        let myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', token);
+        let requestOptions = {
+            method: 'DELETE',
+            headers: myHeaders,
+        };
+        return fetch(apiUrl + '/user/' + id_user, requestOptions);
     },
 };
 

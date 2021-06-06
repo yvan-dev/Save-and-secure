@@ -6,11 +6,25 @@ import { useHistory } from "react-router-dom";
 import Select from 'react-select';
 import Maps from './Maps.js';
 import { FormattedMessage, injectIntl } from "react-intl";
+import ContactUs from './email';
+import emailjs from 'emailjs-com';
 
 const options = [
     { value: 'FR', label: 'Français' },
     { value: 'ENG', label: 'Anglais' },
 ]
+
+function sendEmail(e) {
+    e.preventDefault();
+    emailjs.sendForm('service_ncpf51d', 'template_ughw7vi', e.target, 'user_4u1tq0zcGaB6Zm0gRAzxK')
+        .then((result) => {
+            console.log('sucess : ', result.text);
+            alert('Votre message a bien été envoyé')
+        }, 
+        (error) => {
+            console.log('error : ', error.text);
+        });
+}
 
 function Contact(props){
     const history = useHistory();
@@ -20,7 +34,6 @@ function Contact(props){
                 <span style={{ margin: 15 }}>
                     <img src={img} alt="logos" width="8%" height="8%"></img>
                 </span>
-
                 <span style={{ marginLeft: "52%" }}>
                     <span style={{ margin:10}}>
                         <Button onClick={() => history.push("/login")}>
@@ -55,42 +68,45 @@ function Contact(props){
                 </div>
                 <br/>
                 <div className="Inputs">
+                <form className="contact-form" onSubmit={(e) => sendEmail(e)}>
                     <FormattedMessage id="contact.body.Input1">
                         {placeholder=>  
-                            <input class = 'form-control' type="text" style={{ width:"35%", margin:"0.5%"}} placeholder={placeholder}/>
+                            <input class = 'form-control' type="text" name="nom" style={{ width:"35%", margin:"0.5%"}} placeholder={placeholder}/>
                         }
                     </FormattedMessage>
                     <FormattedMessage id="contact.body.Input2">
                         {placeholder=>  
-                            <input class = 'form-control' type="text" style={{ width:"35%", margin:"0.5%"}} placeholder={placeholder}/>
+                            <input class = 'form-control' type="text" name="Prenom" style={{ width:"35%", margin:"0.5%"}} placeholder={placeholder}/>
                         }
                     </FormattedMessage>
                     <br/>
                     <br/>
                     <FormattedMessage id="contact.body.Input3">
                         {placeholder=>  
-                            <input class = 'form-control' type="text" style={{ width:"35%", margin:"0.5%"}} placeholder={placeholder}/>
+                            <input class = 'form-control' type="text" name="email" style={{ width:"35%", margin:"0.5%"}} placeholder={placeholder}/>
                         }
                     </FormattedMessage>
                     <FormattedMessage id="contact.body.Input4">
                         {placeholder=>  
-                            <input class = 'form-control' type="text" style={{ width:"35%", margin:"0.5%"}} placeholder={placeholder}/>
+                            <input class = 'form-control' type="text" name="phone" style={{ width:"35%", margin:"0.5%"}} placeholder={placeholder}/>
                         }
                     </FormattedMessage>
                     <br/>
                     <br/>
                     <FormattedMessage id="contact.body.Input5">
                         {placeholder=>  
-                            <input class = 'form-control' type="text" style={{ width:"71%", height:75}} placeholder={placeholder}/>
+                            <input class = 'form-control' type="text" name="message" style={{ width:"71%", height:75}} placeholder={placeholder}/>
                         }
-                    </FormattedMessage> 
+                    </FormattedMessage>
+                    <div className="envoyer">
+                    <br/>
+                        <Button type="submit" style={{width:250}}>
+                            <b><FormattedMessage id="contact.body.btnSend" /></b>
+                        </Button>
+                    </div>
+                </form>
                 </div>
                 <br/>
-                <div className="envoyer">
-                    <Button style={{width:250}}>
-                        <b><FormattedMessage id="contact.body.btnSend" /></b>
-                    </Button>
-                </div>
                 <br/>
                 <br/>
                 <div className="nousRendreVisite">

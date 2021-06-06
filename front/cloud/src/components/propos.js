@@ -70,7 +70,6 @@ function Propos(props){
                     <img src={network} alt="logos" width="40%"></img>
                 </div>
             </body>
-            
             <Footer/>
         </div>
     )

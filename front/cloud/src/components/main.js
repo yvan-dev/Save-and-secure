@@ -29,8 +29,7 @@ const SiteInfo = () => {
             <div className="img2">
               <img src={img2} alt="logos" style={{width:"60%", height:"60%"}}/>
             </div>
-            <br />
-            <br />
+        <br/>    
         </div>
     ); 
 }

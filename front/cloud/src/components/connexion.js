@@ -40,7 +40,6 @@ class Connexion extends React.Component {
                         response.text().then((result) => {
                             result = JSON.parse(result);
                             cookies.set('token', result.token, { path: '/' });
-                            cookies.set('login', result.login, { path: '/' });
                             document.location.href = 'http://localhost:3000/stockage'
                         })
                     }
@@ -112,9 +111,13 @@ class Connexion extends React.Component {
             </div>     
             <div className="imgConnect" style={{marginTop:110}}>
                 <img src={img1} alt="logos" width="35%" height="35%"></img> 
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             </div>
-            <br/>
-            <br/>
             <Footer/>
         </div>
         )
