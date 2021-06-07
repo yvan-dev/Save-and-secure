@@ -5,14 +5,6 @@ import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import Form from "react-bootstrap/Form";
-import img1 from "../images/powerPoint.png";
-import img2 from "../images/pdf.jpg";
-import img3 from "../images/word.jpg";
-import img4 from "../images/excel.jpg";
-import img5 from "../images/video.jpg";
-import img6 from "../images/son.jpg";
-import img7 from "../images/fichier.PNG";
-import img8 from "../images/fichier.PNG";
 import imageLogos from "../images/loupe.PNG";
 import { FormattedMessage, injectIntl } from "react-intl";
 import BtnPrincipalPage from './btnPrincipalPage';
@@ -22,6 +14,8 @@ import rest from "../API/rest";
 import img9 from '../images/01.png';
 import img10 from '../images/02.png';
 import img11 from '../images/03.png';
+import Spinner from 'react-bootstrap/Spinner';
+
 
 const options = [
     { value: 'FR', label: 'Français' },
@@ -31,15 +25,21 @@ const options = [
 class Stockage extends React.Component {
     constructor (props) {
         super(props);
-        this.state = {user: null, files: []}
+        this.state = {user: null,
+                    files: [],
+                    loading: false,
+        }
     } 
 
     getFilesofFolder = (id_folder) => {
+        this.setState({loading: true})
        rest.getFilesofFolder(id_folder).then((response) =>{
            if (response.status == 200) {
                response.json().then((files) => {
-                   this.setState({files})
+                   this.setState({files, loading: false})
                })
+           } else {
+               this.setState({loading: false})
            }
        })
     }
@@ -111,6 +111,12 @@ class Stockage extends React.Component {
                 </div>
 
                 <div className="logosFile" style={{marginLeft:350, marginTop:5}}>
+                    {this.state.loading && 
+                        <div id='loading' className="loading">
+                            <Spinner animation="border" role="status">
+                            </Spinner>
+                        </div>
+                    }
                         {this.state.files.length > 0 && this.state.files.map((file, key) => {
                             return (
                                 <span key={file.id}>
@@ -119,7 +125,6 @@ class Stockage extends React.Component {
                                 </span>
                             )
                         })}
-                        <File />
                 </div>
                 
                 <br/>
