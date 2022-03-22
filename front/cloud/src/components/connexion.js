@@ -96,7 +96,7 @@ class Connexion extends React.Component {
                     <br/>
                     <FormattedMessage id="connexion.body.Input2">
                         {placeholder=>  
-                            <input id='password' class = 'form-control' type="text" placeholder={placeholder}/>
+                            <input id='password' class = 'form-control' type="password" placeholder={placeholder}/>
                         }
                     </FormattedMessage><br/>
                     <br/>
