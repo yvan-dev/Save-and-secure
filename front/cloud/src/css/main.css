@@ -136,19 +136,18 @@ footer{
 
 .document{
     margin-left: 4%;
-    margin-top: 3%;
 }
 
 .fichier{
     font-size: 25px;
-    margin-top: -26%;
-    margin-left: 30%;
+    margin-top: -22%;
+    margin-left: 20%;
 }
 
 .choseFile{
-    margin-left:30%;
-    margin-top:-7%;
-    width:88%;
+    margin-left:25%;
+    margin-top:-6%;
+    width:70%;
     height:10%;
 }
 

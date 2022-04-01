@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:1998';
+const apiUrl = 'http:yvandev.fr/save-and-safe';
 let token = document.cookie;
 if (token.indexOf('token') !== -1) {
     token = token.split(';')[1].split('=')[1].split('Bearer%20')[1];

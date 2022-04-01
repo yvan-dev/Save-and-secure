@@ -1,12 +1,9 @@
 import React from "react";
-import Footer from "./footer";
 import img from "../images/image.png";
 import Button from "react-bootstrap/Button";
-import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import Form from "react-bootstrap/Form";
-import imageLogos from "../images/loupe.PNG";
-import { FormattedMessage, injectIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import BtnPrincipalPage from './btnPrincipalPage';
 import { withRouter } from 'react-router';
 import File from "./file";
@@ -15,7 +12,6 @@ import img9 from '../images/01.png';
 import img10 from '../images/02.png';
 import img11 from '../images/03.png';
 import Spinner from 'react-bootstrap/Spinner';
-
 
 const options = [
     { value: 'FR', label: 'Français' },
@@ -84,7 +80,15 @@ class Stockage extends React.Component {
                 </div>   
                 <hr/>
             </header>
-
+            <body>
+            <div>
+            <form>
+                <div style={{marginLeft:"78%"}}>
+                    <input style={{ width:130 }} type="search" id="search" name="q" placeholder="Recherche" aria-label="Rechercher" size="10"></input>
+                    <button style={{ width:100 }} class="research">Research</button>
+                </div>  
+            </form>
+            </div>
             <div className="document">
                 <BtnPrincipalPage page={'stockage'}/>
                 <br/>
@@ -96,19 +100,20 @@ class Stockage extends React.Component {
                 <br/>
                 <br/>
                 <br/>
-            
+                 
+                
                 <div className="fichier">
                     <p><b><FormattedMessage id="stockage.body.ImportFile" /></b></p>
                 <div class="form-group" className="choseFile">
                     <Form>
                         <input type="file" id='file' class="form-control-file" id="exampleFormControlFile1" onChange={this.uploadFileToDB} />
                     </Form>
-                </div>        
+                </div> 
+                    
                 </div>  
                 <div>
-                    <button class="rounded-pill" style={{marginLeft:"30%", marginTop:"3%" ,width:200,height:40, border:1}}><span style={{fontSize:23}}>+</span><FormattedMessage id="stockage.body.btnNewFile" /></button>
-                    <button class="rounded-pill" style={{marginLeft:"3%", marginTop:"3%",width:200,height:40, border:1}}><img src={imageLogos} alt="logos" width="5%" height="5%"></img><FormattedMessage id="stockage.body.btnSearch" /></button>
-                </div>
+                    <button class="rounded-pill" style={{marginLeft:"20%", marginTop:"3%" ,width:200,height:40, border:1}}><span style={{fontSize:23}}>+</span><FormattedMessage id="stockage.body.btnNewFile" /></button>
+                </div>               
 
                 <div className="logosFile" style={{marginLeft:350, marginTop:5}}>
                     {this.state.loading && 
@@ -130,11 +135,12 @@ class Stockage extends React.Component {
                 <br/>
                 <br/>
             </div>
+        </body>
             <div className="footerStockage">
                 <p><FormattedMessage id="home.footer" /></p>  
-                <a href="#" title="Rejoignez-nous sur Facebook"><img src={img9} width="20px"></img></a>
-                <a href="#" title="Rejoignez-nous sur Twitter"><img src={img10} width="20px"></img></a>
-                <a href="#" title="Rejoignez-nous sur LinkedIn"><img src={img11} width="20px"></img></a> 
+                <a href="#" title="Rejoignez-nous sur Facebook"><img src={img9} width="30px"></img></a>
+                <a href="#" title="Rejoignez-nous sur Twitter"><img src={img10} width="30px"></img></a>
+                <a href="#" title="Rejoignez-nous sur LinkedIn"><img src={img11} width="30px"></img></a> 
             </div>
         </div>
         )
