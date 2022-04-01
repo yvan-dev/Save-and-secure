@@ -9,9 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.cloud.saveandsecure.security.JWTAuthorizationFilter;
-
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import com.cloud.saveandsecure.security.JWTAuthorizationFilter;
 
 @SpringBootApplication
 @EnableSwagger2
@@ -20,10 +20,9 @@ public class SaveAndSecureApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SaveAndSecureApplication.class, args);
 	}
-	
+
 	@EnableWebSecurity
 	@Configuration
-	@EnableSwagger2
 	class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		@Override
