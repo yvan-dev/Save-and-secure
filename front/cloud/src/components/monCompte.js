@@ -62,10 +62,10 @@ class Compte extends React.Component {
             </span>
           </div>
         </header>
-        <hr />
+        <div className="border"></div>
 
         <body>
-          <div className="document">
+          <div className="myDocument">
             <BtnPrincipalPage page={"compte"} />
           </div>
           <div>

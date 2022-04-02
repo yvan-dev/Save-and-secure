@@ -138,6 +138,11 @@ footer{
     margin-left: 4%;
 }
 
+.myDocument{
+    margin-top: 2%;
+    margin-left: 4%;
+}
+
 .fichier{
     font-size: 25px;
     margin-top: -22%;
@@ -148,7 +153,8 @@ footer{
     margin-left:25%;
     margin-top:-6%;
     width:70%;
-    height:10%;
+    height:8%;
+    font-size: 20px;
 }
 
 .titleListeEleve{
@@ -193,7 +199,7 @@ footer{
 
 .infoPerso{
     margin-left: 30%;
-    margin-top:-11%;
+    margin-top:-10%;
 }
 
 .tableau-cadre{
@@ -239,6 +245,7 @@ text-align: center;
 }
 
 .form-control {
+    margin-top: 10%;
     display: block;
     width: 100%;
     padding: .375rem .75rem;
@@ -254,3 +261,9 @@ text-align: center;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+.border{
+    border-width:2px;
+    border-color:black;
+}
+

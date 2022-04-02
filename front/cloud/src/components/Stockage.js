@@ -8,9 +8,9 @@ import BtnPrincipalPage from './btnPrincipalPage';
 import { withRouter } from 'react-router';
 import File from "./file";
 import rest from "../API/rest";
-import img9 from '../images/01.png';
-import img10 from '../images/02.png';
-import img11 from '../images/03.png';
+import img1 from '../images/01.png';
+import img2 from '../images/02.png';
+import img3 from '../images/03.png';
 import Spinner from 'react-bootstrap/Spinner';
 
 const options = [
@@ -84,9 +84,9 @@ class Stockage extends React.Component {
                         onChange={(event) => { this.props.changeCookie(event.value);
                         }}
                       />
-                    </span>
-                </div>   
-                <hr/>
+                    </span> 
+                </div>  
+                <div className="border"></div>
             </header>
             <body>
             <div>
@@ -96,7 +96,7 @@ class Stockage extends React.Component {
                     <button style={{ width:100 }} class="research">Rechercher</button>
                 </div>  
             </form> */}
-            <form style={{marginLeft:"78%", width: 200}}>
+            <form style={{marginLeft:"78%", width: 180}}>
                 <span class="algolia-autocomplete" stype="positive: relative; display: inline-block; direction:ltr;">
                 <input id="docs-search-input" 
                     class="form-control ds-input" 
@@ -109,7 +109,8 @@ class Stockage extends React.Component {
                     aria-expanded="false" 
                     aria-label="Search input" 
                     aria-owns="algolia-autocomplete-listbox-0" 
-                    dir="auto">
+                    dir="auto"
+                    onkeyup="getUserByFirstOrLastName(name)">
                 </input>
                 </span>
             </form>
@@ -127,7 +128,6 @@ class Stockage extends React.Component {
                 <br/>
                 <br/>
                  
-                
                 <div className="fichier">
                     <p><b><FormattedMessage id="stockage.body.ImportFile" /></b></p>
                 <div class="form-group" className="choseFile">
@@ -138,7 +138,7 @@ class Stockage extends React.Component {
                     
                 </div>  
                 <div>
-                    <button class="rounded-pill" style={{marginLeft:"20%", marginTop:"3%" ,width:200,height:40, border:1}}><span style={{fontSize:23}}>+</span><FormattedMessage id="stockage.body.btnNewFile" /></button>
+                    <button class="rounded-pill" style={{marginLeft:"20%", marginTop:"3%" ,width:200,height:40, border:1}}><FormattedMessage id="stockage.body.btnNewFile" /></button>
                 </div>               
 
                 <div className="logosFile" style={{marginLeft:350, marginTop:5}}>
@@ -164,9 +164,9 @@ class Stockage extends React.Component {
         </body>
             <div className="footerStockage">
                 <p><FormattedMessage id="home.footer" /></p>  
-                <a href="#" title="Rejoignez-nous sur Facebook"><img src={img9} width="30px"></img></a>
-                <a href="#" title="Rejoignez-nous sur Twitter"><img src={img10} width="30px"></img></a>
-                <a href="#" title="Rejoignez-nous sur LinkedIn"><img src={img11} width="30px"></img></a> 
+                <a href="https://www.facebook.com/profile.php?id=100078998544526" title="Rejoignez-nous sur Facebook"><img src={img1} width="30px"></img></a>
+                <a href="https://twitter.com/" title="Rejoignez-nous sur Twitter"><img src={img2} width="30px"></img></a>
+                <a href="https://www.linkedin.com/in/ss-cloud-43875b235/" title="Rejoignez-nous sur LinkedIn"><img src={img3} width="30px"></img></a> 
             </div>
         </div>
         )
