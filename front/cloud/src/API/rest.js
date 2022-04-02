@@ -92,6 +92,17 @@ const rest = {
         };
         return fetch(apiUrl + '/user/' + id_user, requestOptions);
     },
+
+    getUserByFirstOrLastName(name) {
+        let myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', token);
+        let requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+        };
+        return fetch(apiUrl + '/user/name' + name, requestOptions);
+    },
 };
 
 export default rest;
