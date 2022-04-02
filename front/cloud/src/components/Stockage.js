@@ -56,16 +56,6 @@ class Stockage extends React.Component {
         })
     }  
 
-    getUserByFirstOrLastName = (name) => {
-        rest.getUserByFirstOrLastName(name).then(response => {
-            if (response.status == 200) {
-                response.json().then((users) => {
-                    this.setState({users})
-                })
-            }
-        })
-    }
-
     render () {
         const { history } = this.props;
         console.log('files : ', this.state.files)
@@ -90,12 +80,6 @@ class Stockage extends React.Component {
             </header>
             <body>
             <div>
-            {/* <form>
-                <div style={{marginLeft:"78%"}}>
-                    <input style={{ width:130, textAlign: "center" }} type="search" id="search" name="q" placeholder="Recherche" aria-label="Rechercher" size="10" onkeyup="getUserByFirstOrLastName(name)"></input>
-                    <button style={{ width:100 }} class="research">Rechercher</button>
-                </div>  
-            </form> */}
             <form style={{marginLeft:"78%", width: 180}}>
                 <span class="algolia-autocomplete" stype="positive: relative; display: inline-block; direction:ltr;">
                 <input id="docs-search-input" 
@@ -109,8 +93,7 @@ class Stockage extends React.Component {
                     aria-expanded="false" 
                     aria-label="Search input" 
                     aria-owns="algolia-autocomplete-listbox-0" 
-                    dir="auto"
-                    onkeyup="getUserByFirstOrLastName(name)">
+                    dir="auto">
                 </input>
                 </span>
             </form>

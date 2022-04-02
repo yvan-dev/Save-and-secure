@@ -8,12 +8,7 @@
 html, body{
     height: 100%;
     width: 100%;
-}
-
-
-.form-control {
-    display: inline;
-}
+}    
 
 p, label{
     background-size: cover;
@@ -145,7 +140,7 @@ footer{
 
 .fichier{
     font-size: 25px;
-    margin-top: -22%;
+    margin-top: -25%;
     margin-left: 20%;
 }
 
@@ -159,23 +154,23 @@ footer{
 
 .titleListeEleve{
     margin-left: 28%;
-    margin-top: -12%;
+    margin-top: -14%;
     
 }
 
 .searchEleve{
-    margin-left: 21%;
+    margin-left: 25%;
 }
 
 .tcadre{
-    width: 26%;
+    width: 28%;
     background: #F9FAFB;
     margin-top: 1%;
-    margin-left: 26%;
+    margin-left: 25%;
 }
 
 .informationsEvele{
-    margin-left: 6%;
+    margin-left: 5%;
     text-align: center;
     margin-top: 2%;
     font-size: 12px;
@@ -185,16 +180,17 @@ footer{
 
 .bloc2{
     text-align: center;
-    margin-left: 60%;
-    margin-top: -32%;
+    margin-left: 50%;
+    margin-top: -33%;
 }
 
 .mesInputs{
-    margin-left: 70%;
+    margin-left: 65%;
+    width: 400px;
 }
 
 .Ajouter{
-    margin-left: 70.2%;
+    margin-left: 65.5%;
 }
 
 .infoPerso{
@@ -205,14 +201,15 @@ footer{
 .tableau-cadre{
     margin-left: 30%;
     margin-top: 4%;
-    background: #F9FAFB;
-    width: 30%;
+    background-color: #1846a3;
+    width: 25%;
+    box-sizing: border-box;
 }
 
 .cadre{
     background: #F9FAFB;
     margin-left: 10%;
-    margin-top: -5%;
+    margin-top: -10%;
     height: 320px;
 }
 
@@ -245,9 +242,8 @@ text-align: center;
 }
 
 .form-control {
+    display: inline;
     margin-top: 10%;
-    display: block;
-    width: 100%;
     padding: .375rem .75rem;
     font-size: 1rem;
     font-weight: 400;
@@ -267,3 +263,6 @@ text-align: center;
     border-color:black;
 }
 
+.bloc {
+    margin-top: 5%;
+}
