@@ -45,9 +45,7 @@ class Stockage extends React.Component {
     }
 
     uploadFileToDB = (event) => {
-        console.log('file : ', event.target.files[0])
         rest.uploadFileToDB(event.target.files[0]).then((response) => {
-            console.log('response : ', response)
             if (response.status == 200) {
                 this.getFilesofFolder(1)
                 alert('Fichier importé avec succès')
@@ -57,6 +55,16 @@ class Stockage extends React.Component {
             }
         })
     }  
+
+    getUserByFirstOrLastName = (name) => {
+        rest.getUserByFirstOrLastName(name).then(response => {
+            if (response.status == 200) {
+                response.json().then((users) => {
+                    this.setState({users})
+                })
+            }
+        })
+    }
 
     render () {
         const { history } = this.props;
@@ -82,12 +90,31 @@ class Stockage extends React.Component {
             </header>
             <body>
             <div>
-            <form>
+            {/* <form>
                 <div style={{marginLeft:"78%"}}>
-                    <input style={{ width:130 }} type="search" id="search" name="q" placeholder="Recherche" aria-label="Rechercher" size="10"></input>
-                    <button style={{ width:100 }} class="research">Research</button>
+                    <input style={{ width:130, textAlign: "center" }} type="search" id="search" name="q" placeholder="Recherche" aria-label="Rechercher" size="10" onkeyup="getUserByFirstOrLastName(name)"></input>
+                    <button style={{ width:100 }} class="research">Rechercher</button>
                 </div>  
+            </form> */}
+            <form style={{marginLeft:"78%", width: 200}}>
+                <span class="algolia-autocomplete" stype="positive: relative; display: inline-block; direction:ltr;">
+                <input id="docs-search-input" 
+                    class="form-control ds-input" 
+                    type="text" 
+                    placeholder="Recherche..." 
+                    autocomplete="off" 
+                    spellcheck="false" 
+                    role="combobox" 
+                    aria-autocomplete="list"
+                    aria-expanded="false" 
+                    aria-label="Search input" 
+                    aria-owns="algolia-autocomplete-listbox-0" 
+                    
+                    dir="auto">
+                </input>
+                </span>
             </form>
+
             </div>
             <div className="document">
                 <BtnPrincipalPage page={'stockage'}/>
