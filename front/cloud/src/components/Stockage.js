@@ -82,19 +82,23 @@ class Stockage extends React.Component {
             <div>
             <form style={{marginLeft:"78%", width: 180}}>
                 <span class="algolia-autocomplete" stype="positive: relative; display: inline-block; direction:ltr;">
-                <input id="docs-search-input" 
-                    class="form-control ds-input" 
-                    type="text" 
-                    placeholder="Recherche..." 
-                    autocomplete="off" 
-                    spellcheck="false" 
-                    role="combobox" 
-                    aria-autocomplete="list"
-                    aria-expanded="false" 
-                    aria-label="Search input" 
-                    aria-owns="algolia-autocomplete-listbox-0" 
-                    dir="auto">
-                </input>
+                <FormattedMessage id="research">
+                    {placeholder=> 
+                        <input id="docs-search-input" 
+                            class="form-control ds-input" 
+                                type="text" 
+                                placeholder={placeholder}
+                                autocomplete="off" 
+                                spellcheck="false" 
+                                role="combobox" 
+                                aria-autocomplete="list"
+                                aria-expanded="false" 
+                                aria-label="Search input" 
+                                aria-owns="algolia-autocomplete-listbox-0" 
+                                dir="auto">
+                        </input>
+                    }
+                </FormattedMessage>
                 </span>
             </form>
 

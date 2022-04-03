@@ -86,6 +86,7 @@ const messages_fr = {
     "lycee.body.input4": "Login",
     "lycee.body.input5": "Mot de passe",
     "lycee.body.btnAjout": "Ajouter",
+    "research": 'Recherche',
 
     "monCompte.body.infoPerso": "Informations personnelles",
     "monCompte.body.school": "Ecole",

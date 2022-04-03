@@ -111,10 +111,12 @@ class InfoElevesLycee extends React.Component {
                             {/* <button class="rounded-pill" style={{marginLeft:30, width:200,height:40, border:1}}><img src={imageLogos} alt="logos" width="5%" height="5%"></img><FormattedMessage id="lycee.body.searchStudent" /></button> */}
                             <form style={{marginLeft:"8%", width: 200, marginTop: "-2%"}}>
                                 <span class="algolia-autocomplete" stype="positive: relative; display: inline-block; direction:ltr;">
+                                <FormattedMessage id="research">
+                                    {placeholder=> 
                                     <input id="docs-search-input" 
                                         class="form-control ds-input" 
                                         type="text" 
-                                        placeholder="Recherche..." 
+                                        placeholder={placeholder}
                                         autocomplete="off" 
                                         spellcheck="false" 
                                         role="combobox" 
@@ -125,8 +127,12 @@ class InfoElevesLycee extends React.Component {
                                         dir="auto"
                                         onkeyup="getUserByFirstOrLastName(name)">
                                     </input>
+                                    }
+                                </FormattedMessage>
                                 </span>
-                            </form>
+                            </form> 
+
+
                         </div>
                         <div className="tcadre">
                             <div className="informationsEvele">
