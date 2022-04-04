@@ -2,10 +2,8 @@ import React from 'react';
 import Footer from './footer';
 import img from '../images/image.png';
 import Button from "react-bootstrap/Button";
-import { useHistory } from "react-router-dom";
 import Select from 'react-select';
-import imageLogos from '../images/loupe.PNG';
-import { FormattedMessage, injectIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import BtnPrincipalPage from './btnPrincipalPage';
 import rest from '../API/rest';
 import { withRouter } from 'react-router';
@@ -64,6 +62,7 @@ class InfoElevesLycee extends React.Component {
 
     getUserByFirstOrLastName = (name) => {
         rest.getUserByFirstOrLastName(name).then(response => {
+            // eslint-disable-next-line eqeqeq
             if (response.status == 200) {
                 response.json().then((users) => {
                     this.setState({users})
@@ -119,6 +118,7 @@ class InfoElevesLycee extends React.Component {
                                         placeholder={placeholder}
                                         autocomplete="off" 
                                         spellcheck="false" 
+                                        // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
                                         role="combobox" 
                                         aria-autocomplete="list"
                                         aria-expanded="false" 
