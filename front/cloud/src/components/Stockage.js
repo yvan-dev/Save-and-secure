@@ -11,6 +11,7 @@ import rest from "../API/rest";
 import img1 from '../images/01.png';
 import img2 from '../images/02.png';
 import img3 from '../images/03.png';
+import img4 from '../images/loupe.PNG';
 import Spinner from 'react-bootstrap/Spinner';
 
 const options = [
@@ -56,6 +57,10 @@ class Stockage extends React.Component {
         })
     }  
 
+    searchFun = () =>{
+        const filter = document.getElement('research').value.toUpperCase();    
+    }
+
     render () {
         const { history } = this.props;
         console.log('files : ', this.state.files)
@@ -81,6 +86,7 @@ class Stockage extends React.Component {
             <body>
             <div>
             <form style={{marginLeft:"78%", width: 180}}>
+                {/* <image class="textbox-search-sign" src={img4} part="search-sign"></image> */}
                 <span class="algolia-autocomplete" stype="positive: relative; display: inline-block; direction:ltr;">
                 <FormattedMessage id="research">
                     {placeholder=> 
@@ -100,8 +106,7 @@ class Stockage extends React.Component {
                     }
                 </FormattedMessage>
                 </span>
-            </form>
-
+            </form>        
             </div>
             <div className="document">
                 <BtnPrincipalPage page={'stockage'}/>

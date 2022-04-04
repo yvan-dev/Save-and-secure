@@ -131,8 +131,6 @@ class InfoElevesLycee extends React.Component {
                                 </FormattedMessage>
                                 </span>
                             </form> 
-
-
                         </div>
                         <div className="tcadre">
                             <div className="informationsEvele">

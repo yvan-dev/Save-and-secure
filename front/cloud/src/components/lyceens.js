@@ -21,8 +21,8 @@ class Lyceen extends React.Component {
         return(
         <div>
             <p><b>{user.lastName} - {user.firstName} - {user.age} ans - {user.level} 
-                <button class="rounded-pill" style={{marginLeft:7, width:50,height:10, border:1, color: "red"}} onClick={() => this.deleteUser(user.id)}><FormattedMessage id="lycee.body.btnDelete" /></button>
-                <button class="rounded-pill" style={{marginLeft:9, width:50,height:10, border:1, color: "blue"}}><FormattedMessage id="lycee.body.btnModify" /></button></b></p>
+                <button class="rounded-pill" style={{marginLeft:7, width:50,height:12, border:1, color: "red"}} onClick={() => this.deleteUser(user.id)}><FormattedMessage id="lycee.body.btnDelete" /></button>
+                <button class="rounded-pill" style={{marginLeft:9, width:50,height:12, border:1, color: "blue"}}><FormattedMessage id="lycee.body.btnModify" /></button></b></p>
         </div> )
 
     }
