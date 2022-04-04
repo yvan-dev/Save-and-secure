@@ -10,6 +10,7 @@ import img1 from '../images/image.png';
 import Select from 'react-select';
 import Form from 'react-bootstrap/Form';
 
+
 const options = [
   { value: 'FR', label: 'Français' },
   { value: 'ENG', label: 'Anglais' },
@@ -35,7 +36,7 @@ function Header(props) {
         <span style={{ margin:10,color:"blue"}}>
           <label onClick={() => history.push("/propos")}><FormattedMessage id="home.header.btnAbout" /></label>
         </span>
-        <span style={{ marginLeft: 9 }}><label>FAQ</label></span>
+        <span style={{ marginLeft: 9, color:"blue" }}><label onClick={() => history.push("/FAQ")}>FAQ</label></span>
         <span>
           <Select
             className="select"

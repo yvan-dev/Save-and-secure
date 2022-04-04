@@ -70,7 +70,7 @@ const messages_fr = {
     "lycee.body.searchStudent": "recherche d'un éléve",
     "lycee.body.firstName": "Prénom",
     "lycee.body.Name": "Nom",
-    "lycee.body.age": "age",
+    "lycee.body.age": "Age",
     "lycee.body.level": "Niveau",
     "lycee.body.btnDelete": "supprimer",
     "lycee.body.btnModify": "modifier",
@@ -86,6 +86,7 @@ const messages_fr = {
     "lycee.body.input4": "Login",
     "lycee.body.input5": "Mot de passe",
     "lycee.body.btnAjout": "Ajouter",
+    "research": 'Recherche',
 
     "monCompte.body.infoPerso": "Informations personnelles",
     "monCompte.body.school": "Ecole",

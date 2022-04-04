@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:1998';
+const apiUrl = 'http:yvandev.fr/save-and-safe';
 let token = document.cookie;
 if (token.indexOf('token') !== -1) {
     token = token.split(';')[1].split('=')[1].split('Bearer%20')[1];
@@ -91,6 +91,17 @@ const rest = {
             headers: myHeaders,
         };
         return fetch(apiUrl + '/user/' + id_user, requestOptions);
+    },
+
+    getUserByFirstOrLastName(name) {
+        let myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', token);
+        let requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+        };
+        return fetch(apiUrl + '/user/name' + name, requestOptions);
     },
 };
 

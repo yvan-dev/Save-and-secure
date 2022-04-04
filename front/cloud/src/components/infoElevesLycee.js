@@ -62,6 +62,16 @@ class InfoElevesLycee extends React.Component {
         })
     }
 
+    getUserByFirstOrLastName = (name) => {
+        rest.getUserByFirstOrLastName(name).then(response => {
+            if (response.status == 200) {
+                response.json().then((users) => {
+                    this.setState({users})
+                })
+            }
+        })
+    }
+
     componentDidMount() {
         this.getAllUser();
     }
@@ -85,21 +95,44 @@ class InfoElevesLycee extends React.Component {
                         />
                         </span>   
                     </div>   
+                    <div className="border"></div>
                 </header>
-                <hr/> 
     
                 <body>
-                <div className="document">
+                <div className="myDocument">
                     <BtnPrincipalPage page={'infoEleve'}/>
                 </div>
-                    
                     <br/>
                     <div className="bloc">
                         <div className="titleListeEleve">
                             <h4><p><b><FormattedMessage id="lycee.body.titleListStudent" /></b></p></h4>
                         </div>
                         <div className="searchEleve">
-                            <button class="rounded-pill" style={{marginLeft:30, width:400,height:40, border:1}}><img src={imageLogos} alt="logos" width="5%" height="5%"></img><FormattedMessage id="lycee.body.searchStudent" /></button>
+                            {/* <button class="rounded-pill" style={{marginLeft:30, width:200,height:40, border:1}}><img src={imageLogos} alt="logos" width="5%" height="5%"></img><FormattedMessage id="lycee.body.searchStudent" /></button> */}
+                            <form style={{marginLeft:"8%", width: 200, marginTop: "-2%"}}>
+                                <span class="algolia-autocomplete" stype="positive: relative; display: inline-block; direction:ltr;">
+                                <FormattedMessage id="research">
+                                    {placeholder=> 
+                                    <input id="docs-search-input" 
+                                        class="form-control ds-input" 
+                                        type="text" 
+                                        placeholder={placeholder}
+                                        autocomplete="off" 
+                                        spellcheck="false" 
+                                        role="combobox" 
+                                        aria-autocomplete="list"
+                                        aria-expanded="false" 
+                                        aria-label="Search input" 
+                                        aria-owns="algolia-autocomplete-listbox-0" 
+                                        dir="auto"
+                                        onkeyup="getUserByFirstOrLastName(name)">
+                                    </input>
+                                    }
+                                </FormattedMessage>
+                                </span>
+                            </form> 
+
+
                         </div>
                         <div className="tcadre">
                             <div className="informationsEvele">

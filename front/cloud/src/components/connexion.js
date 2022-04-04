@@ -73,7 +73,7 @@ class Connexion extends React.Component {
                         <span style={{ margin:10,color:"blue"}}>
                             <label onClick={() => history.push("/")}><FormattedMessage id="propos.header.btnWelcome" /></label>
                         </span>
-                        <span style={{ marginLeft:10}}>FAQ</span>
+                        <span style={{ marginLeft:10, color:"blue"}}><label onClick={() => history.push("/FAQ")}>FAQ</label></span>
                         <span>
                         <Select
                             className="select"
@@ -96,7 +96,7 @@ class Connexion extends React.Component {
                     <br/>
                     <FormattedMessage id="connexion.body.Input2">
                         {placeholder=>  
-                            <input id='password' class = 'form-control' type="text" placeholder={placeholder}/>
+                            <input id='password' class = 'form-control' type="password" placeholder={placeholder}/>
                         }
                     </FormattedMessage><br/>
                     <br/>

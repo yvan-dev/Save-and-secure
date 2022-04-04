@@ -1,21 +1,17 @@
 import React from "react";
-import Footer from "./footer";
 import img from "../images/image.png";
 import Button from "react-bootstrap/Button";
-import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import Form from "react-bootstrap/Form";
-import imageLogos from "../images/loupe.PNG";
-import { FormattedMessage, injectIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import BtnPrincipalPage from './btnPrincipalPage';
 import { withRouter } from 'react-router';
 import File from "./file";
 import rest from "../API/rest";
-import img9 from '../images/01.png';
-import img10 from '../images/02.png';
-import img11 from '../images/03.png';
+import img1 from '../images/01.png';
+import img2 from '../images/02.png';
+import img3 from '../images/03.png';
 import Spinner from 'react-bootstrap/Spinner';
-
 
 const options = [
     { value: 'FR', label: 'Français' },
@@ -49,9 +45,7 @@ class Stockage extends React.Component {
     }
 
     uploadFileToDB = (event) => {
-        console.log('file : ', event.target.files[0])
         rest.uploadFileToDB(event.target.files[0]).then((response) => {
-            console.log('response : ', response)
             if (response.status == 200) {
                 this.getFilesofFolder(1)
                 alert('Fichier importé avec succès')
@@ -80,11 +74,35 @@ class Stockage extends React.Component {
                         onChange={(event) => { this.props.changeCookie(event.value);
                         }}
                       />
-                    </span>
-                </div>   
-                <hr/>
+                    </span> 
+                </div>  
+                <div className="border"></div>
             </header>
+            <body>
+            <div>
+            <form style={{marginLeft:"78%", width: 180}}>
+                <span class="algolia-autocomplete" stype="positive: relative; display: inline-block; direction:ltr;">
+                <FormattedMessage id="research">
+                    {placeholder=> 
+                        <input id="docs-search-input" 
+                            class="form-control ds-input" 
+                                type="text" 
+                                placeholder={placeholder}
+                                autocomplete="off" 
+                                spellcheck="false" 
+                                role="combobox" 
+                                aria-autocomplete="list"
+                                aria-expanded="false" 
+                                aria-label="Search input" 
+                                aria-owns="algolia-autocomplete-listbox-0" 
+                                dir="auto">
+                        </input>
+                    }
+                </FormattedMessage>
+                </span>
+            </form>
 
+            </div>
             <div className="document">
                 <BtnPrincipalPage page={'stockage'}/>
                 <br/>
@@ -96,19 +114,19 @@ class Stockage extends React.Component {
                 <br/>
                 <br/>
                 <br/>
-            
+                 
                 <div className="fichier">
                     <p><b><FormattedMessage id="stockage.body.ImportFile" /></b></p>
                 <div class="form-group" className="choseFile">
                     <Form>
                         <input type="file" id='file' class="form-control-file" id="exampleFormControlFile1" onChange={this.uploadFileToDB} />
                     </Form>
-                </div>        
+                </div> 
+                    
                 </div>  
                 <div>
-                    <button class="rounded-pill" style={{marginLeft:"30%", marginTop:"3%" ,width:200,height:40, border:1}}><span style={{fontSize:23}}>+</span><FormattedMessage id="stockage.body.btnNewFile" /></button>
-                    <button class="rounded-pill" style={{marginLeft:"3%", marginTop:"3%",width:200,height:40, border:1}}><img src={imageLogos} alt="logos" width="5%" height="5%"></img><FormattedMessage id="stockage.body.btnSearch" /></button>
-                </div>
+                    <button class="rounded-pill" style={{marginLeft:"20%", marginTop:"3%" ,width:200,height:40, border:1}}><FormattedMessage id="stockage.body.btnNewFile" /></button>
+                </div>               
 
                 <div className="logosFile" style={{marginLeft:350, marginTop:5}}>
                     {this.state.loading && 
@@ -130,11 +148,12 @@ class Stockage extends React.Component {
                 <br/>
                 <br/>
             </div>
+        </body>
             <div className="footerStockage">
                 <p><FormattedMessage id="home.footer" /></p>  
-                <a href="#" title="Rejoignez-nous sur Facebook"><img src={img9} width="20px"></img></a>
-                <a href="#" title="Rejoignez-nous sur Twitter"><img src={img10} width="20px"></img></a>
-                <a href="#" title="Rejoignez-nous sur LinkedIn"><img src={img11} width="20px"></img></a> 
+                <a href="https://www.facebook.com/profile.php?id=100078998544526" title="Rejoignez-nous sur Facebook"><img src={img1} width="30px"></img></a>
+                <a href="https://twitter.com/" title="Rejoignez-nous sur Twitter"><img src={img2} width="30px"></img></a>
+                <a href="https://www.linkedin.com/in/ss-cloud-43875b235/" title="Rejoignez-nous sur LinkedIn"><img src={img3} width="30px"></img></a> 
             </div>
         </div>
         )
