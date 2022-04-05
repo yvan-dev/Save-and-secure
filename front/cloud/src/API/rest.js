@@ -103,6 +103,19 @@ const rest = {
         };
         return fetch(apiUrl + '/user/name' + name, requestOptions);
     },
+
+    updateUser (data) {
+        console.log('update user  : ', data)
+        let myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', token);
+        let requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: JSON.stringify(data)
+        };
+        return fetch(apiUrl + '/user' , requestOptions);
+    },
 };
 
 export default rest;
