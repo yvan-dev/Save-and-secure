@@ -2,10 +2,8 @@ import React from 'react';
 import Footer from './footer';
 import img from '../images/image.png';
 import Button from "react-bootstrap/Button";
-import { useHistory } from "react-router-dom";
 import Select from 'react-select';
-import imageLogos from '../images/loupe.PNG';
-import { FormattedMessage, injectIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import BtnPrincipalPage from './btnPrincipalPage';
 import rest from '../API/rest';
 import { withRouter } from 'react-router';
@@ -18,7 +16,7 @@ const options = [
 class InfoElevesLycee extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {users: null}
+        this.state = {users: null, textBtn: 'Ajouter'}
     }
 
     addUser = () => {
@@ -37,20 +35,60 @@ class InfoElevesLycee extends React.Component {
                 data.age = ageInput.value;
                 data.password = passwordInput.value;
                 data.idSchool = 1;
-            rest.addUser(data).then((response) => {
-                    console.log(response);
-                    if (response.status !== 200) {
-                        // display message for user => do best than alert
-                        alert('Erreur lors de l\'ajout du lycéen! ');
-                    }
-                    else {
-                        this.getAllUser();
-                        alert(data.firstName  + ' ajouté avec succès!')
-                    }
-                })
-            .catch((error) => {console.log('error : ', error)})
-            }
+            if (this.state.textBtn === 'Ajouter') {
+                rest.addUser(data).then((response) => {
+                        if (response.status !== 200) {
+                            // display message for user => do best than alert
+                            alert('Erreur lors de l\'ajout du lycéen! ');
+                        }
+                        else {
+                            this.getAllUser();
+                            alert(data.firstName  + ' ajouté avec succès!')
+                        }
+                    })
+                .catch((error) => {console.log('error : ', error)})
+                } else {
+                    rest.updateUser(data).then((response) => {
+                        if (response.status !== 200)
+                            alert('Erreur lors de la modification de l\'utilisateur!');
+                        else {
+                            this.getAllUser();
+                            alert(data.firstName  + ' modifié avec succès!');
+                        }
+                    })
+                    .catch((error) => {console.log('error : ', error)})
+                }
+            } 
     }
+
+    loadUser = (user) => {
+        this.setState({textBtn: 'Modifier'})
+        const loginInput = document.getElementById('login');
+        const firstNameInput = document.getElementById('firstName');
+        const lastNameInput = document.getElementById('lastName');
+        const levelInput = document.getElementById('level');
+        const ageInput = document.getElementById('age');
+        if (user.login !== '' || user.login != null) {
+            loginInput.value = user.login;
+            loginInput.placeholder = user.login;
+        }
+        if (user.firstName !== '' || user.firstName != null) {
+            firstNameInput.value = user.firstName;
+            firstNameInput.placeholder = user.placeholder;
+        }
+        if (user.lastName !== '' || user.lastName != null) {
+            lastNameInput.value = user.lastName;
+            lastNameInput.placeholder = user.lastName
+        }
+        if (user.levelInput !== '' || user.level != null) {
+            levelInput.value = user.level;
+            levelInput.placeholder = user.level
+        }
+        if (user.age !== '' || user.level != null) {
+            ageInput.value = user.age;
+            ageInput.placeholder = user.age
+        }
+    } 
 
     getAllUser = () => {
         rest.getAllUser().then(response => {
@@ -64,6 +102,7 @@ class InfoElevesLycee extends React.Component {
 
     getUserByFirstOrLastName = (name) => {
         rest.getUserByFirstOrLastName(name).then(response => {
+            // eslint-disable-next-line eqeqeq
             if (response.status == 200) {
                 response.json().then((users) => {
                     this.setState({users})
@@ -119,6 +158,7 @@ class InfoElevesLycee extends React.Component {
                                         placeholder={placeholder}
                                         autocomplete="off" 
                                         spellcheck="false" 
+                                        // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
                                         role="combobox" 
                                         aria-autocomplete="list"
                                         aria-expanded="false" 
@@ -131,8 +171,6 @@ class InfoElevesLycee extends React.Component {
                                 </FormattedMessage>
                                 </span>
                             </form> 
-
-
                         </div>
                         <div className="tcadre">
                             <div className="informationsEvele">
@@ -141,7 +179,7 @@ class InfoElevesLycee extends React.Component {
                                     this.state.users != null &&
                                         this.state.users.map((user) => {
                                             return(
-                                                <Lyceen refresh={this.getAllUser} user={user}/>      
+                                                <Lyceen refresh={this.getAllUser} loadUser={this.loadUser} user={user}/>      
                                             )
                                         })
                                 }
@@ -192,7 +230,7 @@ class InfoElevesLycee extends React.Component {
                             <br/>
                             <div className="Ajouter">
                                 <Button style={{width:240}} onClick={this.addUser}>
-                                    <b><FormattedMessage id="lycee.body.btnAjout" /></b>
+                                    <b>{this.state.textBtn}</b>
                                 </Button>
                             </div>
                         </div>

@@ -88,7 +88,7 @@ const messages_fr = {
     "lycee.body.btnAjout": "Ajouter",
     "research": 'Recherche',
 
-    "monCompte.body.infoPerso": "Informations personnelles",
+    "monCompte.body.infoPerso": "Informations personnelles :",
     "monCompte.body.school": "Ecole",
     "monCompte.body.job": "Profession",
     "monCompte.body.city": "Ville",

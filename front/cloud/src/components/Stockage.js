@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React from "react";
 import img from "../images/image.png";
 import Button from "react-bootstrap/Button";
@@ -11,6 +12,7 @@ import rest from "../API/rest";
 import img1 from '../images/01.png';
 import img2 from '../images/02.png';
 import img3 from '../images/03.png';
+// import img4 from '../images/loupe.PNG';
 import Spinner from 'react-bootstrap/Spinner';
 
 const options = [
@@ -30,6 +32,7 @@ class Stockage extends React.Component {
     getFilesofFolder = (id_folder) => {
         this.setState({loading: true})
        rest.getFilesofFolder(id_folder).then((response) =>{
+           // eslint-disable-next-line eqeqeq
            if (response.status == 200) {
                response.json().then((files) => {
                    this.setState({files, loading: false})
@@ -46,6 +49,7 @@ class Stockage extends React.Component {
 
     uploadFileToDB = (event) => {
         rest.uploadFileToDB(event.target.files[0]).then((response) => {
+            // eslint-disable-next-line eqeqeq
             if (response.status == 200) {
                 this.getFilesofFolder(1)
                 alert('Fichier importé avec succès')
@@ -55,6 +59,10 @@ class Stockage extends React.Component {
             }
         })
     }  
+
+    // searchFun = () =>{
+    //     const filter = document.getElement('research').value.toUpperCase();    
+    // }
 
     render () {
         const { history } = this.props;
@@ -81,6 +89,7 @@ class Stockage extends React.Component {
             <body>
             <div>
             <form style={{marginLeft:"78%", width: 180}}>
+                {/* <image class="textbox-search-sign" src={img4} part="search-sign"></image> */}
                 <span class="algolia-autocomplete" stype="positive: relative; display: inline-block; direction:ltr;">
                 <FormattedMessage id="research">
                     {placeholder=> 
@@ -90,6 +99,7 @@ class Stockage extends React.Component {
                                 placeholder={placeholder}
                                 autocomplete="off" 
                                 spellcheck="false" 
+                                // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
                                 role="combobox" 
                                 aria-autocomplete="list"
                                 aria-expanded="false" 
@@ -100,8 +110,7 @@ class Stockage extends React.Component {
                     }
                 </FormattedMessage>
                 </span>
-            </form>
-
+            </form>        
             </div>
             <div className="document">
                 <BtnPrincipalPage page={'stockage'}/>
@@ -119,7 +128,7 @@ class Stockage extends React.Component {
                     <p><b><FormattedMessage id="stockage.body.ImportFile" /></b></p>
                 <div class="form-group" className="choseFile">
                     <Form>
-                        <input type="file" id='file' class="form-control-file" id="exampleFormControlFile1" onChange={this.uploadFileToDB} />
+                        <input type="file" id='file' class="form-control-file" onChange={this.uploadFileToDB} />
                     </Form>
                 </div> 
                     

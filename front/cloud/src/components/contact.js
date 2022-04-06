@@ -92,10 +92,9 @@ function Contact(props){
                         }
                     </FormattedMessage>
                     <br/>
-                    <br/>
                     <FormattedMessage id="contact.body.Input5">
                         {placeholder=>  
-                            <input class = 'form-control' type="text" name="message" style={{ width:"71%", height:75}} placeholder={placeholder}/>
+                            <input class = 'form-control' type="text" name="message" style={{ width:"71%", height:100}} placeholder={placeholder}/>
                         }
                     </FormattedMessage>
                     <div className="envoyer">

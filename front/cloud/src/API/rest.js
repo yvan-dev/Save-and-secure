@@ -1,4 +1,4 @@
-const apiUrl = 'http:yvandev.fr/save-and-safe';
+const apiUrl = 'https://yvandev.fr/save-and-safe';
 let token = document.cookie;
 if (token.indexOf('token') !== -1) {
     token = token.split(';')[1].split('=')[1].split('Bearer%20')[1];
@@ -102,6 +102,19 @@ const rest = {
             headers: myHeaders,
         };
         return fetch(apiUrl + '/user/name' + name, requestOptions);
+    },
+
+    updateUser (data) {
+        console.log('update user  : ', data)
+        let myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', token);
+        let requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: JSON.stringify(data)
+        };
+        return fetch(apiUrl + '/user' , requestOptions);
     },
 };
 
