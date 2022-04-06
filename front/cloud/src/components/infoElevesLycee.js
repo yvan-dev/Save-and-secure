@@ -5,9 +5,10 @@ import Button from "react-bootstrap/Button";
 import Select from 'react-select';
 import { FormattedMessage } from "react-intl";
 import BtnPrincipalPage from './btnPrincipalPage';
-import rest from '../API/rest';
+import rest from '../API/rest'; 
 import { withRouter } from 'react-router';
 import Lyceen from './lyceens';
+import SearchBar from 'react-js-search';
 
 const options = [
     { value: 'FR', label: 'Français' },
@@ -16,11 +17,11 @@ const options = [
 class InfoElevesLycee extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {users: null, textBtn: 'Ajouter'}
+        this.state = {userId: null, users: null, textBtn: 'Ajouter'}
     }
 
     addUser = () => {
-        let data = {firstName: '', lastName: '', level: '', login: '', password: '', idSchool: 0, status: 'user' };
+        let data = {id: null, firstName: '', lastName: '', level: '', login: '', password: '', idSchool: 0, status: 'user' };
         const loginInput = document.getElementById('login');
         const passwordInput = document.getElementById('password');
         const firstNameInput = document.getElementById('firstName');
@@ -48,6 +49,7 @@ class InfoElevesLycee extends React.Component {
                     })
                 .catch((error) => {console.log('error : ', error)})
                 } else {
+                    data.id = this.state.userId;
                     rest.updateUser(data).then((response) => {
                         if (response.status !== 200)
                             alert('Erreur lors de la modification de l\'utilisateur!');
@@ -62,7 +64,7 @@ class InfoElevesLycee extends React.Component {
     }
 
     loadUser = (user) => {
-        this.setState({textBtn: 'Modifier'})
+        this.setState({userId: user.id, textBtn: 'Modifier'})
         const loginInput = document.getElementById('login');
         const firstNameInput = document.getElementById('firstName');
         const lastNameInput = document.getElementById('lastName');
@@ -92,6 +94,7 @@ class InfoElevesLycee extends React.Component {
 
     getAllUser = () => {
         rest.getAllUser().then(response => {
+            // eslint-disable-next-line eqeqeq
             if (response.status == 200) {
                 response.json().then((users) => {
                     this.setState({users})
@@ -100,8 +103,12 @@ class InfoElevesLycee extends React.Component {
         })
     }
 
-    getUserByFirstOrLastName = (name) => {
-        rest.getUserByFirstOrLastName(name).then(response => {
+    getUserByFirstOrLastNameOrLogin = (pattern) => {
+        if (pattern === '') {
+            this.getAllUser();
+            return;
+        }
+        rest.getUserByFirstOrLastNameOrLogin(pattern).then(response => {
             // eslint-disable-next-line eqeqeq
             if (response.status == 200) {
                 response.json().then((users) => {
@@ -147,30 +154,12 @@ class InfoElevesLycee extends React.Component {
                             <h4><p><b><FormattedMessage id="lycee.body.titleListStudent" /></b></p></h4>
                         </div>
                         <div className="searchEleve">
-                            {/* <button class="rounded-pill" style={{marginLeft:30, width:200,height:40, border:1}}><img src={imageLogos} alt="logos" width="5%" height="5%"></img><FormattedMessage id="lycee.body.searchStudent" /></button> */}
-                            <form style={{marginLeft:"8%", width: 200, marginTop: "-2%"}}>
-                                <span class="algolia-autocomplete" stype="positive: relative; display: inline-block; direction:ltr;">
-                                <FormattedMessage id="research">
-                                    {placeholder=> 
-                                    <input id="docs-search-input" 
-                                        class="form-control ds-input" 
-                                        type="text" 
-                                        placeholder={placeholder}
-                                        autocomplete="off" 
-                                        spellcheck="false" 
-                                        // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
-                                        role="combobox" 
-                                        aria-autocomplete="list"
-                                        aria-expanded="false" 
-                                        aria-label="Search input" 
-                                        aria-owns="algolia-autocomplete-listbox-0" 
-                                        dir="auto"
-                                        onkeyup="getUserByFirstOrLastName(name)">
-                                    </input>
-                                    }
-                                </FormattedMessage>
-                                </span>
-                            </form> 
+                            <SearchBar 
+	                            onSearchTextChange={ (term,hits) => {this.getUserByFirstOrLastNameOrLogin(term,hits)}}
+	                            onSearchButtonClick={this.getUserByFirstOrLastNameOrLogin}
+	                            placeHolderText={"Rechercher"}
+                                data={this.state.users}
+                            />
                         </div>
                         <div className="tcadre">
                             <div className="informationsEvele">
