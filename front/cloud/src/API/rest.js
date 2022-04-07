@@ -93,7 +93,7 @@ const rest = {
         return fetch(apiUrl + '/user/' + id_user, requestOptions);
     },
 
-    getUserByFirstOrLastName(name) {
+    getUserByFirstOrLastNameOrLogin(pattern) {
         let myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');
         myHeaders.append('Authorization', token);
@@ -101,7 +101,7 @@ const rest = {
             method: 'GET',
             headers: myHeaders,
         };
-        return fetch(apiUrl + '/user/name' + name, requestOptions);
+        return fetch(apiUrl + '/user/search/' + pattern, requestOptions);
     },
 
     updateUser (data) {
