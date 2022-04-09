@@ -7,6 +7,7 @@ import Header from "./components/header";
 import SiteInfo from "./components/main";
 import Footer from "./components/footer";
 import Connexion from "./components/connexion";
+import Login from './components/Login';
 import Stockage from "./components/Stockage";
 import Contact from "./components/contact";
 import Propos from "./components/propos";
@@ -22,6 +23,11 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { withRouter } from 'react-router';
 import fr from "./languages/fr";
 import en from "./languages/en";
+/* Emui-ui fonts */
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 function Home(props) {
   return (
@@ -53,7 +59,7 @@ class App extends React.Component {
             <Home cookies={cookies} changeCookie={(langue) => { cookies.set('language', langue, { path: '/' })}}/>
           </Route>
           <Route exact path="/login">
-            <Connexion cookies={cookies} changeCookie={(langue) => { cookies.set('language', langue, { path: '/' })}}/>
+            <Login cookies={cookies} changeCookie={(langue) => { cookies.set('language', langue, { path: '/' })}}/>
           </Route>
           <Route exact path="/stockage">
             <Stockage cookies={cookies} changeCookie={(langue) => { cookies.set('language', langue, { path: '/' })}}/>
