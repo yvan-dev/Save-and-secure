@@ -1,22 +1,23 @@
 import React from "react";
-import img from "../images/fileImage.png";
-import Spinner from 'react-bootstrap/Spinner';
+import { Grid } from "@mui/material";
 
 class File extends React.Component {
     constructor (props) {
         super(props);
-    } 
-    
+    }
+
     render () {
-        const loading = document.getElementById('loading');
-        if (this.props.file !== undefined && loading != undefined)
-            loading.innerHTML = ''
         return (
-            this.props.file !== undefined &&
-            <span style={{margin: 20}}>
-                <img src={img} alt="logos" width="9%" height="9%"></img>
-                <span>{this.props.file.name}</span>
-            </span>
-        )}
+            <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
+                <Grid item xs={ 12 } sm={ 12 } md={ 12 }>
+                    { this.props.fileIcon }
+                </Grid>
+                <Grid item xs={ 12 } sm={ 12 } md={12 }>
+                    { this.props.fileText }
+                </Grid>
+            </div>
+        )
+    }
 }
-export default File; 
+
+export default File;

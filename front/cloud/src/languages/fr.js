@@ -55,7 +55,7 @@ const messages_fr = {
 	'connexion.body.ForgetMDP': 'Mot de passe oublié?',
 	'connexion.body.btnConnect': 'Me connecter',
 	'connexion.form.title': "S'identifier",
-	'connexion.form.contactUs': 'Pas de compte? Contacter nous',
+	'connexion.form.contactUs': 'Pas de compte? Contactez nous',
 	'Votre.compte.S&S': 'Votre compte S&S',
 
 	'stockage.header.btnDisconnect': 'Déconnexion',

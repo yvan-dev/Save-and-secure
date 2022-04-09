@@ -80,6 +80,20 @@ footer{
     padding-top: 10px;
 }
 
+.childrenUpload {
+    /* color: #0658c2; */
+    border: 2px dashed #0658c2;
+    height: 100%;
+    width: 100vh;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-grow: 0;
+    border-radius: 10px;
+}
+
 .select {
     width: 10%;
     left: 88%;
@@ -139,6 +153,35 @@ footer{
     margin-left: 4%;
 }
 
+.mainPageLeftMenu {
+    height: 250px;
+    width: 10%;
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.mainPageLeftDiv {
+    display: flex;
+    flex-direction: column;
+    margin-left: 7%;
+}
+
+.mainPageBody {
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+}
+
+.mainPageCenterDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
 .fichier{
     font-size: 25px;
     margin-top: -25%;
@@ -147,7 +190,18 @@ footer{
 
 .uploadFile {
     width: 100%;
-    height: 100%;
+    height: 100px;
+    margin-bottom: 2%;
+}
+
+.files {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.kiHXWb {
+    height: 100px;
 }
 
 .choseFile{
@@ -217,6 +271,7 @@ footer{
     margin-left: 10%;
     margin-top: -10%;
     height: 320px;
+    color: rgba(31, 131, 231, 0.452);
 }
 
 .cloud{

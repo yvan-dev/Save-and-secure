@@ -1,39 +1,37 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Divider from '@mui/material/Divider';
-import Stack from '@mui/material/Stack';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import CloseIcon from '@mui/icons-material/Close';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CloudDoneOutlinedIcon from '@mui/icons-material/CloudDoneOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import InputLabel from '@mui/material/InputLabel';
+import Link from '@mui/material/Link';
+import MenuItem from '@mui/material/MenuItem';
+import Paper from '@mui/material/Paper';
+import Select from '@mui/material/Select';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import { withCookies } from 'react-cookie';
+import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
-import logo from '../images/s&s_logo.png';
-import background from '../images/connexion.jpg';
 import rest from '../API/rest';
+import background from '../images/connexion.jpg';
+import logo from '../images/s&s_logo.png';
 
 class Login extends React.Component {
 	constructor(props) {
@@ -72,7 +70,7 @@ class Login extends React.Component {
 						response.text().then((result) => {
 							result = JSON.parse(result);
 							cookies.set('token', result.token, { path: '/' });
-							document.location.href = 'http://localhost:3000/stockage';
+							document.location.href = window.location.origin + '/stockage';
 						});
 					}
 					this.setState({ loading: false });
@@ -84,15 +82,13 @@ class Login extends React.Component {
 	};
 
 	render() {
-		const theme = createTheme();
 		const { history } = this.props;
 		const options = [
 			{ value: 'FR', label: 'Français' },
 			{ value: 'ENG', label: 'Anglais' },
 		];
 		return (
-			<ThemeProvider theme={theme}>
-				{/* rgba(31, 131, 231, 0.452) */}
+			<div>
 				<Grid container sx={{ bgcolor: 'white', height: '8vh' }}>
 					<Grid container xs={4} sm={4} md={4}>
 						<Grid item xs={12} sm={12} md={12}>
@@ -102,31 +98,28 @@ class Login extends React.Component {
 					<Grid container xs={8} sm={8} md={8} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
 						<Grid item xs={12} sm={6} md={3}>
 							<Button onClick={() => history.push('/contact')}>
-								<Typography component='h1' variant='h6'>
+								<Typography component='p' variant='body1'>
 									<FormattedMessage id='home.header.btnContact' />
 								</Typography>
 							</Button>
-							{/* <Typography component='h1' variant='h6' sx={{ cursor: 'pointer' }} onClick={() => history.push('/contact')}>
-								<FormattedMessage id='home.header.btnContact' />
-							</Typography> */}
 						</Grid>
 						<Grid item xs={12} sm={6} md={2}>
 							<Button onClick={() => history.push('/propos')}>
-								<Typography component='h1' variant='h6'>
+								<Typography component='p' variant='body1'>
 									<FormattedMessage id='home.header.btnAbout' />
 								</Typography>
 							</Button>
 						</Grid>
 						<Grid item xs={12} sm={6} md={2}>
 							<Button onClick={() => history.push('/')}>
-								<Typography component='h1' variant='h6'>
+								<Typography component='p' variant='body1'>
 									<FormattedMessage id='propos.header.btnWelcome' />
 								</Typography>
 							</Button>
 						</Grid>
 						<Grid item xs={12} sm={6} md={2}>
 							<Button onClick={() => history.push('/FAQ')}>
-								<Typography component='h1' variant='h6'>
+								<Typography component='p' variant='body1'>
 									FAQ
 								</Typography>
 							</Button>
@@ -134,7 +127,7 @@ class Login extends React.Component {
 						<Grid item xs={12} sm={6} md={3}>
 							<FormControl variant='filled' sx={{ m: 1, width: '90%' }}>
 								<InputLabel id='language'>
-									<Typography component='h1' variant='h6'>
+									<Typography component='p' variant='body1'>
 										Langue
 									</Typography>
 								</InputLabel>
@@ -247,7 +240,7 @@ class Login extends React.Component {
 										<TwitterIcon />
 									</a>
 									<a href='https://www.linkedin.com/in/ss-cloud-43875b235/' title='Rejoignez-nous sur LinkedIn'>
-										<LinkedInIcon/>
+										<LinkedInIcon />
 									</a>
 								</Stack>
 								<Typography variant='body2' color='text.secondary' align='center' sx={{ mt: 5 }}>
@@ -262,7 +255,7 @@ class Login extends React.Component {
 						</Box>
 					</Grid>
 				</Grid>
-			</ThemeProvider>
+			</div>
 		);
 	}
 }
