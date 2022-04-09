@@ -24,14 +24,14 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CloudDoneOutlinedIcon from '@mui/icons-material/CloudDoneOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import Spinner from 'react-bootstrap/Spinner';
 import { withCookies } from 'react-cookie';
 import { withRouter } from 'react-router';
-import img from '../images/s&s_logo.png';
-import facebook from '../images/01.png';
-import twitter from '../images/02.png';
-import insta from '../images/03.png';
+import logo from '../images/s&s_logo.png';
 import background from '../images/connexion.jpg';
 import rest from '../API/rest';
 
@@ -96,8 +96,7 @@ class Login extends React.Component {
 				<Grid container sx={{ bgcolor: 'white', height: '8vh' }}>
 					<Grid container xs={4} sm={4} md={4}>
 						<Grid item xs={12} sm={12} md={12}>
-							{/* <CloudDoneOutlinedIcon color='action' sx={{ fontSize: 80, ml: 2 }} /> */}
-							<img src={img} style={{ height: 80, width: 120, marginLeft: 2 }} />
+							<img src={logo} style={{ height: 80, width: 120, marginLeft: 2 }} />
 						</Grid>
 					</Grid>
 					<Grid container xs={8} sm={8} md={8} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
@@ -139,8 +138,8 @@ class Login extends React.Component {
 										Langue
 									</Typography>
 								</InputLabel>
-                                <Select
-                                    defaultValue={'FR'}
+								<Select
+									defaultValue={'FR'}
 									labelId='language'
 									onChange={(event) => {
 										this.props.changeCookie(event.target.value);
@@ -242,13 +241,13 @@ class Login extends React.Component {
 								</Grid>
 								<Stack direction='row' spacing={4} divider={<Divider orientation='vertical' flexItem />} sx={{ display: 'flex', justifyContent: 'center', mt: '10%' }}>
 									<a href='https://www.facebook.com/profile.php?id=100078998544526' title='Rejoignez-nous sur Facebook'>
-										<img src={facebook} width='30px'></img>
+										<FacebookOutlinedIcon />
 									</a>
 									<a href='https://twitter.com/' title='Rejoignez-nous sur Twitter'>
-										<img src={twitter} width='30px'></img>
+										<TwitterIcon />
 									</a>
 									<a href='https://www.linkedin.com/in/ss-cloud-43875b235/' title='Rejoignez-nous sur LinkedIn'>
-										<img src={insta} width='30px'></img>
+										<LinkedInIcon/>
 									</a>
 								</Stack>
 								<Typography variant='body2' color='text.secondary' align='center' sx={{ mt: 5 }}>
