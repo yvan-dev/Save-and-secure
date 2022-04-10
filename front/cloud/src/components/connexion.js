@@ -4,7 +4,7 @@ import img from '../images/image.png';
 import Button from 'react-bootstrap/Button';
 import Select from 'react-select';
 import img1 from '../images/connexion.jpg';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 import { withCookies } from 'react-cookie';
 import Spinner from 'react-bootstrap/Spinner';
@@ -38,6 +38,7 @@ class Connexion extends React.Component {
 			rest
 				.login(data)
 				.then((response) => {
+					// eslint-disable-next-line eqeqeq
 					if (response.status != 200) {
 						// display message for user => do best than alert
 						alert("Erreur lors de l'authentification");

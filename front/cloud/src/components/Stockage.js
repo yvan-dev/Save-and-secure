@@ -9,11 +9,9 @@ import BtnPrincipalPage from './btnPrincipalPage';
 import { withRouter } from 'react-router';
 import File from "./file";
 import rest from "../API/rest";
-import img1 from '../images/01.png';
-import img2 from '../images/02.png';
-import img3 from '../images/03.png';
-// import img4 from '../images/loupe.PNG';
+import Footer from './footer';
 import Spinner from 'react-bootstrap/Spinner';
+import SearchBar from 'react-js-search';
 
 const options = [
     { value: 'FR', label: 'Français' },
@@ -60,10 +58,6 @@ class Stockage extends React.Component {
         })
     }  
 
-    // searchFun = () =>{
-    //     const filter = document.getElement('research').value.toUpperCase();    
-    // }
-
     render () {
         const { history } = this.props;
         console.log('files : ', this.state.files)
@@ -88,27 +82,16 @@ class Stockage extends React.Component {
             </header>
             <body>
             <div>
-            <form style={{marginLeft:"78%", width: 180}}>
-                {/* <image class="textbox-search-sign" src={img4} part="search-sign"></image> */}
+            <form style={{marginLeft:"70%"}}>
                 <span class="algolia-autocomplete" stype="positive: relative; display: inline-block; direction:ltr;">
-                <FormattedMessage id="research">
-                    {placeholder=> 
-                        <input id="docs-search-input" 
-                            class="form-control ds-input" 
-                                type="text" 
-                                placeholder={placeholder}
-                                autocomplete="off" 
-                                spellcheck="false" 
-                                // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
-                                role="combobox" 
-                                aria-autocomplete="list"
-                                aria-expanded="false" 
-                                aria-label="Search input" 
-                                aria-owns="algolia-autocomplete-listbox-0" 
-                                dir="auto">
-                        </input>
-                    }
-                </FormattedMessage>
+                
+                <SearchBar 
+	                onSearchTextChange={ (term,hits) => {this.getUserByFirstOrLastNameOrLogin(term,hits)}}
+	                onSearchButtonClick={this.getUserByFirstOrLastNameOrLogin}
+	                placeHolderText={"Rechercher"}
+                    data={this.state.files}
+                />
+                
                 </span>
             </form>        
             </div>
@@ -158,12 +141,7 @@ class Stockage extends React.Component {
                 <br/>
             </div>
         </body>
-            <div className="footerStockage">
-                <p><FormattedMessage id="home.footer" /></p>  
-                <a href="https://www.facebook.com/profile.php?id=100078998544526" title="Rejoignez-nous sur Facebook"><img src={img1} width="30px"></img></a>
-                <a href="https://twitter.com/" title="Rejoignez-nous sur Twitter"><img src={img2} width="30px"></img></a>
-                <a href="https://www.linkedin.com/in/ss-cloud-43875b235/" title="Rejoignez-nous sur LinkedIn"><img src={img3} width="30px"></img></a> 
-            </div>
+        <Footer />
         </div>
         )
     }

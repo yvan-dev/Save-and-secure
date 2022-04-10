@@ -92,6 +92,28 @@ const messages_fr = {
     "monCompte.body.school": "Ecole",
     "monCompte.body.job": "Profession",
     "monCompte.body.city": "Ville",
-}
+
+    "faq.body.cloud1": "Comment accéder au stockage cloud ?",
+    "faq.body.cloud2": "Vous pouvez accéder à votre stockage cloud S&S sur votre téléphone connecté au Wi Fi.",
+    "faq.body.cloud3": "Vous pouvez également y accéder sur un ordinateur Windows, Mac ou Linux via le Web. Il faut seulement disposer d’une connexion à Internet pour importer vos fichiers et y accéder.",
+    "faq.body.cloud4": "Qu'est-ce que le stockage cloud ?",
+    "faq.body.cloud5": "Le stockage cloud est un stockage hors site géré par un tiers et une alternative au stockage des données on-premise.",
+    "faq.body.cloud6": "Le stockage cloud sauvegarde vos documents et fichiers importants de façon sécurisée dans une base de données distante.",
+    "faq.body.cloud7": "Vous n'avez donc pas à les stocker sur le disque dur de votre ordinateur ou sur un autre périphérique de stockage.",
+    "faq.body.cloud8": "Le stockage cloud présente de nombreux avantages par rapport au stockage sur disque dur.",
+    "faq.body.cloud9": "Vous n'avez pas besoin de posséder physiquement le périphérique de stockage comme avec une clé USB, par exemple.",
+    "faq.body.cloud10": "Vous ne risquez donc pas de perdre des contenus irremplaçables. Deuxièmement, le stockage cloud vous permet de partager facilement vos contenus.",
+    "faq.body.cloud11": "Comment le stockage cloud fonctionne ?",
+    "faq.body.cloud12": "Dans le domaine du cloud computing, les services de stockage cloud fonctionnent comme un réseau de serveurs de données connectés qui, ensemble,",
+    "faq.body.cloud13": "vous permettent de partager vos fichiers et d'y accéder sur différents appareils.",
+    "faq.body.cloud14": "Les fournisseurs de stockage cloud gèrent les serveurs externes qui composent ce réseau dans leurs datacenters.",
+    "faq.body.cloud15": "Les utilisateurs peuvent importer des fichiers sur les serveurs et accéder à leurs données cloud via un site Web, une application de bureau ou une application mobile.",
+    "faq.body.cloud16": "Quelles sont les avantages du cloud ?",
+    "faq.body.cloud17": "Les avantages du stockage cloud incluent notamment la facilité de stockage, d'accès et de protection du contenu sur Internet.",
+    "faq.body.cloud18": "Vous pouvez simplifier votre façon de travailler et optimiser vos systèmes de stockage obsolètes avec la possibilité d'importer",
+    "faq.body.cloud19": "quasiment n'importe quel type de fichier et d'y accéder depuis plusieurs appareils. Vous avez également la certitude que vos fichiers importants sont sauvegardés sur des serveurs externes sécurisés.",
+    "faq.body.cloud20": "Ceci est particulièrement utile lors d'une reprise d'activité ou si votre disque dur tombe en panne.",
+    "faq.body.cloud21": "Réduction des efforts et les coûts de maintenance associée à la gestion des données.",
+}   
 
 export default messages_fr;

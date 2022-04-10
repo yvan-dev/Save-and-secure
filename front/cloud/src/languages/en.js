@@ -92,6 +92,28 @@ const messages_en = {
     "monCompte.body.school": "school",
     "monCompte.body.job": "job",
     "monCompte.body.city": "city",
+
+    "faq.body.cloud1": "How do I access cloud storage?",
+    "faq.body.cloud2": "You can access your S&S cloud storage on your Wi Fi connected phone.",
+    "faq.body.cloud3": "You can also access it on a Windows, Mac or Linux computer via the web. All you need is an Internet connection to import and access your files.",
+    "faq.body.cloud4": "What is cloud storage?",
+    "faq.body.cloud5": "Cloud storage is off-site storage managed by a third party and an alternative to on-premise data storage.",
+    "faq.body.cloud6": "Cloud storage backs up your important documents and files securely to a remote database.",
+    "faq.body.cloud7": "You do not have to store them on your computer's hard drive or other storage device.",
+    "faq.body.cloud8": "Cloud storage has many advantages over hard disk storage.",
+    "faq.body.cloud9": "You do not need to physically own the storage device as with a USB stick, for example.",
+    "faq.body.cloud10": "So you don't risk losing irreplaceable content. Secondly, cloud storage allows you to share your content easily.",
+    "faq.body.cloud11": "How does cloud storage work?",
+    "faq.body.cloud12": "In cloud computing, cloud storage services function as a network of connected data servers that work together,",
+    "faq.body.cloud13": "allow you to share and access your files on different devices.",
+    "faq.body.cloud14": "Cloud storage providers manage the external servers that make up this network in their data centres.",
+    "faq.body.cloud15": "Users can import files onto the servers and access their cloud data via a website, desktop application or mobile application.", 
+    "faq.body.cloud16": "What are the benefits of the cloud?",
+    "faq.body.cloud17": "The benefits of cloud storage include the ease of storing, accessing and protecting content over the Internet.",
+    "faq.body.cloud18": "You can simplify the way you work and optimise your outdated storage systems with the ability to import",
+    "faq.body.cloud19": "You can store almost any type of file and access it from multiple devices. You can also be sure that your important files are backed up on secure external servers.",
+    "faq.body.cloud20": "This is particularly useful during a disaster recovery or if your hard drive fails.",
+    "faq.body.cloud21": "Reduced effort and maintenance costs associated with data management.",
 }
 
 export default messages_en;
