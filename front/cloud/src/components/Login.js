@@ -220,13 +220,13 @@ class Login extends React.Component {
 								<Button type='submit' fullWidth variant='contained' size='large' disabled={this.state.loading} sx={{ mt: 3, mb: 2 }}>
 									{!this.state.loading ? <ExitToAppOutlinedIcon sx={{ fontSize: 30, color: 'black' }} /> : <Spinner animation='grow' />}
 								</Button>
-								<Grid container>
-									<Grid item xs>
+								<Grid spacing={2} container>
+									<Grid item xs={12} sm={6} md={6}>
 										<Link href='#' variant='body2'>
 											<FormattedMessage id='connexion.body.ForgetMDP' />
 										</Link>
 									</Grid>
-									<Grid item>
+									<Grid item xs={12} sm={6} md={6}>
 										<Link variant='body2' onClick={() => history.push('/contact')} sx={{ cursor: 'pointer' }}>
 											<FormattedMessage id='connexion.form.contactUs' />
 										</Link>

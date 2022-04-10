@@ -1,23 +1,27 @@
+import AddIcon from '@mui/icons-material/Add';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import TopicOutlinedIcon from '@mui/icons-material/TopicOutlined';
-import { Button, Skeleton, Stack } from '@mui/material';
+import { Button, CircularProgress, Paper, Skeleton, Stack, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Grid from '@mui/material/Grid';
 import ImageList from '@mui/material/ImageList';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
+import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
+import { ContextMenuTrigger, ContextMenu, ContextMenuItem } from 'rctx-contextmenu';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 import rest from '../API/rest';
 import HeaderHome from './HeaderHome';
 import Upload from './Upload';
-
-// import img4 from '../images/loupe.PNG';
 
 const options = [
 	{ value: 'FR', label: 'Français' },
@@ -77,68 +81,145 @@ class Stockage extends React.Component {
 		return (
 			<div>
 				<HeaderHome user={this.state.user} />
-				<Grid container spacing={4} xs={12} sm={12} md={12} lg={12} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-					<Grid item xs={12} sm={12} md={12} lg={12}>
-						<Upload />
-					</Grid>
-					<Grid item xs={12} sm={12} md={12}>
-						<TextField
-							id='search'
-							placeholder='Nom, extension, ...'
-							label='Rechercher un fichier ou un dossier'
-							InputProps={{
-								startAdornment: (
-									<InputAdornment position='start'>
-										<SearchOutlinedIcon />
-									</InputAdornment>
-								),
+				<Grid container spacing={6}>
+					<Grid item xs={2} sm={2} md={2} sx={{ ml: 3, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+						<Box
+							component={Paper}
+							elevation={6}
+							sx={{
+								position: 'relative',
+								display: 'inline-flex',
+								width: '100%',
+								height: '100%',
+								borderColor: 'primary.dark',
+								opacity: [0.9, 0.8, 0.7],
+								'&:hover': {
+									borderColor: 'primary.main',
+									opacity: [1, 1, 1],
+								},
 							}}
-							variant='outlined'
-							sx={{ width: '50vh' }}
-						/>
+						>
+							<CircularProgress variant='determinate' value={55} size='70%' thickness={5} sx={{ position: 'relative', top: '0%', left: '100%', ml: '12%' }} />
+							<Box
+								sx={{
+									top: 0,
+									left: 0,
+									bottom: '30%',
+									right: '3%',
+									position: 'absolute',
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+								}}
+							>
+								<Typography variant='h4' component='h4' color='text.secondary'>
+									55%
+								</Typography>
+							</Box>
+						</Box>
+					</Grid>
+					<Grid item spacing={3} xs={9} md={9} sm={9} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+						<Grid item>
+							<Upload />
+						</Grid>
+						<Grid item spacing={3} sx={{ mt: 2, display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+							<Grid item xs={9} md={5} sm={5}>
+								<TextField
+									id='search'
+									placeholder='Nom, extension, ...'
+									label='Rechercher un fichier ou un dossier'
+									InputProps={{
+										startAdornment: (
+											<InputAdornment position='start'>
+												<SearchOutlinedIcon />
+											</InputAdornment>
+										),
+									}}
+									variant='outlined'
+									sx={{ width: '100%' }}
+								/>
+							</Grid>
+							<Grid item xs={9} md={4} sm={4}>
+								<Button color='success' variant='outlined' startIcon={<AddIcon fontSize='large' />} sx={{ width: '100%', height: '100%' }}>
+									<Typography component='p' variant='body1'>
+										<FormattedMessage id='stockage.body.btnNewFile' />
+									</Typography>
+								</Button>
+							</Grid>
+						</Grid>
+						<Breadcrumbs separator='>' sx={{ mt: 3, display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
+							<Button sx={{ color: 'primary.dark', opacity: [0.9, 0.8, 0.7] }}>
+								<HomeOutlinedIcon sx={{ mr: 1 }} />
+								Home
+							</Button>
+							<Button sx={{ color: 'primary.main' }}>
+								<TopicOutlinedIcon sx={{ mr: 1 }} />
+								Cours
+							</Button>
+						</Breadcrumbs>
+						<Box
+							component={Paper}
+							elevation={3}
+							sx={{
+								width: '100%',
+								height: '100%',
+								opacity: [0.9, 0.8, 0.7],
+								borderColor: 'primary.dark',
+								'&:hover': {
+									borderColor: 'primary.main',
+									opacity: [1, 1, 1],
+								},
+							}}
+						>
+							<ImageList cols={3} rowHeight={150} sx={{ width: '100%', height: '100%' }}>
+								{this.state.loading &&
+									[0, 1, 2, 3, 5, 6].map((i, index) => {
+										return (
+											<Stack key={index} spacing={1} sx={{ mt: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+												<Skeleton animation='wave' variant='rectangular' width={100} height={60} />
+												<Skeleton animation='wave' variant='text' width={100} />
+											</Stack>
+										);
+									})}
+								{this.state.files.length > 0 &&
+									this.state.files.map((file, key) => (
+										<ImageListItem key={key} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+											<ContextMenuTrigger id={'menu-' + key} className='contextMenu'>
+												<InsertDriveFileIcon fontSize='large' sx={{ color: '#0658c2' }} />
+												<ImageListItemBar title={file.name} position='below' />
+											</ContextMenuTrigger>
+											<ContextMenu id={'menu-' + key} animation='zoom' preventHideOnResize={true} preventHideOnScroll={true}>
+												<ContextMenuItem>
+													<div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+														<DeleteRoundedIcon fontSize='large' color='error' />
+														<Typography component='p' variant='body1' color='error' sx={{ ml: 2 }}>
+															Supprimer
+														</Typography>
+													</div>
+												</ContextMenuItem>
+												<ContextMenuItem>
+													<div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+														<DriveFileRenameOutlineRoundedIcon fontSize='large' color='primary' />
+														<Typography component='p' variant='body1' color='primary' sx={{ ml: 2 }}>
+															Renommer
+														</Typography>
+													</div>
+												</ContextMenuItem>
+												<ContextMenuItem>
+													<div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+														<FileDownloadRoundedIcon fontSize='large' color='success' />
+														<Typography component='p' variant='body1' sx={{ ml: 2, color: 'green' }}>
+															Télécharger
+														</Typography>
+													</div>
+												</ContextMenuItem>
+											</ContextMenu>
+										</ImageListItem>
+									))}
+							</ImageList>
+						</Box>
 					</Grid>
 				</Grid>
-				<Breadcrumbs separator='>' sx={{ mt: 3, display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
-					<Button sx={{ color: 'primary.dark', opacity: [0.9, 0.8, 0.7] }}>
-						<HomeOutlinedIcon sx={{ mr: 1 }} />
-						Home
-					</Button>
-					<Button sx={{ color: 'primary.main' }}>
-						<TopicOutlinedIcon sx={{ mr: 1 }} />
-						Cours
-					</Button>
-				</Breadcrumbs>
-				<Box
-					sx={{
-						width: '80%',
-						marginLeft: '10%',
-						opacity: [0.9, 0.8, 0.7],
-						borderColor: 'primary.dark',
-						'&:hover': {
-							borderColor: 'primary.main',
-							opacity: [1, 1, 1],
-						},
-					}}
-				>
-					<ImageList cols={3} rowHeight={164} sx={{ width: '100%', height: '100%' }}>
-						{this.state.loading &&
-							[0, 1, 2, 3, 5, 6].map((i, index) => {
-								return (
-									<Stack key={index} spacing={1} sx={{ mt: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-										<Skeleton animation='wave' variant='rectangular' width={100} height={60} />
-										<Skeleton animation='wave' variant='text' width={100} />
-									</Stack>
-								);
-							})}
-						{this.state.files.length > 0 &&
-							this.state.files.map((file, key) => (
-								<ImageListItem key={key} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-									<InsertDriveFileIcon fontSize='large' sx={{ color: '#0658c2' }} />
-									<ImageListItemBar title={file.name} position='below' />
-								</ImageListItem>
-							))}
-					</ImageList>
-				</Box>
 			</div>
 		);
 	}

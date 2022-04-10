@@ -32,7 +32,7 @@ function Children(props) {
 	return (
 		<div className='childrenUpload'>
 			<CloudUploadOutlinedIcon fontSize='large' sx={{ color: '#0658c2' }} />
-			<Typography component='p' variant='body1'>
+			<Typography component='p' variant='body1' color='primary'>
 				Cliquer ou déposer vos fichiers pour les importer
 			</Typography>
 		</div>
