@@ -11,20 +11,19 @@ class Upload extends React.Component {
 		this.state = {};
 	}
 
-	uploadFileToDB = (event) => {
-		rest.uploadFileToDB(event.target.files[0]).then((response) => {
-			if (response.status == 200) {
-				this.getFilesofFolder(1);
-				alert('Fichier importé avec succès');
-			} else {
-				alert("Erreur lors de l'importation du fichier");
-			}
-		});
+	uploadFileToDB = async (files) => {
+		this.props.onUploadStart();
+		try {
+			const response = await rest.uploadFileToDB(files[0], this.props.parentFolderId);
+			response.status == 200 && this.props.onUploadEnd();
+		} catch (error) {
+			this.props.onUploadEnd();
+		}
 	};
 
 	render() {
 		const fileTypes = ['JPG', 'PNG', 'GIF', 'PDF', 'EXE', 'RAR', 'ZIP', 'TAR'];
-		return <FileUploader children={<Children />} handleChange={this.uploadFileToDB} name='file' multiple={true} types={fileTypes} classes='uploadFile' />;
+		return <FileUploader children={<Children />} handleChange={this.uploadFileToDB} name='file' multiple={true} classes='uploadFile' />;
 	}
 }
 

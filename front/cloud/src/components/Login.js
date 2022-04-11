@@ -72,12 +72,12 @@ class Login extends React.Component {
 							cookies.set('token', result.token, { path: '/' });
 							document.location.href = window.location.origin + '/stockage';
 						});
-					}
+					}				})
+				.catch((err) => {
+					console.err(err)
+				}).finally(() => {
 					this.setState({ loading: false });
 				})
-				.catch((err) => {
-					this.setState({ loading: false });
-				});
 		}
 	};
 
@@ -92,7 +92,7 @@ class Login extends React.Component {
 				<Grid container sx={{ bgcolor: 'white', height: '8vh' }}>
 					<Grid container xs={4} sm={4} md={4}>
 						<Grid item xs={12} sm={12} md={12}>
-							<img src={logo} style={{ height: 80, width: 120, marginLeft: 2 }} />
+							<img src={logo} style={{ height: '80%', width: '28%', marginLeft: 2 }} />
 						</Grid>
 					</Grid>
 					<Grid container xs={8} sm={8} md={8} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
@@ -204,7 +204,7 @@ class Login extends React.Component {
 							<Typography component='h1' variant='h5'>
 								<FormattedMessage id='connexion.form.title' />
 							</Typography>
-							<Box component='form' noValidate onSubmit={this.handleSubmit} sx={{ mt: 3 }}>
+							<Box component='form' onSubmit={this.handleSubmit} sx={{ mt: 3 }}>
 								<TextField margin='normal' required fullWidth id='login' label={<FormattedMessage id='lycee.body.input4' />} name='login' autoComplete='email' autoFocus />
 								<TextField
 									margin='normal'
