@@ -13,6 +13,7 @@ import Propos from "./components/propos";
 import InfoElevesLycee from "./components/infoElevesLycee";
 import Compte from "./components/monCompte";
 import Faq from "./components/FAQ";
+import ForgetPassword from "./components/forgetPassword";
 import ReactDOM from "react-dom";
 import { IntlProvider, injectIntl } from "react-intl";
 import { Cookies, useCookies, withCookies, CookiesProvider } from "react-cookie";
@@ -71,6 +72,9 @@ class App extends React.Component {
           </Route>
           <Route exact path="/FAQ">
             <Faq cookies={cookies} changeCookie={(langue) => { cookies.set('language', langue, { path: '/' })}}/>
+          </Route>
+          <Route exact path="/forgetPassword">
+            <ForgetPassword cookies={cookies} changeCookie={(langue) => { cookies.set('language', langue, { path: '/' })}}/>
           </Route>
         </Switch>
       </Router>

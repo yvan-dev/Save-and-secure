@@ -274,12 +274,22 @@ text-align: center;
     margin-top: 2%;
 }
 
-.textbox-search-sign {
-    list-style-image: url(../images/loupe.PNG);
-    margin-inline-end: 5px;
-    width: 100px;
-}
-
 .FAQ {
     text-align: center;
+}
+
+.Password {
+    /* background-color: #bfd0e089;  */
+    justify-content: space-around;
+    background: white;
+    text-align: center;
+    border: 1.5px solid #f3efefd5;
+    width: 35%;
+    
+    margin-top: 5%;
+    margin-left: 35%;
+}
+
+.PASS {
+    margin-top: -25%;
 }

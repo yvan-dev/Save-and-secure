@@ -123,7 +123,8 @@ class Connexion extends React.Component {
 									</label>
 								</div>
 								<b>
-									<FormattedMessage id='connexion.body.ForgetMDP' />
+									<label style={{ color: 'blue', fontSize: '115%' }} onClick={() => history.push('/forgetPassword')}><FormattedMessage id='connexion.body.ForgetMDP' /></label>
+									{/* <FormattedMessage id='connexion.body.ForgetMDP' /> */}
 								</b>
 							</div>
 						</div>

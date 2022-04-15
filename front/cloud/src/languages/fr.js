@@ -51,6 +51,8 @@ const messages_fr = {
     "connexion.body.Title": "Votre compte S&S",
     "connexion.body.Input1": "email",
     "connexion.body.Input2": "mot de passe",
+    "connexion.body.input1": "Nouveau mot de passe",
+    "connexion.body.input2" : "Confirmer votre nouveau mot de passe",
     "connexion.body.LabelRestConnect": "Restez connecté",
     "connexion.body.ForgetMDP": "Mot de passe oublié?",
     "connexion.body.btnConnect": "Me connecter",

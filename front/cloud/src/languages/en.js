@@ -51,6 +51,8 @@ const messages_en = {
     "connexion.body.Title": "Your S&S account",
     "connexion.body.Input1": "e-mail",
     "connexion.body.Input2": "password",
+    "connexion.body.input1": "New password",
+    "connexion.body.input2" : "Confirm your new password",
     "connexion.body.LabelRestConnect": "Stay connected",
     "connexion.body.ForgetMDP": "Forgot your password?",
     "connexion.body.btnConnect": "Connect me",
