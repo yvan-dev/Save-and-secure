@@ -7,12 +7,29 @@ import { FormattedMessage, injectIntl } from "react-intl";
 const Footer = () => {
     return (
         <footer>
-            <p><FormattedMessage id="home.footer" /></p>  
-            <a href="#" title="Rejoignez-nous sur Facebook"><img src={img1} width="20px"></img></a>
-            <a href="#" title="Rejoignez-nous sur Twitter"><img src={img2} width="20px"></img></a>
-            <a href="#" title="Rejoignez-nous sur LinkedIn"><img src={img3} width="20px"></img></a> 
+            <p><FormattedMessage id="home.footer" /></p>
+            <a
+                href="https://www.facebook.com/profile.php?id=100078998544526"
+                title="Rejoignez-nous sur Facebook"
+            >
+                <img src={img1} width="30px"></img>
+            </a>
+
+            <a
+                href="https://twitter.com/"
+                title="Rejoignez-nous sur Twitter"
+            >
+                <img src={img2} width="30px"></img>
+            </a>
+
+            <a
+                href="https://www.linkedin.com/in/ss-cloud-43875b235/"
+                title="Rejoignez-nous sur LinkedIn"
+            >
+                <img src={img3} width="30px"></img>
+                </a>
         </footer>
     )
 }
 
-export default Footer; 
+export default Footer;

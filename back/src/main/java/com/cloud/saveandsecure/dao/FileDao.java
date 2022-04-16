@@ -9,5 +9,6 @@ import com.cloud.saveandsecure.model.File;
 public interface FileDao extends JpaRepository<File, Integer>{
 	File findById(int id);
 	File findByName(String name);
+	File findByNameAndIdFolder(String string, int id__folder);
 	List<File> findByIdFolder(int id_folder);
 }

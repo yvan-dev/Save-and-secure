@@ -10,11 +10,6 @@ html, body{
     width: 100%;
 }
 
-
-.form-control {
-    display: inline;
-}
-
 p, label{
     background-size: cover;
     font-family: 'Times New Roman', Times, serif;
@@ -37,7 +32,7 @@ p, label{
     margin-top: 4%;
     margin-left: 20%;
 }
- 
+
 .texte{
     text-align: center;
     margin-top: -15%;
@@ -59,16 +54,16 @@ p, label{
 
 footer{
     width: 100%;
-    position: absolute;
-    /*top: 100%;*/
-    /*bottom:0%;*/
+    height: 60px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: fixed;
+    bottom:0%;
     font-size: 11px;
     color: white;
-    padding-left: 85%;
     background-color: #1846a3;
-    /* margin-top: 110px; */
     border-top: 0.1px solid rgb(7, 51, 196);
-    padding-top: 10px;
 }
 
 .footerStockage{
@@ -85,130 +80,205 @@ footer{
     padding-top: 10px;
 }
 
+.childrenUpload {
+    /* color: #0658c2; */
+    border: 2px dashed #0658c2;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-grow: 0;
+    border-radius: 10px;
+}
+
+.contextMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .select {
     width: 10%;
     left: 88%;
     margin-top:-3%;
 }
 
-/*.connect{
-    margin-left: 60%;
-    margin-top: 10%;
-    width: 20%;
-    text-align: center;
-}*/
-
 .imgConnect{
     margin-top: 12%;
     margin-left: 16%;
 }
 
+.loginBody {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .connect {
-    text-align: center;
-    position: absolute;
-    height: 65%;
-    left: 60%;
-    top: 20%;
-    /* gray/50 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     background: #F9FAFB;
-    /* gray/100 */
-    border: 1px solid #F4F5F7;
-    box-sizing: border-box;
+    border: 3px solid #F4F5F7;
     width: 25%;
-    padding-top: 2%;
+    margin-top: 8%;
+    margin-right: 8%;
+    padding-top: 1%;
+    padding-bottom: 5%;
 }
 
 .inputLogin{
     margin: 10%;
+    width: 80%;
     font-size: 12px;
 }
 
 .label{
-    color: hsla(241, 96%, 47%, 0.925);  
-    margin-left: -55%;
+    color: hsla(241, 96%, 47%, 0.925);
     font-size: 14px;
 }
 
-.mdp{
-    margin-left: 47%;
-    margin-top: -16%;
+.loginForgetMdpDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10%;
 }
 
 .document{
     margin-left: 4%;
-    margin-top: 3%;
+}
+
+.myDocument{
+    margin-top: 2%;
+    margin-left: 4%;
+}
+
+.mainPageLeftMenu {
+    height: 250px;
+    width: 10%;
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.mainPageLeftDiv {
+    display: flex;
+    flex-direction: column;
+    margin-left: 7%;
+}
+
+.mainPageBody {
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+}
+
+.mainPageCenterDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 }
 
 .fichier{
     font-size: 25px;
-    margin-top: -26%;
-    margin-left: 30%;
+    margin-top: -25%;
+    margin-left: 20%;
+}
+
+.uploadFile {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 2%;
+}
+
+.files {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.kiHXWb {
+    height: 100px;
 }
 
 .choseFile{
-    margin-left:30%;
-    margin-top:-7%;
-    width:88%;
-    height:10%;
+    width:100%;
+    height:50%;
 }
 
 .titleListeEleve{
     margin-left: 28%;
-    margin-top: -12%;
-    
+    margin-top: -17%;
+
 }
 
 .searchEleve{
-    margin-left: 21%;
+    margin-left: -20%;
+    /* width: 50px; */
 }
 
 .tcadre{
-    width: 26%;
+    width: 28%;
     background: #F9FAFB;
     margin-top: 1%;
-    margin-left: 26%;
+    margin-left: 25%;
+    border: 3px solid #F9FAFB;
+    /* box-shadow: 5px 3px 2px rgb(68, 131, 233); */
+    box-shadow: 6px 6px 2px 1px rgb(68, 131, 233);
 }
 
 .informationsEvele{
-    margin-left: 6%;
+    margin-left: 5%;
     text-align: center;
-    margin-top: 2%;
+    margin-top: 4%;
     font-size: 12px;
-    background: #F9FAFB;
-    height: 300px;
+    background: #dbe2ea;
+    height: 310px;
 }
 
 .bloc2{
     text-align: center;
-    margin-left: 60%;
-    margin-top: -32%;
+    margin-left: 50%;
+    margin-top: -35%;
 }
 
 .mesInputs{
-    margin-left: 70%;
+    margin-left: 65%;
+    width: 400px;
 }
 
 .Ajouter{
-    margin-left: 70.2%;
+    margin-left: 65.5%;
 }
 
 .infoPerso{
     margin-left: 30%;
-    margin-top:-11%;
+    margin-top:-10%;
 }
 
 .tableau-cadre{
     margin-left: 30%;
     margin-top: 4%;
-    background: #F9FAFB;
-    width: 30%;
+    width: 25%;
+    box-sizing: border-box;
 }
 
 .cadre{
     background: #F9FAFB;
     margin-left: 10%;
-    margin-top: -5%;
+    margin-top: -10%;
     height: 320px;
+    color: rgba(31, 131, 231, 0.452);
 }
 
 .cloud{
@@ -237,4 +307,36 @@ text-align: center;
 
 .loading{
     margin-left:25%
+}
+
+.form-control {
+    display: inline;
+    margin-top: 10%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.border{
+    border-width:2px;
+    border-color:black;
+}
+
+.bloc {
+    margin-top: 5%;
+}
+
+.textbox-search-sign {
+    list-style-image: url(../images/loupe.PNG);
+    margin-inline-end: 5px;
+    width: 100px;
 }

@@ -27,7 +27,7 @@ public class File {
 	private String name;
 	@Column(name = "creation_date")
 	private LocalDate creationDate;
-	private Long size;
+	private Double size;
     @Lob
     private byte[] file;
 }

@@ -21,33 +21,40 @@ import com.cloud.saveandsecure.dao.UserDao;
 import com.cloud.saveandsecure.interfac.UserServiceInterf;
 import com.cloud.saveandsecure.model.User;
 
-
 @RestController
 @RequestMapping("/user")
 public class UserService implements UserServiceInterf {
 	@Autowired
 	UserDao userDao;
 	@PersistenceContext
-    EntityManager entityManager;
+	EntityManager entityManager;
 
 	@Override
 	public ResponseEntity<String> addUser(User user) {
 		if (user.getLogin() == "" || user.getPassword() == null)
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le login et le mot de passe sont requis!");
 		if (getUserByLogin(user.getLogin()) != null)
-			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body("Le login " + user.getLogin() + " existe déjà!"); //208
+			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED)
+					.body("Le login " + user.getLogin() + " existe déjà!"); // 208
 		user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
 		userDao.save(user);
 		return ResponseEntity.ok().build();
 	}
 
-
 	@Override
 	public ResponseEntity<Void> updateUser(User user) {
-		if (user.getId() == null || !userDao.existsById(user.getId()))
+		if (user.getId() == null)
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		User userDb = userDao.findById(user.getId()).orElse(null);
+		if (!userDb.getLogin().equals(user.getLogin()) && getUserByLogin(user.getLogin()) != null)
+			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED)
+					.build();
+		if (userDb == null)
 			return ResponseEntity.notFound().build();
 		if (user.getPassword() != "")
-			user.setPassword(BCrypt.hashpw(user.getPassword(),  BCrypt.gensalt()));
+			user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+		else
+			user.setPassword(userDb.getPassword());
 		userDao.save(user);
 		return ResponseEntity.ok().build();
 	}
@@ -80,10 +87,12 @@ public class UserService implements UserServiceInterf {
 	 */
 	@Override
 	public ResponseEntity<List<User>> getUserByFirstOrLastNameOrLogin(String pattern) {
-		String sql = "SELECT u from User u WHERE u.firstName LIKE '%" + pattern + "%' or u.lastName LIKE '%" + pattern + "%' or u.login LIKE '%" + pattern + "%'";
+		String sql = "SELECT u from User u WHERE u.firstName LIKE '%" + pattern + "%' or u.lastName LIKE '%" + pattern
+				+ "%' or u.login LIKE '%" + pattern + "%'";
 		TypedQuery<User> query = entityManager.createQuery(sql, User.class);
 		try {
-			if (query.getResultList().size() == 0) return ResponseEntity.notFound().build();
+			if (query.getResultList().size() == 0)
+				return ResponseEntity.notFound().build();
 			return ResponseEntity.status(HttpStatus.OK).body(query.getResultList());
 		} catch (NoResultException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -93,11 +102,11 @@ public class UserService implements UserServiceInterf {
 	@Override
 	public User getUserByLogin(String login) {
 		String sql = "SELECT u FROM User u WHERE u.login = :login";
-        TypedQuery<User> query = entityManager.createQuery(sql, User.class);
-        query.setParameter("login", login);
-        try {
-        	return query.getSingleResult();
-        } catch (NoResultException e) {
+		TypedQuery<User> query = entityManager.createQuery(sql, User.class);
+		query.setParameter("login", login);
+		try {
+			return query.getSingleResult();
+		} catch (NoResultException e) {
 			return null;
 		}
 	}
@@ -110,7 +119,6 @@ public class UserService implements UserServiceInterf {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
-
 
 	@Override
 	public ResponseEntity<User> getUserLogged() {
