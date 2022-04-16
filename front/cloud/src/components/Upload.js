@@ -14,8 +14,11 @@ class Upload extends React.Component {
 	uploadFileToDB = async (files) => {
 		this.props.onUploadStart();
 		try {
-			const response = await rest.uploadFileToDB(files[0], this.props.parentFolderId);
-			response.status == 200 && this.props.onUploadEnd();
+			for (let index = 0; index < files.length; index++) {
+				const response = await rest.uploadFileToDB(files[index], this.props.parentFolderId);
+				response.status != 200 && this.props.onUploadEnd();
+			}
+			this.props.onUploadEnd();
 		} catch (error) {
 			this.props.onUploadEnd();
 		}

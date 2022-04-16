@@ -12,15 +12,11 @@ import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
-import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
-import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
-import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
-import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -31,7 +27,7 @@ import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 import rest from '../API/rest';
 import background from '../images/connexion.jpg';
-import logo from '../images/s&s_logo.png';
+import Header from './Header';
 
 class Login extends React.Component {
 	constructor(props) {
@@ -52,7 +48,6 @@ class Login extends React.Component {
 		//     email: data.get('email'),
 		//     password: data.get('password'),
 		// });
-		const { history } = this.props;
 		const { cookies } = this.props;
 		let data = { login: '', password: '' };
 		const loginInput = document.getElementById('login');
@@ -89,68 +84,7 @@ class Login extends React.Component {
 		];
 		return (
 			<div>
-				<Grid container sx={{ bgcolor: 'white', height: '8vh' }}>
-					<Grid container xs={4} sm={4} md={4}>
-						<Grid item xs={12} sm={12} md={12}>
-							<img src={logo} style={{ height: '80%', width: '28%', marginLeft: 2 }} />
-						</Grid>
-					</Grid>
-					<Grid container xs={8} sm={8} md={8} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-						<Grid item xs={12} sm={6} md={3}>
-							<Button onClick={() => history.push('/contact')}>
-								<Typography component='p' variant='body1'>
-									<FormattedMessage id='home.header.btnContact' />
-								</Typography>
-							</Button>
-						</Grid>
-						<Grid item xs={12} sm={6} md={2}>
-							<Button onClick={() => history.push('/propos')}>
-								<Typography component='p' variant='body1'>
-									<FormattedMessage id='home.header.btnAbout' />
-								</Typography>
-							</Button>
-						</Grid>
-						<Grid item xs={12} sm={6} md={2}>
-							<Button onClick={() => history.push('/')}>
-								<Typography component='p' variant='body1'>
-									<FormattedMessage id='propos.header.btnWelcome' />
-								</Typography>
-							</Button>
-						</Grid>
-						<Grid item xs={12} sm={6} md={2}>
-							<Button onClick={() => history.push('/FAQ')}>
-								<Typography component='p' variant='body1'>
-									FAQ
-								</Typography>
-							</Button>
-						</Grid>
-						<Grid item xs={12} sm={6} md={3}>
-							<FormControl variant='filled' sx={{ m: 1, width: '90%' }}>
-								<InputLabel id='language'>
-									<Typography component='p' variant='body1'>
-										Langue
-									</Typography>
-								</InputLabel>
-								<Select
-									defaultValue={'FR'}
-									labelId='language'
-									onChange={(event) => {
-										this.props.changeCookie(event.target.value);
-										console.log('event value : ', event.target.value);
-									}}
-								>
-									{options.map((option, index) => {
-										return (
-											<MenuItem key={index} value={option.value}>
-												{option.label}
-											</MenuItem>
-										);
-									})}
-								</Select>
-							</FormControl>
-						</Grid>
-					</Grid>
-				</Grid>
+				<Header cookies={this.props.cookies} changeCookie={this.props.changeCookie} />
 				<Grid container component='main' sx={{ height: '92vh' }}>
 					<CssBaseline />
 					<Grid

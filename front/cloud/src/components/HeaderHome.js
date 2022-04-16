@@ -54,8 +54,7 @@ class HeaderHome extends React.Component {
 	}
 
     render () {
-        const { history } = this.props;
-		const icons = [];
+        const { history, user } = this.props;
 		const pagesTitles = [
 			{
 				page: '/stockage',
@@ -69,7 +68,7 @@ class HeaderHome extends React.Component {
 			},
 			{
 				page: '/infoElevesLycee',
-				title: 'Etudiants',
+				title: 'Étudiants',
 				icon: <PersonOutlineOutlinedIcon fontSize='large' color='primary' />,
 			},
 		];
@@ -77,30 +76,32 @@ class HeaderHome extends React.Component {
 		return (
 			<div>
 				<SwipeableDrawer anchor='left' open={this.state.showDrawer} onClose={this.closeDrawer}>
-					<List sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-						<img src={logo} style={{ marginBottom: 25, height: 90, width: 130, marginLeft: 2 }} />
-						{pagesTitles.map((pageTitle, index) => {
-							let color = '';
-							let selected = false;
-							if (pageTitle.page.includes(history.location.pathname)) {
-								selected = true;
-								currentPage = pageTitle;
-							}
-							return (
-								<ListItemButton
-									selected={selected}
-									alignItems='flex-start'
-									divider={true}
-									button
-									key={index}
-									sx={{ backgroundColor: color }}
-									onClick={() => history.push(pageTitle.page)}
-								>
-									<ListItemIcon>{pageTitle.icon}</ListItemIcon>
-									<ListItemText primary={pageTitle.title} />
-								</ListItemButton>
-							);
-						})}
+					<List sx={{ display: 'flex', flexDirection: 'column' }}>
+						<img src={logo} style={{ marginBottom: 25, height: 90, width: 130, marginLeft: '15%' }} />
+						{user != null &&
+							pagesTitles.map((pageTitle, index) => {
+								let color = '';
+								let selected = false;
+								if (pageTitle.title === 'Étudiants' && user.status !== 'admin') return;
+								if (pageTitle.page.includes(history.location.pathname)) {
+									selected = true;
+									currentPage = pageTitle;
+								}
+								return (
+									<ListItemButton
+										selected={selected}
+										alignItems='center'
+										divider={true}
+										button='true'
+										key={index}
+										sx={{ backgroundColor: color }}
+										onClick={() => history.push(pageTitle.page, user)}
+									>
+										<ListItemIcon>{pageTitle.icon}</ListItemIcon>
+										<ListItemText primary={pageTitle.title} />
+									</ListItemButton>
+								);
+							})}
 						<Button color='error' onClick={() => history.push('/login')} sx={{ mt: 5 }}>
 							<FormattedMessage id='stockage.header.btnDisconnect' />
 						</Button>
@@ -138,9 +139,9 @@ class HeaderHome extends React.Component {
 						<Typography component='p' variant='body1' sx={{ flexGrow: 1 }}>
 							{currentPage.title}
 						</Typography>
-						<div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+						<div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
 							<Typography component='p' variant='body1' sx={{ flexGrow: 1 }}>
-								{this.props.user !=  null && this.props.user.firstName + ' ' + this.props.user.lastName}
+								{user != null && user.firstName + ' ' + user.lastName}
 							</Typography>
 							<IconButton size='large' aria-label='account of current user' aria-controls='menu-appbar' aria-haspopup='true' onClick={this.handleMenu} color='inherit'>
 								<AccountCircle onClick={this.handleMenu} />

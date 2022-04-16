@@ -1,16 +1,17 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import createHistory from 'history/createBrowserHistory';
 import React from 'react';
 import { withCookies } from 'react-cookie';
 import { IntlProvider } from 'react-intl';
 import { withRouter } from 'react-router';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
 import './App.css';
 import Contact from './components/contact';
 import Faq from './components/FAQ';
 import Faq1 from './components/faq_first';
 import Footer from './components/footer';
-import Header from './components/header';
+import Header from './components/Header';
 import InfoElevesLycee from './components/infoElevesLycee';
 import Login from './components/Login';
 import SiteInfo from './components/main';
@@ -38,11 +39,23 @@ function Home(props) {
 class App extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = { user: null };
+		this.history = createHistory();
 	}
 
 	componentDidMount() {
-		const { cookies } = this.props;
+		const { cookies, history } = this.props;
+		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) cookies.set('device', 'mobile', { path: '/' });
+		else cookies.set('device', 'pc', { path: '/' });
+		this.listen = this.history.listen((location, action) => {
+			if (location.pathname === '/login' && action === 'PUSH') cookies.set('token', '', { path: '/' });
+			if (!cookies.get('token') || cookies.get('token') === '') history.push('/login');
+		});
 		cookies.set('language', 'FR', { path: '/' });
+	}
+
+	componentWillUnmount() {
+		this.listen();
 	}
 
 	render() {
@@ -52,7 +65,7 @@ class App extends React.Component {
 		return (
 			<ThemeProvider theme={theme}>
 				<IntlProvider messages={language}>
-					<Router>
+					<Router history={this.history}>
 						<Switch>
 							<Route exact path='/'>
 								<Home

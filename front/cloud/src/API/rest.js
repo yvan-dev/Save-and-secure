@@ -1,17 +1,15 @@
 const apiUrl = 'https://yvandev.fr/save-and-safe';
-let token = document.cookie;
-if (token.indexOf('token') !== -1) {
-    token = token.split(';')[1].split('=')[1].split('Bearer%20')[1];
-    token = 'Bearer ' + token;
+let cookies = document.cookie;
+let token
+console.log("🚀 ~ file: rest.js ~ line 3 ~ token", cookies)
+if (cookies.indexOf('Bearer') !== -1) {
+	cookies = cookies.split(';');
+	token = cookies.filter(cookie => cookie.includes('Bearer'));
+	token = token[0].split('=').pop().split('Bearer%20').pop();
+	token = 'Bearer ' + token;
 }
 
 const rest = {
-	// getUserLogged () {
-	//     let myHeaders = new Headers();
-	//     myHeaders.append('Content-Type', 'application/json');
-	//     myHeaders.append('Authorization', token);
-	//     return fetch(apiUrl + '/user/userLogged', {headers: myHeaders})
-	// },
 
 	login(data) {
 		let myHeaders = new Headers();
@@ -47,6 +45,17 @@ const rest = {
 		return fetch(apiUrl + '/user/userLogged', requestOptions);
 	},
 
+	getStorageUser() {
+		let myHeaders = new Headers();
+		myHeaders.append('Content-Type', 'application/json');
+		myHeaders.append('Authorization', token);
+		let requestOptions = {
+			method: 'GET',
+			headers: myHeaders,
+		};
+		return fetch(apiUrl + '/storage/userLogged', requestOptions);
+	},
+
 	uploadFileToDB(fileInput, idFolder) {
 		let myHeaders = new Headers();
 		myHeaders.append('Authorization', token);
@@ -58,6 +67,16 @@ const rest = {
 			body: formdata,
 		};
 		return fetch(apiUrl + '/file/upload/db/' + idFolder, requestOptions);
+	},
+
+	downloadFileFromDB(fileName) {
+		let myHeaders = new Headers();
+		myHeaders.append('Authorization', token);
+		let requestOptions = {
+			method: 'GET',
+			headers: myHeaders,
+		};
+		return fetch(apiUrl + '/file/db/' + fileName, requestOptions);
 	},
 
 	deleteFile(id_file) {
