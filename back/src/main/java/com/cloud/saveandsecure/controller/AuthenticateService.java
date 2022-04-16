@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,7 +26,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class AuthenticateService implements AuthenticateServiceInterf{
 	@Autowired
 	UserDao userDao;
-	
+
 	@Override
 	@CrossOrigin
 	public ResponseEntity<User> login(User user) {
@@ -40,12 +39,12 @@ public class AuthenticateService implements AuthenticateServiceInterf{
 		userDao.save(user);
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
-	
+
 	private String getJWTToken(String login) {
 		String secretKey = "mySecretKey";
 		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
 				.commaSeparatedStringToAuthorityList("ROLE_USER, ADMIN_USER");
-		
+
 		String token = Jwts
 				.builder()
 				.setId("softtekJWT")

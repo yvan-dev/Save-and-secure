@@ -24,10 +24,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cloud.saveandsecure.dao.FileDao;
 import com.cloud.saveandsecure.dao.FolderDao;
+import com.cloud.saveandsecure.dao.StorageDao;
 import com.cloud.saveandsecure.dao.UserDao;
 import com.cloud.saveandsecure.interfac.FileServiceInterf;
 import com.cloud.saveandsecure.model.File;
 import com.cloud.saveandsecure.model.Folder;
+import com.cloud.saveandsecure.model.Storage;
 import com.cloud.saveandsecure.model.User;
 
 @RestController
@@ -39,6 +41,9 @@ public class FileService implements FileServiceInterf {
 	FileDao fileDao;
 	@Autowired
 	FolderDao folderDao;
+
+	@Autowired
+	StorageDao storageDao;
 
 	@Override
 	public ResponseEntity<String> uploadFileToLocal(MultipartFile file) {
@@ -52,7 +57,7 @@ public class FileService implements FileServiceInterf {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		fileDb.setCreationDate(LocalDate.now());
 		fileDb.setName(fileName);
-		fileDb.setSize(file.getSize());
+		fileDb.setSize((double) file.getSize());
 		fileDao.save(fileDb);
 		Path path = Paths.get(fileBasePath + fileName);
 		try {
@@ -72,15 +77,28 @@ public class FileService implements FileServiceInterf {
 
 	public ResponseEntity<String> uploadFileToDB(MultipartFile file, int idFolder) {
 		try {
-			File fileDb = new File();
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			User userDb = userDao.findByLogin(auth.getPrincipal().toString());
+			Storage storageUser = storageDao.findByIdUser(userDb.getId());
 			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+			Double sizeFile = (double) (file.getSize() / (1024 * 1024)); // Taille en Mo
+
+			if(storageUser.getRestant() < sizeFile)
+				return ResponseEntity.status(HttpStatus.UPGRADE_REQUIRED).body("Espace disque restant insuffisant");
+			if (fileDao.findByNameAndIdFolder(fileName, idFolder) != null)
+				return ResponseEntity.status(HttpStatus.ALREADY_REPORTED)
+						.body("Le fichier " + fileName + " existe déjà!");
+
+			File fileDb = new File();
 			Folder parentFolder = folderDao.findById(idFolder);
 			fileDb.setName(fileName);
-			fileDb.setSize(file.getSize());
+			fileDb.setSize(sizeFile);
+			storageUser.setRestant(storageUser.getRestant() - sizeFile);
 			fileDb.setIdFolder(idFolder);
 			fileDb.setCreationDate(LocalDate.now());
 			fileDb.setFile(file.getBytes());
 			fileDao.save(fileDb);
+			storageDao.save(storageUser);
 			parentFolder.setNumberOfFile(parentFolder.getNumberOfFile() + 1);
 			folderDao.save(parentFolder);
 			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -138,6 +156,9 @@ public class FileService implements FileServiceInterf {
 		if (folder == null)
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		List<File> files = fileDao.findByIdFolder(id_folder);
+		files.forEach(file -> {
+			file.setFile(null); // ça ne sers à rien de renvoyer le fichier byte[]. On en a pas besoin pour l'affichage - Soucis de performance
+		});
 		return ResponseEntity.status(HttpStatus.OK).body(files);
 	}
 
@@ -149,12 +170,18 @@ public class FileService implements FileServiceInterf {
 			File file = fileDao.findById(id_file);
 			if (file == null)
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-				
+
 			/* Update number of files in parent folder */
 			Folder parentFolder = folderDao.findByIdAndIdUser(file.getIdFolder(), userDb.getId());
 			parentFolder.setNumberOfFile(parentFolder.getNumberOfFile() - 1);
-			fileDao.deleteById(id_file);
 			folderDao.save(parentFolder);
+
+			/* Update storage */
+			Storage storageUser = storageDao.findByIdUser(userDb.getId());
+			storageUser.setRestant(storageUser.getRestant() + file.getSize());
+			storageDao.save(storageUser);
+
+			fileDao.deleteById(id_file);
 			return ResponseEntity.status(HttpStatus.OK).build();
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -163,9 +190,9 @@ public class FileService implements FileServiceInterf {
 
 	@Override
 	public ResponseEntity<String> updateFileName(int id_file, String file_name) {
-		if (fileDao.findByName(file_name) != null)
-			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body("Le fichier " + file_name + " existe déjà!");
 		File dbFile = fileDao.findById(id_file);
+		if (fileDao.findByNameAndIdFolder(file_name, dbFile.getIdFolder()) != null)
+			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body("Le fichier " + file_name + " existe déjà!");
 		if (dbFile == null)
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Fichier " + file_name+ " non trouvé sur le serveur");
 		dbFile.setName(file_name);

@@ -10,10 +10,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cloud.saveandsecure.dao.FileDao;
 import com.cloud.saveandsecure.dao.FolderDao;
+import com.cloud.saveandsecure.dao.StorageDao;
 import com.cloud.saveandsecure.dao.UserDao;
 import com.cloud.saveandsecure.interfac.FolderServiceinterf;
+import com.cloud.saveandsecure.model.File;
 import com.cloud.saveandsecure.model.Folder;
+import com.cloud.saveandsecure.model.Storage;
 import com.cloud.saveandsecure.model.User;
 
 @RestController
@@ -23,6 +27,10 @@ public class FolderService implements FolderServiceinterf {
 	UserDao userDao;
 	@Autowired
 	FolderDao folderDao;
+	@Autowired
+	FileDao fileDao;
+	@Autowired
+	StorageDao storageDao;
 
 	@Override
 	public ResponseEntity<String> addFolder(String folderName, int parent_folder_id) {
@@ -30,7 +38,7 @@ public class FolderService implements FolderServiceinterf {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Folder must have a name");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User userDb = userDao.findByLogin(auth.getPrincipal().toString());
-		if (folderDao.findByNameAndIdUser(folderName, userDb.getId()) != null)
+		if (folderDao.findByNameAndIdUserAndIdParentFolder(folderName, userDb.getId(), parent_folder_id) != null)
 			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body("Folder already exist");
 		Folder folder = new Folder();
 		folder.setName(folderName);
@@ -53,7 +61,8 @@ public class FolderService implements FolderServiceinterf {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Folder must have a name");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User userDb = userDao.findByLogin(auth.getPrincipal().toString());
-		if (folderDao.findByNameAndIdUser(folder.getName(), userDb.getId()) != null)
+		if (folderDao.findByNameAndIdUserAndIdParentFolder(folder.getName(), userDb.getId(),
+				folder.getIdParentFolder()) != null)
 			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body("Folder already exist");
 		if (!folderDao.existsById(folder.getId()))
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Folder not found");
@@ -65,10 +74,26 @@ public class FolderService implements FolderServiceinterf {
 		return ResponseEntity.ok().build();
 	}
 
+	// TODO : Suppression récursive de tous les sous dossiers et fichiers
 	@Override
 	public ResponseEntity<String> deleteFolder(int id_folder) {
-		folderDao.deleteById(id_folder);
-		return ResponseEntity.ok().build();
+		// First Delete all files in the folder
+		try {
+			List<File> files = fileDao.findByIdFolder(id_folder);
+			FileService fileService = new FileService();
+			files.forEach(file -> {
+				try {
+					fileService.deleteFile(file.getId());
+				} catch (Exception e) {
+					throw new RuntimeException("Erreur lors de la suppression d'un fichier du répertoire");
+				}
+			});
+			// Then delete the folder
+			folderDao.deleteById(id_folder);
+			return ResponseEntity.ok().build();
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
+		}
 	}
 
 	@Override
@@ -78,11 +103,16 @@ public class FolderService implements FolderServiceinterf {
 		if (folderDao.findByNameAndIdUser("/", userDb.getId()) != null)
 			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body("Folder root already exist");
 		Folder folder = new Folder();
+		Storage storage = new Storage();
 		folder.setCreationDate(LocalDate.now());
 		folder.setIdUser(userDb.getId());
 		folder.setName("/");
 		folder.setNumberOfFile(0);
+		storage.setIdUser(userDb.getId());
+		storage.setTotal(100.0); // User start with 100 Mo
+		storage.setRestant(100.0);
 		folderDao.save(folder);
+		storageDao.save(storage);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Root folder created");
 	}
 
@@ -124,10 +154,10 @@ public class FolderService implements FolderServiceinterf {
 	public ResponseEntity<String> updateFolderName(int id_folder, String folder_name) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User userDb = userDao.findByLogin(auth.getPrincipal().toString());
-		if (folderDao.findByNameAndIdUser(folder_name, userDb.getId()) != null)
+		Folder dbFolder = folderDao.findById(id_folder);
+		if (folderDao.findByNameAndIdUserAndIdParentFolder(folder_name, userDb.getId(), dbFolder.getIdParentFolder()) != null)
 			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED)
 					.body("Le dossier " + folder_name + " existe déjà!");
-		Folder dbFolder = folderDao.findById(id_folder);
 		if (dbFolder == null)
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body("Dossier " + folder_name + " non trouvé sur le serveur");
