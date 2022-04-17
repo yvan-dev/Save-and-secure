@@ -258,8 +258,8 @@ class Stockage extends React.Component {
 							</Grid>
 						</Grid>
 					</Grid>
-					<Grid item xs={ 12 } md={ 10 } sm={ 9 } sx={{ pr: 1, pl: 1,  display: 'flex', flexDirection: 'column'}}>
-						<Grid item sx={ {mb: 3} }>
+					<Grid item xs={12} md={10} sm={9} sx={{ pr: 1, ml: cookies.get('device') != null && cookies.get('device') === 'mobile' ? 1 : 0, display: 'flex', flexDirection: 'column' }}>
+						<Grid item sx={{ mb: 3 }}>
 							<Upload parentFolderId={this.state.parentFolder != null && this.state.parentFolder.id} onUploadStart={this.onUploadStart} onUploadEnd={this.onUploadEnd} />
 						</Grid>
 						<Grid item>

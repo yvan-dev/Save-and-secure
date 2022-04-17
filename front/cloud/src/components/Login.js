@@ -78,10 +78,6 @@ class Login extends React.Component {
 
 	render() {
 		const { history } = this.props;
-		const options = [
-			{ value: 'FR', label: 'Français' },
-			{ value: 'ENG', label: 'Anglais' },
-		];
 		return (
 			<div>
 				<Header cookies={this.props.cookies} changeCookie={this.props.changeCookie} />

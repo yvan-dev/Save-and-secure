@@ -83,7 +83,7 @@ class HeaderHome extends React.Component {
 								let color = '';
 								let selected = false;
 								if (pageTitle.title === 'Étudiants' && user.status !== 'admin') return;
-								if (pageTitle.page.includes(history.location.pathname)) {
+								if (pageTitle.page === history.location.pathname) {
 									selected = true;
 									currentPage = pageTitle;
 								}

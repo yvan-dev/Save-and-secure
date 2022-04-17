@@ -4,11 +4,6 @@ import network from '../images/network.PNG';
 import Footer from './footer';
 import Header from './Header';
 
-const options = [
-	{ value: 'FR', label: 'Français' },
-	{ value: 'ENG', label: 'Anglais' },
-];
-
 function Propos(props) {
 	const history = useHistory();
 	return (
