@@ -6,10 +6,6 @@ import Footer from './footer';
 import Header from './Header';
 import Maps from './Maps.js';
 
-const options = [
-	{ value: 'FR', label: 'Français' },
-	{ value: 'ENG', label: 'Anglais' },
-];
 
 function sendEmail(e) {
 	e.preventDefault();

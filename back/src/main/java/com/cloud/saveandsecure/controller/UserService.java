@@ -53,8 +53,10 @@ public class UserService implements UserServiceInterf {
 			return ResponseEntity.notFound().build();
 		if (user.getPassword() != "")
 			user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
-		else
+		else {
 			user.setPassword(userDb.getPassword());
+			user.setStatus(userDb.getStatus());
+		}
 		userDao.save(user);
 		return ResponseEntity.ok().build();
 	}

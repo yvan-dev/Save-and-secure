@@ -1,25 +1,74 @@
 import React from 'react';
-import Button from "react-bootstrap/Button";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage } from 'react-intl';
 import SearchBar from 'react-js-search';
 import { withRouter } from 'react-router';
 import rest from '../API/rest';
+import { styled } from '@mui/material/styles';
+import {
+	TableContainer,
+	tableCellClasses,
+	Table,
+	TableHead,
+	TableBody,
+	TableRow,
+	TableCell,
+	Button,
+	ListItemIcon,
+	Divider,
+	Stack,
+	Typography,
+	Grid,
+	List,
+	ListItemButton,
+	ListItemText,
+	TextField,
+	InputAdornment,
+	Box,
+	Paper,
+	Skeleton,
+} from '@mui/material';
+import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import BtnPrincipalPage from './btnPrincipalPage';
 import Footer from './footer';
+import PersonIcon from '@mui/icons-material/Person';
 import HeaderHome from './HeaderHome';
 import Lyceen from './lyceens';
 
-const options = [
-    { value: 'FR', label: 'Français' },
-    { value: 'ENG', label: 'Anglais' },
-]
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+	[`&.${tableCellClasses.head}`]: {
+		backgroundColor: '#0658c2',
+		color: theme.palette.common.white,
+	},
+	[`&.${tableCellClasses.body}`]: {
+		fontSize: 14,
+	},
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+	'&:nth-of-type(odd)': {
+		backgroundColor: theme.palette.action.hover,
+	},
+	// hide last border
+	'&:last-child td, &:last-child th': {
+		border: 0,
+	},
+}));
 class InfoElevesLycee extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { userId: null, users: null, textBtn: 'Ajouter' };
+		this.state = { userId: null, users: null, textBtnId: 'lycee.body.bloc2.3' };
 	}
 
-	addUser = () => {
+	componentDidMount() {
+		const { history } = this.props;
+		if (history.location.state == null) history.push('/stockage');
+		this.getAllUser();
+	}
+
+	addUser = (event) => {
+		event.preventDefault();
 		let data = { id: null, firstName: '', lastName: '', level: '', login: '', password: '', idSchool: 0, status: 'user' };
 		const loginInput = document.getElementById('login');
 		const passwordInput = document.getElementById('password');
@@ -35,13 +84,13 @@ class InfoElevesLycee extends React.Component {
 			data.age = ageInput.value;
 			data.password = passwordInput.value;
 			data.idSchool = 1;
-			if (this.state.textBtn === 'Ajouter') {
+			if (this.state.userId === null) {
 				rest
 					.addUser(data)
 					.then((response) => {
 						if (response.status !== 200) {
 							// display message for user => do best than alert
-							alert("Erreur lors de l'ajout du lycéen! ");
+							alert("Erreur lors de l'ajout de l'étudiant! ");
 						} else {
 							this.getAllUser();
 							alert(data.firstName + ' ajouté avec succès!');
@@ -63,13 +112,25 @@ class InfoElevesLycee extends React.Component {
 					})
 					.catch((error) => {
 						console.log('error : ', error);
-					});
+					})
+					.finally(() => this.setState({ userId: null }));
 			}
+			this.resetForm();
 		}
 	};
 
+	resetForm = () => {
+		this.setState({ textBtnId: 'lycee.body.bloc2.3' });
+		document.getElementById('login').value = '';
+		document.getElementById('firstName').value = '';
+		document.getElementById('lastName').value = '';
+		document.getElementById('level').value = '';
+		document.getElementById('age').value = '';
+		document.getElementById('password').value = '';
+	};
+
 	loadUser = (user) => {
-		this.setState({ userId: user.id, textBtn: 'Modifier' });
+		this.setState({ userId: user.id, textBtnId: 'lycee.body.btnModify' });
 		const loginInput = document.getElementById('login');
 		const firstNameInput = document.getElementById('firstName');
 		const lastNameInput = document.getElementById('lastName');
@@ -81,7 +142,7 @@ class InfoElevesLycee extends React.Component {
 		}
 		if (user.firstName !== '' || user.firstName != null) {
 			firstNameInput.value = user.firstName;
-			firstNameInput.placeholder = user.placeholder;
+			firstNameInput.placeholder = user.firstName;
 		}
 		if (user.lastName !== '' || user.lastName != null) {
 			lastNameInput.value = user.lastName;
@@ -99,8 +160,7 @@ class InfoElevesLycee extends React.Component {
 
 	getAllUser = () => {
 		rest.getAllUser().then((response) => {
-			// eslint-disable-next-line eqeqeq
-			if (response.status == 200) {
+			if (response.status === 200) {
 				response.json().then((users) => {
 					this.setState({ users });
 				});
@@ -114,8 +174,7 @@ class InfoElevesLycee extends React.Component {
 			return;
 		}
 		rest.getUserByFirstOrLastNameOrLogin(pattern).then((response) => {
-			// eslint-disable-next-line eqeqeq
-			if (response.status == 200) {
+			if (response.status === 200) {
 				response.json().then((users) => {
 					this.setState({ users });
 				});
@@ -123,107 +182,216 @@ class InfoElevesLycee extends React.Component {
 		});
 	};
 
-	componentDidMount() {
-		const { history } = this.props;
-		if (history.location.state == null) history.push('/stockage');
-		this.getAllUser();
-	}
+	deleteUser = (id_user) => {
+		rest.deleteUser(id_user).then((response) => {
+			if (response.status === 200) {
+				this.getAllUser();
+				alert('élève supprimé');
+			}
+		});
+	};
 
 	render() {
-		const { history } = this.props;
+		const { history, cookies } = this.props;
 		return (
 			<div>
 				<HeaderHome user={history.location.state} />
-				<body>
-					<div className='myDocument'>
-						<BtnPrincipalPage page={'infoEleve'} />
-					</div>
-					<br />
-					<div className='bloc'>
-						<div className='titleListeEleve'>
-							<h4>
-								<p>
-									<b>
-										<FormattedMessage id='lycee.body.titleListStudent' />
-									</b>
-								</p>
-							</h4>
-						</div>
-						<div className='searchEleve'>
-							<SearchBar
-								onSearchTextChange={(term, hits) => {
-									this.getUserByFirstOrLastNameOrLogin(term, hits);
-								}}
-								onSearchButtonClick={this.getUserByFirstOrLastNameOrLogin}
-								placeHolderText={'Rechercher'}
-								data={this.state.users}
-							/>
-						</div>
-						<div className='tcadre'>
-							<div className='informationsEvele'>
-								<br />
-								{this.state.users != null &&
-									this.state.users.map((user) => {
-										return <Lyceen refresh={this.getAllUser} loadUser={this.loadUser} user={user} />;
-									})}
-							</div>
-						</div>
-						<div>
-							<div className='bloc2'>
-								<h4>
-									<p>
-										<b>
-											<FormattedMessage id='lycee.body.bloc2.1' />
-											&nbsp;
-											<FormattedMessage id='lycee.body.bloc2.2' />
-											&nbsp;
-											<FormattedMessage id='lycee.body.bloc2.3' />
-											&nbsp;
-											<FormattedMessage id='lycee.body.bloc2.4' />
-											&nbsp;
-											<FormattedMessage id='lycee.body.bloc2.5' />
-											<br></br>
-											<FormattedMessage id='lycee.body.bloc2.6' />
-										</b>
-									</p>
-								</h4>
-							</div>
-							<div className='mesInputs'>
-								<FormattedMessage id='lycee.body.input1'>
-									{(placeholder) => <input id='lastName' class='form-control' style={{ width: '60%', margin: '2%' }} type='text' placeholder={placeholder} />}
-								</FormattedMessage>
-								<br />
-								<FormattedMessage id='lycee.body.input2'>
-									{(placeholder) => <input id='firstName' class='form-control' style={{ width: '60%', margin: '2%' }} type='text' placeholder={placeholder} />}
-								</FormattedMessage>
-								<br />
-								<FormattedMessage id='lycee.body.input3'>
-									{(placeholder) => <input id='level' class='form-control' style={{ width: '60%', margin: '2%' }} type='text' placeholder={placeholder} />}
-								</FormattedMessage>
-								<br />
-								<FormattedMessage id='lycee.body.age'>
-									{(placeholder) => <input id='age' class='form-control' style={{ width: '60%', margin: '2%' }} type='text' placeholder={placeholder} />}
-								</FormattedMessage>
-								<br />
-								<FormattedMessage id='lycee.body.input4'>
-									{(placeholder) => <input id='login' class='form-control' style={{ width: '60%', margin: '2%' }} type='text' placeholder={placeholder} />}
-								</FormattedMessage>
-								<br />
-								<FormattedMessage id='lycee.body.input5'>
-									{(placeholder) => <input id='password' class='form-control' style={{ width: '60%', margin: '2%' }} type='text' placeholder={placeholder} />}
-								</FormattedMessage>
-							</div>
-							<br />
-							<div className='Ajouter'>
-								<Button style={{ width: 240 }} onClick={this.addUser}>
-									<b>{this.state.textBtn}</b>
-								</Button>
-							</div>
-						</div>
-					</div>
-				</body>
-				<br />
-				<Footer />
+				<Grid container spacing={{ sm: 4, md: 6 }}>
+					<Grid item xs={12} sm={7} md={6} sx={{ display: 'flex', flexDirection: 'column' }}>
+						<Box
+							component={Paper}
+							elevation={6}
+							sx={{
+								ml: 1,
+								pl: 4,
+								width: '100%',
+								minHeight: '85vh',
+								maxHeight: '100vh',
+								borderColor: 'primary.main',
+								opacity: [1, 1, 1],
+							}}
+						>
+							<Grid container spacing={{ sm: 4, md: 6 }}>
+								<Grid item>
+									<Typography component='p' variant='h4'>
+										Liste des élèves inscrits
+									</Typography>
+								</Grid>
+								<Grid item xs={12} sm={12} md={12}>
+									<TextField
+										id='search'
+										placeholder='Nom, prénom, login'
+										label='Rechercher un étudiant'
+										onChange={(event) => this.getUserByFirstOrLastNameOrLogin(event.target.value)}
+										InputProps={{
+											startAdornment: (
+												<InputAdornment position='start'>
+													<SearchOutlinedIcon />
+												</InputAdornment>
+											),
+										}}
+										variant='outlined'
+										sx={{ width: '50%' }}
+									/>
+								</Grid>
+								<Grid item>
+									{this.state.users == null ? (
+										<Skeleton animation='wave' variant='rectangular' width={600} height={600} />
+									) : (
+										<TableContainer component={Paper} elevation={6}>
+											<Table sx={{ width: '100%' }} aria-label='customized table'>
+												<TableHead>
+													<TableRow>
+														<StyledTableCell>
+															<FormattedMessage id='lycee.body.input1' />
+														</StyledTableCell>
+														<StyledTableCell align='right'>
+															<FormattedMessage id='lycee.body.input2' />
+														</StyledTableCell>
+														{/* {cookies.get('device') != null && cookies.get('device') === 'pc' && (
+														<div> */}
+														<StyledTableCell align='right'>
+															<FormattedMessage id='lycee.body.input3' />
+														</StyledTableCell>
+														<StyledTableCell align='right'>
+															<FormattedMessage id='lycee.body.age' />
+														</StyledTableCell>
+														<StyledTableCell align='right'>
+															<FormattedMessage id='lycee.body.input4' />
+														</StyledTableCell>
+														<StyledTableCell align='right'>
+															<FormattedMessage id='lycee.body.btnModify' />
+														</StyledTableCell>
+														<StyledTableCell align='right'>
+															<FormattedMessage id='lycee.body.btnDelete' />
+														</StyledTableCell>
+														{/* </div>
+													)} */}
+													</TableRow>
+												</TableHead>
+												<TableBody>
+													{this.state.users != null &&
+														this.state.users.map((user) => (
+															<StyledTableRow key={user.id}>
+																<StyledTableCell component='th' scope='row'>
+																	{user.lastName}
+																</StyledTableCell>
+																<StyledTableCell align='right'>{user.firstName}</StyledTableCell>
+																{/* {cookies.get('device') != null && cookies.get('device') === 'pc' && (
+																<div> */}
+																<StyledTableCell align='right'>{user.level}</StyledTableCell>
+																<StyledTableCell align='right'>{user.age}</StyledTableCell>
+																<StyledTableCell align='right'>{user.login}</StyledTableCell>
+																{/* </div>
+															)} */}
+																<StyledTableCell align='right'>
+																	<Button color='info' onClick={() => this.loadUser(user)}>
+																		<DriveFileRenameOutlineIcon fontSize='large' />
+																	</Button>
+																</StyledTableCell>
+																<StyledTableCell align='right'>
+																	<Button color='error' onClick={() => this.deleteUser(user.id)}>
+																		<PersonRemoveIcon fontSize='large' />
+																	</Button>
+																</StyledTableCell>
+															</StyledTableRow>
+														))}
+												</TableBody>
+											</Table>
+										</TableContainer>
+									)}
+								</Grid>
+							</Grid>
+						</Box>
+					</Grid>
+					<Grid item xs={12} sm={5} md={6} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+						<Grid container spacing={4}>
+							<Grid item xs={12} sm={12} md={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+								<Typography component='p' variant='h4'>
+									Ajouter un nouvel étudiant
+								</Typography>
+							</Grid>
+							<Grid item xs={12} sm={12} md={12}>
+								<Box component='form' onSubmit={this.addUser}>
+									<Grid container spacing={2}>
+										<Grid item xs={12} sm={12} md={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+											<TextField
+												id='firstName'
+												autoComplete={true}
+												label={this.state.userId !== null ? '' : <FormattedMessage id='lycee.body.input1' />}
+												helperText={this.state.userId === null ? '' : <FormattedMessage id='lycee.body.input1' />}
+												variant='filled'
+												sx={{ width: '80%' }}
+											/>
+										</Grid>
+										<Grid item xs={12} sm={12} md={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+											<TextField
+												id='lastName'
+												autoComplete={true}
+												label={this.state.userId !== null ? '' : <FormattedMessage id='lycee.body.input2' />}
+												helperText={this.state.userId === null ? '' : <FormattedMessage id='lycee.body.input2' />}
+												variant='filled'
+												sx={{ width: '80%' }}
+											/>
+										</Grid>
+										<Grid item xs={12} sm={12} md={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+											<TextField
+												id='level'
+												autoComplete={true}
+												label={this.state.userId !== null ? '' : <FormattedMessage id='lycee.body.input3' />}
+												helperText={this.state.userId === null ? '' : <FormattedMessage id='lycee.body.input3' />}
+												variant='filled'
+												sx={{ width: '80%' }}
+											/>
+										</Grid>
+										<Grid item xs={12} sm={12} md={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+											<TextField
+												id='age'
+												type='number'
+												autoComplete={true}
+												label={this.state.userId !== null ? '' : <FormattedMessage id='lycee.body.age' />}
+												helperText={this.state.userId === null ? '' : <FormattedMessage id='lycee.body.age' />}
+												variant='filled'
+												sx={{ width: '80%' }}
+											/>
+										</Grid>
+										<Grid item xs={12} sm={12} md={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+											<TextField
+												id='login'
+												autoComplete={true}
+												label={this.state.userId !== null ? '' : <FormattedMessage id='lycee.body.input4' />}
+												helperText={this.state.userId === null ? '' : <FormattedMessage id='lycee.body.input4' />}
+												variant='filled'
+												sx={{ width: '80%' }}
+											/>
+										</Grid>
+										<Grid item xs={12} sm={12} md={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+											<TextField
+												id='password'
+												type='password'
+												autoComplete={true}
+												label={this.state.userId !== null ? '' : <FormattedMessage id='lycee.body.input5' />}
+												helperText={this.state.userId === null ? '' : <FormattedMessage id='lycee.body.input5' />}
+												variant='filled'
+												sx={{ width: '80%' }}
+											/>
+										</Grid>
+										<Grid item xs={12} sm={12} md={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+											<Button color='primary' variant='outlined' onClick={this.addUser} sx={{ width: '80%' }}>
+												<FormattedMessage id={this.state.textBtnId} />
+											</Button>
+										</Grid>
+										<Grid item xs={12} sm={12} md={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+											<Button color='error' variant='outlined' onClick={this.resetForm} sx={{ width: '80%' }}>
+												Annuler
+											</Button>
+										</Grid>
+									</Grid>
+								</Box>
+							</Grid>
+						</Grid>
+					</Grid>
+				</Grid>
 			</div>
 		);
 	}
