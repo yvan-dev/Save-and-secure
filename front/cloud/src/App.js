@@ -9,7 +9,6 @@ import { Route, Router, Switch } from 'react-router-dom';
 import './App.css';
 import Contact from './components/contact';
 import Faq from './components/FAQ';
-import Faq1 from './components/faq_first';
 import Footer from './components/footer';
 import Header from './components/Header';
 import InfoElevesLycee from './components/infoElevesLycee';
@@ -125,14 +124,6 @@ class App extends React.Component {
 							</Route>
 							<Route exact path='/FAQ'>
 								<Faq
-									cookies={cookies}
-									changeCookie={(langue) => {
-										cookies.set('language', langue, { path: '/' });
-									}}
-								/>
-							</Route>
-							<Route exact path='/faq_first'>
-								<Faq1
 									cookies={cookies}
 									changeCookie={(langue) => {
 										cookies.set('language', langue, { path: '/' });
