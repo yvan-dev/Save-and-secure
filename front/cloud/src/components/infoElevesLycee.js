@@ -316,7 +316,7 @@ class InfoElevesLycee extends React.Component {
 									<Grid container spacing={2}>
 										<Grid item xs={12} sm={12} md={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 											<TextField
-												id='firstName'
+												id='lastName'
 												autoComplete={true}
 												label={this.state.userId !== null ? '' : <FormattedMessage id='lycee.body.input1' />}
 												helperText={this.state.userId === null ? '' : <FormattedMessage id='lycee.body.input1' />}
@@ -326,7 +326,7 @@ class InfoElevesLycee extends React.Component {
 										</Grid>
 										<Grid item xs={12} sm={12} md={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 											<TextField
-												id='lastName'
+												id='firstName'
 												autoComplete={true}
 												label={this.state.userId !== null ? '' : <FormattedMessage id='lycee.body.input2' />}
 												helperText={this.state.userId === null ? '' : <FormattedMessage id='lycee.body.input2' />}
