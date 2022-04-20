@@ -3,32 +3,6 @@ import { FormattedMessage } from 'react-intl';
 import img from '../images/cloud-storage.png';
 import img2 from '../images/cloud.png';
 
-// newUI = () => {
-// 	return (
-// 		<Grid container>
-// 			<Grid item xs={12} sm={6} md={6}>
-// 				<img src={img} style={{ width: '25%', height: '25%' }} alt='logos' />
-// 			</Grid>
-// 			<Grid item xs={12} sm={6} md={6}>
-// 				<Typography component='p' variant='body1'>
-// 					Sauvegardez tous vos fichiers et dossiers Quel que soit le type ou le dossier que vous voulez sauvegarder (photos, vidéos, présentations PowerPoint ou fichiers de CAO
-// 					volumineux) il sera stocké de façon sécurisée grâce aux solutions de stockage cloud de S&S Cloud
-// 				</Typography>
-// 			</Grid>
-// 			<Grid item xs={12} sm={6} md={6}>
-// 				<Typography component='p' variant='body1'>
-// 					Protégez vos données En cas de perte ou de vol de votre appareil, vous gardez l'esprit tranquille, car toutes vos données sont sécurisées. L'éffacement à distance vous
-// 					permet de supprimer tous les fichiers ou dossiers du compte S&S installé sur l'appareil. Tous vos fichiers sont sécurisés dans le cloud et sauvegardés en plusieurs
-// 					exemplaires.
-// 				</Typography>
-// 			</Grid>
-// 			<Grid item xs={12} sm={6} md={6}>
-// 				<img src={img2} alt='logos' style={{ width: '60%', height: '60%' }} />
-// 			</Grid>
-// 		</Grid>
-// 	);
-// }
-
 const SiteInfo = () => {
 	return (
 		<Grid container spacing={{ xs: 4, sm: 6, md: 8 }} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
